@@ -12,9 +12,21 @@ namespace PracticaProductos
 {
     public partial class FormRemove : Form
     {
+        FormList formMain;
         public FormRemove()
         {
             InitializeComponent();
+        }
+
+        private void btEliminar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btCancelar_Click(object sender, EventArgs e)
+        {
+            formMain.Visible = true;
+            this.Close();
         }
     }
 }

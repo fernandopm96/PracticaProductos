@@ -1,11 +1,11 @@
 namespace PracticaProductos
 {
-    public partial class formMain : Form
+    public partial class FormList : Form
     {
         FormAdd formAdd;
         FormModify formModify;
         FormRemove formRemove;
-        public formMain()
+        public FormList()
         {
             InitializeComponent();
         }
@@ -35,6 +35,7 @@ namespace PracticaProductos
                 formRemove = new FormRemove();
             }
             formRemove.Visible = true;
+            this.Close();
 
         }
     }

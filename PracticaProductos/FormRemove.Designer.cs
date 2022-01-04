@@ -43,6 +43,10 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.lbResultado = new System.Windows.Forms.Label();
             this.lbInfo = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.lbTipo = new System.Windows.Forms.Label();
+            this.lbMarca = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbCodigo
@@ -100,21 +104,23 @@
             // 
             // btEliminar
             // 
-            this.btEliminar.Location = new System.Drawing.Point(179, 326);
+            this.btEliminar.Location = new System.Drawing.Point(185, 388);
             this.btEliminar.Name = "btEliminar";
             this.btEliminar.Size = new System.Drawing.Size(99, 23);
             this.btEliminar.TabIndex = 6;
             this.btEliminar.Text = "Eliminar";
             this.btEliminar.UseVisualStyleBackColor = true;
+            this.btEliminar.Click += new System.EventHandler(this.btEliminar_Click);
             // 
             // btCancelar
             // 
-            this.btCancelar.Location = new System.Drawing.Point(293, 326);
+            this.btCancelar.Location = new System.Drawing.Point(303, 388);
             this.btCancelar.Name = "btCancelar";
             this.btCancelar.Size = new System.Drawing.Size(99, 23);
             this.btCancelar.TabIndex = 7;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = true;
+            this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
             // textBox1
             // 
@@ -173,11 +179,49 @@
             this.lbInfo.TabIndex = 14;
             this.lbInfo.Text = "Introduce el código del producto que deseas eliminar";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(147, 287);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 15;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(147, 335);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 23);
+            this.comboBox2.TabIndex = 16;
+            // 
+            // lbTipo
+            // 
+            this.lbTipo.AutoSize = true;
+            this.lbTipo.Location = new System.Drawing.Point(31, 287);
+            this.lbTipo.Name = "lbTipo";
+            this.lbTipo.Size = new System.Drawing.Size(30, 15);
+            this.lbTipo.TabIndex = 17;
+            this.lbTipo.Text = "Tipo";
+            // 
+            // lbMarca
+            // 
+            this.lbMarca.AutoSize = true;
+            this.lbMarca.Location = new System.Drawing.Point(31, 335);
+            this.lbMarca.Name = "lbMarca";
+            this.lbMarca.Size = new System.Drawing.Size(40, 15);
+            this.lbMarca.TabIndex = 18;
+            this.lbMarca.Text = "Marca";
+            // 
             // FormRemove
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 361);
+            this.ClientSize = new System.Drawing.Size(414, 429);
+            this.Controls.Add(this.lbMarca);
+            this.Controls.Add(this.lbTipo);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lbInfo);
             this.Controls.Add(this.lbResultado);
             this.Controls.Add(this.textBox5);
@@ -193,6 +237,7 @@
             this.Controls.Add(this.lbPrecio);
             this.Controls.Add(this.lbNombre);
             this.Controls.Add(this.lbCodigo);
+            this.Enabled = false;
             this.Name = "FormRemove";
             this.Text = "Eliminar producto";
             this.ResumeLayout(false);
@@ -217,5 +262,9 @@
         private TextBox textBox5;
         private Label lbResultado;
         private Label lbInfo;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private Label lbTipo;
+        private Label lbMarca;
     }
 }

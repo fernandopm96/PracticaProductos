@@ -1,6 +1,6 @@
 ﻿namespace PracticaProductos
 {
-    partial class formMain
+    partial class FormList
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnModify = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
+            this.cbMarca = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cbTipo = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,37 +50,14 @@
             this.Nombre,
             this.Precio,
             this.Descripcion,
-            this.Stock});
-            this.dgvProductos.Location = new System.Drawing.Point(31, 39);
+            this.Stock,
+            this.cbMarca,
+            this.cbTipo});
+            this.dgvProductos.Location = new System.Drawing.Point(31, 28);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.RowTemplate.Height = 25;
-            this.dgvProductos.Size = new System.Drawing.Size(737, 327);
+            this.dgvProductos.Size = new System.Drawing.Size(748, 327);
             this.dgvProductos.TabIndex = 0;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Código";
-            this.Codigo.Name = "Codigo";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre ";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            // 
-            // Stock
-            // 
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
             // 
             // btnAdd
             // 
@@ -110,6 +89,41 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.Name = "Codigo";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre ";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            // 
+            // Stock
+            // 
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            // 
+            // cbMarca
+            // 
+            this.cbMarca.HeaderText = "Marca";
+            this.cbMarca.Name = "cbMarca";
+            // 
+            // cbTipo
+            // 
+            this.cbTipo.HeaderText = "Tipo";
+            this.cbTipo.Name = "cbTipo";
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -137,5 +151,7 @@
         private DataGridViewTextBoxColumn Precio;
         private DataGridViewTextBoxColumn Descripcion;
         private DataGridViewTextBoxColumn Stock;
+        private DataGridViewComboBoxColumn cbMarca;
+        private DataGridViewComboBoxColumn cbTipo;
     }
 }
