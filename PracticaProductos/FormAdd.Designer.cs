@@ -125,8 +125,6 @@
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(223, 23);
             this.tbNombre.TabIndex = 28;
-            this.tbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.tbNombre_Validating);
-            this.tbNombre.Validated += new System.EventHandler(this.tbNombre_Validated);
             // 
             // tbCodigo
             // 
@@ -134,8 +132,6 @@
             this.tbCodigo.Name = "tbCodigo";
             this.tbCodigo.Size = new System.Drawing.Size(57, 23);
             this.tbCodigo.TabIndex = 27;
-            this.tbCodigo.Validating += new System.ComponentModel.CancelEventHandler(this.tbCodigo_Validating);
-            this.tbCodigo.Validated += new System.EventHandler(this.tbCodigo_Validated);
             // 
             // btCancelar
             // 
@@ -145,6 +141,7 @@
             this.btCancelar.TabIndex = 26;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = true;
+            this.btCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btAceptar
             // 
@@ -219,14 +216,12 @@
             this.nudPrecio.Name = "nudPrecio";
             this.nudPrecio.Size = new System.Drawing.Size(88, 23);
             this.nudPrecio.TabIndex = 38;
-            this.nudPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.nudPrecio_Validating);
-            this.nudPrecio.Validated += new System.EventHandler(this.nudPrecio_Validated);
             // 
             // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(414, 429);
             this.Controls.Add(this.nudPrecio);
             this.Controls.Add(this.lbMarca);
@@ -247,7 +242,9 @@
             this.Controls.Add(this.lbPrecio);
             this.Controls.Add(this.lbNombre);
             this.Controls.Add(this.lbCodigo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAdd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Añadir producto";
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).EndInit();

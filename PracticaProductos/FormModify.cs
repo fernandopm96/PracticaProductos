@@ -16,5 +16,31 @@ namespace PracticaProductos
         {
             InitializeComponent();
         }
+
+        private void btModificar_Click(object sender, EventArgs e)
+        {
+            if(btModificar.Text == "Buscar")
+            {
+                if (nupCodigo.Value <= 0)
+                {
+                    MessageBox.Show("Debes de introducir un valor válido.");
+                }
+                else
+                {
+                    btModificar.Text = "Modificar";
+                    MessageBox.Show("Modifica los datos del artículo seleccionado.");
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Artículo modificado.");
+            }
+        }
+
+        private void btCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

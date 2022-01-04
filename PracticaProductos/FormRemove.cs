@@ -12,7 +12,6 @@ namespace PracticaProductos
 {
     public partial class FormRemove : Form
     {
-        FormList formMain;
         public FormRemove()
         {
             InitializeComponent();
@@ -20,13 +19,27 @@ namespace PracticaProductos
 
         private void btEliminar_Click(object sender, EventArgs e)
         {
-            
+            if(btEliminar.Text == "Buscar")
+            {
+                if (nupCodigo.Value <= 0)
+                {
+                    MessageBox.Show("Debes de introducir un valor válido.");
+                }
+                else
+                {
+                    btEliminar.Text = "Eliminar";
+                }
+            } 
+            else
+            {
+                MessageBox.Show("Artículo eliminado.");
+            }
+
         }
 
         private void btCancelar_Click(object sender, EventArgs e)
         {
-            formMain.Visible = true;
-            this.Close();
+            Close();
         }
     }
 }

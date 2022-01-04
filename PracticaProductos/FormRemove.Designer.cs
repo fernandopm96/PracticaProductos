@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbCodigo = new System.Windows.Forms.Label();
             this.lbNombre = new System.Windows.Forms.Label();
             this.lbPrecio = new System.Windows.Forms.Label();
@@ -36,17 +37,22 @@
             this.lbStock = new System.Windows.Forms.Label();
             this.btEliminar = new System.Windows.Forms.Button();
             this.btCancelar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbNombre = new System.Windows.Forms.TextBox();
+            this.tbDescripcion = new System.Windows.Forms.TextBox();
             this.lbResultado = new System.Windows.Forms.Label();
             this.lbInfo = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
+            this.cbMarca = new System.Windows.Forms.ComboBox();
             this.lbTipo = new System.Windows.Forms.Label();
             this.lbMarca = new System.Windows.Forms.Label();
+            this.nupCodigo = new System.Windows.Forms.NumericUpDown();
+            this.nupPrecio = new System.Windows.Forms.NumericUpDown();
+            this.nupStock = new System.Windows.Forms.NumericUpDown();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lbCodigo
@@ -108,7 +114,7 @@
             this.btEliminar.Name = "btEliminar";
             this.btEliminar.Size = new System.Drawing.Size(99, 23);
             this.btEliminar.TabIndex = 6;
-            this.btEliminar.Text = "Eliminar";
+            this.btEliminar.Text = "Buscar";
             this.btEliminar.UseVisualStyleBackColor = true;
             this.btEliminar.Click += new System.EventHandler(this.btEliminar_Click);
             // 
@@ -122,44 +128,21 @@
             this.btCancelar.UseVisualStyleBackColor = true;
             this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
-            // textBox1
+            // tbNombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(147, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(57, 23);
-            this.textBox1.TabIndex = 8;
+            this.tbNombre.Enabled = false;
+            this.tbNombre.Location = new System.Drawing.Point(147, 120);
+            this.tbNombre.Name = "tbNombre";
+            this.tbNombre.Size = new System.Drawing.Size(223, 23);
+            this.tbNombre.TabIndex = 9;
             // 
-            // textBox2
+            // tbDescripcion
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(147, 120);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(223, 23);
-            this.textBox2.TabIndex = 9;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(147, 160);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(57, 23);
-            this.textBox3.TabIndex = 10;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(147, 197);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(223, 23);
-            this.textBox4.TabIndex = 11;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(147, 240);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(57, 23);
-            this.textBox5.TabIndex = 12;
+            this.tbDescripcion.Enabled = false;
+            this.tbDescripcion.Location = new System.Drawing.Point(147, 197);
+            this.tbDescripcion.Name = "tbDescripcion";
+            this.tbDescripcion.Size = new System.Drawing.Size(223, 23);
+            this.tbDescripcion.TabIndex = 11;
             // 
             // lbResultado
             // 
@@ -179,21 +162,26 @@
             this.lbInfo.TabIndex = 14;
             this.lbInfo.Text = "Introduce el código del producto que deseas eliminar";
             // 
-            // comboBox1
+            // cbTipo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(147, 287);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 15;
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Items.AddRange(new object[] {
+            "a",
+            "b",
+            "c",
+            "d"});
+            this.cbTipo.Location = new System.Drawing.Point(147, 287);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(121, 23);
+            this.cbTipo.TabIndex = 15;
             // 
-            // comboBox2
+            // cbMarca
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(147, 335);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 16;
+            this.cbMarca.FormattingEnabled = true;
+            this.cbMarca.Location = new System.Drawing.Point(147, 335);
+            this.cbMarca.Name = "cbMarca";
+            this.cbMarca.Size = new System.Drawing.Size(121, 23);
+            this.cbMarca.TabIndex = 16;
             // 
             // lbTipo
             // 
@@ -213,22 +201,50 @@
             this.lbMarca.TabIndex = 18;
             this.lbMarca.Text = "Marca";
             // 
+            // nupCodigo
+            // 
+            this.nupCodigo.Location = new System.Drawing.Point(147, 80);
+            this.nupCodigo.Name = "nupCodigo";
+            this.nupCodigo.Size = new System.Drawing.Size(74, 23);
+            this.nupCodigo.TabIndex = 19;
+            // 
+            // nupPrecio
+            // 
+            this.nupPrecio.Enabled = false;
+            this.nupPrecio.Location = new System.Drawing.Point(147, 160);
+            this.nupPrecio.Name = "nupPrecio";
+            this.nupPrecio.Size = new System.Drawing.Size(74, 23);
+            this.nupPrecio.TabIndex = 20;
+            // 
+            // nupStock
+            // 
+            this.nupStock.Enabled = false;
+            this.nupStock.Location = new System.Drawing.Point(147, 240);
+            this.nupStock.Name = "nupStock";
+            this.nupStock.Size = new System.Drawing.Size(74, 23);
+            this.nupStock.TabIndex = 21;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // FormRemove
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(414, 429);
+            this.Controls.Add(this.nupStock);
+            this.Controls.Add(this.nupPrecio);
+            this.Controls.Add(this.nupCodigo);
             this.Controls.Add(this.lbMarca);
             this.Controls.Add(this.lbTipo);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbMarca);
+            this.Controls.Add(this.cbTipo);
             this.Controls.Add(this.lbInfo);
             this.Controls.Add(this.lbResultado);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbDescripcion);
+            this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btEliminar);
             this.Controls.Add(this.lbStock);
@@ -237,9 +253,16 @@
             this.Controls.Add(this.lbPrecio);
             this.Controls.Add(this.lbNombre);
             this.Controls.Add(this.lbCodigo);
-            this.Enabled = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximumSize = new System.Drawing.Size(430, 468);
+            this.MinimumSize = new System.Drawing.Size(430, 468);
             this.Name = "FormRemove";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Eliminar producto";
+            ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,16 +278,17 @@
         private Label lbStock;
         private Button btEliminar;
         private Button btCancelar;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox tbNombre;
+        private TextBox tbDescripcion;
         private Label lbResultado;
         private Label lbInfo;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
+        private ComboBox cbTipo;
+        private ComboBox cbMarca;
         private Label lbTipo;
         private Label lbMarca;
+        private NumericUpDown nupCodigo;
+        private NumericUpDown nupPrecio;
+        private NumericUpDown nupStock;
+        private ErrorProvider errorProvider1;
     }
 }
