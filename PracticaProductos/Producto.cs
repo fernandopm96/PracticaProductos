@@ -13,6 +13,16 @@ namespace PracticaProductos
         private double Precio { get; set; }
         private string Descripcion { get; set; }
         private int Stock { get; set; }
+        private Tipo tipo { get; set; }
+        private Marca marca { get; set; }
+
+    }
+    enum Tipo
+    {
+
+    }
+    enum Marca
+    {
 
     }
 }

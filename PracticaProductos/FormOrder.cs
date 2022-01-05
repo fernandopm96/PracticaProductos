@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace PracticaProductos
 {
-    public partial class FormModify : FormAdd
+    public partial class FormOrder : Form
     {
-        public FormModify()
+        public FormOrder()
         {
             InitializeComponent();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

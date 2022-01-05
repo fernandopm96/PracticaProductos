@@ -25,5 +25,17 @@ namespace PracticaProductos
             FormRemove formRemove = new FormRemove();   
             formRemove.ShowDialog();
         }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            FormOrder formOrder = new FormOrder();
+            formOrder.ShowDialog();
+        }
+
+        private void ordenarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormOrder formOrder = new FormOrder();
+            formOrder.ShowDialog();
+        }
     }
 }
