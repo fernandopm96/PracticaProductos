@@ -33,10 +33,8 @@
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.lbInfo = new System.Windows.Forms.Label();
             this.lbResultado = new System.Windows.Forms.Label();
-            this.tbStock = new System.Windows.Forms.TextBox();
             this.tbDescripcion = new System.Windows.Forms.TextBox();
             this.tbNombre = new System.Windows.Forms.TextBox();
-            this.tbCodigo = new System.Windows.Forms.TextBox();
             this.btCancelar = new System.Windows.Forms.Button();
             this.btAceptar = new System.Windows.Forms.Button();
             this.lbStock = new System.Windows.Forms.Label();
@@ -46,20 +44,28 @@
             this.lbNombre = new System.Windows.Forms.Label();
             this.lbCodigo = new System.Windows.Forms.Label();
             this.errorProviderAdd = new System.Windows.Forms.ErrorProvider(this.components);
-            this.nudPrecio = new System.Windows.Forms.NumericUpDown();
+            this.nupPrecio = new System.Windows.Forms.NumericUpDown();
             this.paTitulo = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbFoto = new System.Windows.Forms.Label();
+            this.nupStock = new System.Windows.Forms.NumericUpDown();
+            this.nupCodigo = new System.Windows.Forms.NumericUpDown();
+            this.lbMarca = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.errorAdd = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
             this.paTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // lbTipo
             // 
             this.lbTipo.AutoSize = true;
-            this.lbTipo.Location = new System.Drawing.Point(44, 311);
+            this.lbTipo.Location = new System.Drawing.Point(44, 300);
             this.lbTipo.Name = "lbTipo";
             this.lbTipo.Size = new System.Drawing.Size(30, 15);
             this.lbTipo.TabIndex = 36;
@@ -68,7 +74,17 @@
             // cbTipo
             // 
             this.cbTipo.FormattingEnabled = true;
-            this.cbTipo.Location = new System.Drawing.Point(160, 311);
+            this.cbTipo.Items.AddRange(new object[] {
+            "Televisión",
+            "Lavadora",
+            "Microondas",
+            "Frigorífico",
+            "Secadora",
+            "Lavavajillas",
+            "Horno",
+            "Aire acondicionado",
+            "Estufa eléctrica"});
+            this.cbTipo.Location = new System.Drawing.Point(160, 300);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(121, 23);
             this.cbTipo.TabIndex = 34;
@@ -91,33 +107,20 @@
             this.lbResultado.Size = new System.Drawing.Size(0, 15);
             this.lbResultado.TabIndex = 32;
             // 
-            // tbStock
-            // 
-            this.tbStock.Location = new System.Drawing.Point(160, 264);
-            this.tbStock.Name = "tbStock";
-            this.tbStock.Size = new System.Drawing.Size(57, 23);
-            this.tbStock.TabIndex = 31;
-            // 
             // tbDescripcion
             // 
-            this.tbDescripcion.Location = new System.Drawing.Point(160, 221);
+            this.tbDescripcion.Location = new System.Drawing.Point(160, 220);
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.Size = new System.Drawing.Size(223, 23);
             this.tbDescripcion.TabIndex = 30;
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(160, 144);
+            this.tbNombre.Location = new System.Drawing.Point(160, 140);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(223, 23);
             this.tbNombre.TabIndex = 28;
-            // 
-            // tbCodigo
-            // 
-            this.tbCodigo.Location = new System.Drawing.Point(160, 104);
-            this.tbCodigo.Name = "tbCodigo";
-            this.tbCodigo.Size = new System.Drawing.Size(57, 23);
-            this.tbCodigo.TabIndex = 27;
+            this.tbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.tbNombre_Validating);
             // 
             // btCancelar
             // 
@@ -146,7 +149,7 @@
             // lbStock
             // 
             this.lbStock.AutoSize = true;
-            this.lbStock.Location = new System.Drawing.Point(44, 264);
+            this.lbStock.Location = new System.Drawing.Point(44, 260);
             this.lbStock.Name = "lbStock";
             this.lbStock.Size = new System.Drawing.Size(36, 15);
             this.lbStock.TabIndex = 24;
@@ -155,7 +158,7 @@
             // lbDescripcion
             // 
             this.lbDescripcion.AutoSize = true;
-            this.lbDescripcion.Location = new System.Drawing.Point(44, 224);
+            this.lbDescripcion.Location = new System.Drawing.Point(44, 220);
             this.lbDescripcion.Name = "lbDescripcion";
             this.lbDescripcion.Size = new System.Drawing.Size(69, 15);
             this.lbDescripcion.TabIndex = 23;
@@ -172,7 +175,7 @@
             // lbPrecio
             // 
             this.lbPrecio.AutoSize = true;
-            this.lbPrecio.Location = new System.Drawing.Point(44, 184);
+            this.lbPrecio.Location = new System.Drawing.Point(44, 180);
             this.lbPrecio.Name = "lbPrecio";
             this.lbPrecio.Size = new System.Drawing.Size(40, 15);
             this.lbPrecio.TabIndex = 21;
@@ -181,7 +184,7 @@
             // lbNombre
             // 
             this.lbNombre.AutoSize = true;
-            this.lbNombre.Location = new System.Drawing.Point(44, 144);
+            this.lbNombre.Location = new System.Drawing.Point(44, 140);
             this.lbNombre.Name = "lbNombre";
             this.lbNombre.Size = new System.Drawing.Size(51, 15);
             this.lbNombre.TabIndex = 20;
@@ -190,7 +193,7 @@
             // lbCodigo
             // 
             this.lbCodigo.AutoSize = true;
-            this.lbCodigo.Location = new System.Drawing.Point(44, 104);
+            this.lbCodigo.Location = new System.Drawing.Point(44, 100);
             this.lbCodigo.Name = "lbCodigo";
             this.lbCodigo.Size = new System.Drawing.Size(46, 15);
             this.lbCodigo.TabIndex = 19;
@@ -200,12 +203,13 @@
             // 
             this.errorProviderAdd.ContainerControl = this;
             // 
-            // nudPrecio
+            // nupPrecio
             // 
-            this.nudPrecio.Location = new System.Drawing.Point(160, 182);
-            this.nudPrecio.Name = "nudPrecio";
-            this.nudPrecio.Size = new System.Drawing.Size(88, 23);
-            this.nudPrecio.TabIndex = 38;
+            this.nupPrecio.Location = new System.Drawing.Point(160, 180);
+            this.nupPrecio.Name = "nupPrecio";
+            this.nupPrecio.Size = new System.Drawing.Size(88, 23);
+            this.nupPrecio.TabIndex = 38;
+            this.nupPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.nupPrecio_Validating);
             // 
             // paTitulo
             // 
@@ -221,7 +225,7 @@
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.Controls.Add(this.btCancelar);
             this.panel1.Controls.Add(this.btAceptar);
-            this.panel1.Location = new System.Drawing.Point(1, 451);
+            this.panel1.Location = new System.Drawing.Point(1, 526);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(413, 66);
             this.panel1.TabIndex = 40;
@@ -229,29 +233,76 @@
             // lbFoto
             // 
             this.lbFoto.AutoSize = true;
-            this.lbFoto.Location = new System.Drawing.Point(44, 358);
+            this.lbFoto.Location = new System.Drawing.Point(44, 380);
             this.lbFoto.Name = "lbFoto";
             this.lbFoto.Size = new System.Drawing.Size(31, 15);
             this.lbFoto.TabIndex = 41;
             this.lbFoto.Text = "Foto";
             // 
+            // nupStock
+            // 
+            this.nupStock.Location = new System.Drawing.Point(160, 260);
+            this.nupStock.Name = "nupStock";
+            this.nupStock.Size = new System.Drawing.Size(88, 23);
+            this.nupStock.TabIndex = 42;
+            // 
+            // nupCodigo
+            // 
+            this.nupCodigo.Location = new System.Drawing.Point(160, 100);
+            this.nupCodigo.Name = "nupCodigo";
+            this.nupCodigo.Size = new System.Drawing.Size(88, 23);
+            this.nupCodigo.TabIndex = 43;
+            this.nupCodigo.Validating += new System.ComponentModel.CancelEventHandler(this.nupCodigo_Validating);
+            // 
+            // lbMarca
+            // 
+            this.lbMarca.AutoSize = true;
+            this.lbMarca.Location = new System.Drawing.Point(44, 340);
+            this.lbMarca.Name = "lbMarca";
+            this.lbMarca.Size = new System.Drawing.Size(40, 15);
+            this.lbMarca.TabIndex = 44;
+            this.lbMarca.Text = "Marca";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Balay",
+            "LG",
+            "Bosch",
+            "Siemens",
+            "Samsung",
+            "Zanussi",
+            "Fagor",
+            "Mitsubishi"});
+            this.comboBox1.Location = new System.Drawing.Point(160, 340);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 45;
+            // 
+            // errorAdd
+            // 
+            this.errorAdd.ContainerControl = this;
+            // 
             // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(415, 518);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.ClientSize = new System.Drawing.Size(415, 588);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lbMarca);
+            this.Controls.Add(this.nupCodigo);
+            this.Controls.Add(this.nupStock);
             this.Controls.Add(this.lbFoto);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.paTitulo);
-            this.Controls.Add(this.nudPrecio);
+            this.Controls.Add(this.nupPrecio);
             this.Controls.Add(this.lbTipo);
             this.Controls.Add(this.cbTipo);
             this.Controls.Add(this.lbResultado);
-            this.Controls.Add(this.tbStock);
             this.Controls.Add(this.tbDescripcion);
             this.Controls.Add(this.tbNombre);
-            this.Controls.Add(this.tbCodigo);
             this.Controls.Add(this.lbStock);
             this.Controls.Add(this.lbDescripcion);
             this.Controls.Add(this.label4);
@@ -263,10 +314,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Añadir producto";
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).EndInit();
             this.paTitulo.ResumeLayout(false);
             this.paTitulo.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nupStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorAdd)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,9 +345,14 @@
         private Label lbNombre;
         private Label lbCodigo;
         private ErrorProvider errorProviderAdd;
-        private NumericUpDown nudPrecio;
+        private NumericUpDown nupPrecio;
         private Label lbFoto;
         private Panel panel1;
         private Panel paTitulo;
+        private ComboBox comboBox1;
+        private Label lbMarca;
+        private NumericUpDown nupCodigo;
+        private NumericUpDown nupStock;
+        private ErrorProvider errorAdd;
     }
 }

@@ -37,5 +37,11 @@ namespace PracticaProductos
             FormOrder formOrder = new FormOrder();
             formOrder.ShowDialog();
         }
+
+        private void añadirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAdd formAdd = new FormAdd();
+            formAdd.ShowDialog();
+        }
     }
 }
