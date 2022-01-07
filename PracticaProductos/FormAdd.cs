@@ -4,6 +4,8 @@ namespace PracticaProductos
 {
     public partial class FormAdd : Form
     {
+        private Controller controller = Controller.GetInstance();
+       
         public FormAdd()
         {
             InitializeComponent();
@@ -18,6 +20,7 @@ namespace PracticaProductos
         {
             if (ValidateForm())
             {
+                AddProduct();
                 MessageBox.Show("Producto registrado correctamente.");
                 Close();
             } else
@@ -40,6 +43,23 @@ namespace PracticaProductos
         {
             ValidatePrice();
         }
+        private void tbDescripcion_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateDescripcion();
+        }
+        private void nupStock_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateStock();
+        }
+        private void cbTipo_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTipo();
+        }
+        private void cbMarca_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateMarca();
+        }
+
         private bool ValidateCod()
         {
             bool valid = true;
@@ -83,23 +103,72 @@ namespace PracticaProductos
             }
             return valid;
         }
+        private bool ValidateDescripcion()
+        {
+            bool valid = true;
+            if (tbDescripcion.Text == "")
+            {
+                valid = false;
+            }
+            return valid;
+        }
+        private bool ValidateStock()
+        {
+            bool valid = true;
+            if(nupStock.Value < 0)
+            {
+                valid = false;   
+            }
+            return valid;
+        }
+        private bool ValidateTipo()
+        {
+            bool valid = true;
+            if (cbTipo.Text == "")
+            {
+                valid =false;
+            }
+            return valid;
+        }
+        private bool ValidateMarca()
+        {
+            bool valid = true;
+            if (cbMarca.Text == "")
+            {
+                valid = false;
+            }
+            return valid;
+        }
         private bool ValidateForm()
         {
             bool valid = false;
             bool validCod = ValidateCod();
             bool validName = ValidateName();
-            bool validPrice = ValidatePrice();  
-            if(validCod && validName && validPrice)
+            bool validPrice = ValidatePrice();
+            bool validDescription = ValidateDescripcion();
+            bool validStock = ValidateStock();
+            bool validTipo = ValidateTipo();
+            bool validMarca = ValidateMarca();  
+            if(validCod && validName && validPrice && validDescription && validStock && validTipo && validMarca)
             {
                valid = true;    
             }
             return valid;
         }
 
-        /*    private void nupCodigo_Validated(object sender, EventArgs e)
-     {
-         errorAdd = new ErrorProvider();   
-     }*/
+        private void AddProduct()
+        {
+            int cod = (int)nupCodigo.Value;
+            string nombre = tbNombre.Text;
+            double precio = (double)nupPrecio.Value;
+            string descripcion = tbDescripcion.Text;
+            int stock = (int)nupStock.Value;    
+            Tipo tipo = (Tipo)cbTipo.SelectedIndex;
+            Marca marca = (Marca)cbMarca.SelectedIndex;
+            Producto producto = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
+            controller.AddProduct(producto);
+        }
 
+        
     }
 }

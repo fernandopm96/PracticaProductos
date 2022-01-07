@@ -51,7 +51,7 @@
             this.nupStock = new System.Windows.Forms.NumericUpDown();
             this.nupCodigo = new System.Windows.Forms.NumericUpDown();
             this.lbMarca = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbMarca = new System.Windows.Forms.ComboBox();
             this.errorAdd = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
@@ -75,19 +75,20 @@
             // 
             this.cbTipo.FormattingEnabled = true;
             this.cbTipo.Items.AddRange(new object[] {
-            "Televisión",
+            "Television",
             "Lavadora",
             "Microondas",
-            "Frigorífico",
+            "Frigorifico",
             "Secadora",
             "Lavavajillas",
             "Horno",
-            "Aire acondicionado",
-            "Estufa eléctrica"});
+            "AireAcondicionado",
+            "Estufa"});
             this.cbTipo.Location = new System.Drawing.Point(160, 300);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(121, 23);
             this.cbTipo.TabIndex = 34;
+            this.cbTipo.Validating += new System.ComponentModel.CancelEventHandler(this.cbTipo_Validating);
             // 
             // lbInfo
             // 
@@ -113,6 +114,7 @@
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.Size = new System.Drawing.Size(223, 23);
             this.tbDescripcion.TabIndex = 30;
+            this.tbDescripcion.Validating += new System.ComponentModel.CancelEventHandler(this.tbDescripcion_Validating);
             // 
             // tbNombre
             // 
@@ -245,6 +247,7 @@
             this.nupStock.Name = "nupStock";
             this.nupStock.Size = new System.Drawing.Size(88, 23);
             this.nupStock.TabIndex = 42;
+            this.nupStock.Validating += new System.ComponentModel.CancelEventHandler(this.nupStock_Validating);
             // 
             // nupCodigo
             // 
@@ -263,10 +266,10 @@
             this.lbMarca.TabIndex = 44;
             this.lbMarca.Text = "Marca";
             // 
-            // comboBox1
+            // cbMarca
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbMarca.FormattingEnabled = true;
+            this.cbMarca.Items.AddRange(new object[] {
             "Balay",
             "LG",
             "Bosch",
@@ -275,10 +278,11 @@
             "Zanussi",
             "Fagor",
             "Mitsubishi"});
-            this.comboBox1.Location = new System.Drawing.Point(160, 340);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 45;
+            this.cbMarca.Location = new System.Drawing.Point(160, 340);
+            this.cbMarca.Name = "cbMarca";
+            this.cbMarca.Size = new System.Drawing.Size(121, 23);
+            this.cbMarca.TabIndex = 45;
+            this.cbMarca.Validating += new System.ComponentModel.CancelEventHandler(this.cbMarca_Validating);
             // 
             // errorAdd
             // 
@@ -290,7 +294,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(415, 588);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbMarca);
             this.Controls.Add(this.lbMarca);
             this.Controls.Add(this.nupCodigo);
             this.Controls.Add(this.nupStock);
@@ -349,7 +353,7 @@
         private Label lbFoto;
         private Panel panel1;
         private Panel paTitulo;
-        private ComboBox comboBox1;
+        private ComboBox cbMarca;
         private Label lbMarca;
         private NumericUpDown nupCodigo;
         private NumericUpDown nupStock;

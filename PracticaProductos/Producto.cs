@@ -6,23 +6,48 @@ using System.Threading.Tasks;
 
 namespace PracticaProductos
 {
-    internal class Producto
+    public class Producto
     {
-        private int Cod { get; set; }
-        private string Nombre { get; set; }
-        private double Precio { get; set; }
-        private string Descripcion { get; set; }
-        private int Stock { get; set; }
-        private Tipo tipo { get; set; }
-        private Marca marca { get; set; }
-
+        public int Cod { get; set; }
+        public string Nombre { get; set; }
+        public double Precio { get; set; }
+        public string Descripcion { get; set; }
+        public int Stock { get; set; }
+        public Tipo tipo { get; set; }
+        public Marca marca { get; set; }
+        public String foto { get; set; }
+        public Producto(int cod, string nombre, double precio, string descripcion, int stock, Tipo tipo, Marca marca)
+        {
+            this.Cod = cod;
+            this.Nombre = nombre;
+            this.Precio = precio;
+            this.Descripcion = descripcion;
+            this.Stock = stock;
+            this.tipo = tipo;
+            this.marca = marca; 
+        }
     }
-    enum Tipo
+    public enum Tipo
     {
-
+        Television,
+        Lavadora,
+        Microondas,
+        Frigorifico,
+        Secadora,
+        Lavavajillas,
+        Horno,
+        AireAcondicionado,
+        Estufa
     }
-    enum Marca
+    public enum Marca
     {
-
+        Balay,
+        LG,
+        Bosch,
+        Siemens,
+        Samsung,
+        Zanussi,
+        Fagor,
+        Mitsubishi
     }
 }
