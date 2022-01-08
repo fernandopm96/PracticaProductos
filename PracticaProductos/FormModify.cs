@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace PracticaProductos
 {
-    public partial class FormModify : FormAdd
+    public partial class FormModify : Form
     {
-        public FormModify()
-        {
+        FormMain formMain;
+        public FormModify(FormMain formMain)
+        {   
             InitializeComponent();
+            this.formMain = formMain;
+        }
+
+        private void ModifyProducts(List<Producto> productos)
+        {
+            
         }
     }
 }

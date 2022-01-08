@@ -4,10 +4,10 @@ namespace PracticaProductos
 {
     public partial class FormAdd : Form
     {
-        private Controller controller = Controller.GetInstance();
-       
-        public FormAdd()
+        FormMain formMain;
+        public FormAdd(FormMain formMain)
         {
+            this.formMain = formMain;
             InitializeComponent();
         }
 
@@ -29,8 +29,6 @@ namespace PracticaProductos
             }
             
         }
-
- 
         private void nupCodigo_Validating(object sender, CancelEventArgs e)
         {
             ValidateCod();
@@ -166,7 +164,8 @@ namespace PracticaProductos
             Tipo tipo = (Tipo)cbTipo.SelectedIndex;
             Marca marca = (Marca)cbMarca.SelectedIndex;
             Producto producto = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
-            controller.AddProduct(producto);
+            MessageBox.Show(producto.ToString());
+            formMain.AddProduct(producto);
         }
 
         

@@ -139,12 +139,12 @@
             // btAceptar
             // 
             this.btAceptar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btAceptar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btAceptar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btAceptar.Location = new System.Drawing.Point(182, 19);
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(99, 33);
             this.btAceptar.TabIndex = 25;
-            this.btAceptar.Text = "Aceptar";
+            this.btAceptar.Text = "Guardar";
             this.btAceptar.UseVisualStyleBackColor = false;
             this.btAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
