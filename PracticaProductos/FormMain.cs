@@ -23,11 +23,14 @@ namespace PracticaProductos
         {
             if (ProductsSelected())
             {
-                FormModify formModify = new FormModify(this);
-                formModify.ModifyProducts(ProductsToModify());
+                FormModify formModify = new FormModify(this, ProductsToModify());
                 formModify.ShowDialog();
             }
-            
+            else
+            {
+                MessageBox.Show("Selecciona los artículos que quieras modificar.");
+            }
+
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -149,6 +152,11 @@ namespace PracticaProductos
                 });
             });
             return productsToModify;
+        }
+        public void SetProducts(List<Producto> productos)
+        {
+            this.productos = productos; 
+            UpdateProducts();
         }
     }
 }

@@ -46,10 +46,10 @@
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.cbMarca = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btSiguiente = new System.Windows.Forms.Button();
+            this.btAnterior = new System.Windows.Forms.Button();
             this.btCancelar = new System.Windows.Forms.Button();
-            this.btAceptar = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btModificar = new System.Windows.Forms.Button();
             this.paTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
@@ -221,14 +221,36 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.btSiguiente);
+            this.panel1.Controls.Add(this.btAnterior);
             this.panel1.Controls.Add(this.btCancelar);
-            this.panel1.Controls.Add(this.btAceptar);
+            this.panel1.Controls.Add(this.btModificar);
             this.panel1.Location = new System.Drawing.Point(1, 529);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(413, 60);
             this.panel1.TabIndex = 51;
+            // 
+            // btSiguiente
+            // 
+            this.btSiguiente.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btSiguiente.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btSiguiente.Location = new System.Drawing.Point(223, 16);
+            this.btSiguiente.Name = "btSiguiente";
+            this.btSiguiente.Size = new System.Drawing.Size(81, 33);
+            this.btSiguiente.TabIndex = 30;
+            this.btSiguiente.Text = "Siguiente";
+            this.btSiguiente.UseVisualStyleBackColor = false;
+            // 
+            // btAnterior
+            // 
+            this.btAnterior.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btAnterior.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btAnterior.Location = new System.Drawing.Point(119, 16);
+            this.btAnterior.Name = "btAnterior";
+            this.btAnterior.Size = new System.Drawing.Size(81, 33);
+            this.btAnterior.TabIndex = 29;
+            this.btAnterior.Text = "Anterior";
+            this.btAnterior.UseVisualStyleBackColor = false;
             // 
             // btCancelar
             // 
@@ -240,39 +262,19 @@
             this.btCancelar.TabIndex = 26;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = false;
+            this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
-            // btAceptar
+            // btModificar
             // 
-            this.btAceptar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btAceptar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btAceptar.Location = new System.Drawing.Point(13, 16);
-            this.btAceptar.Name = "btAceptar";
-            this.btAceptar.Size = new System.Drawing.Size(81, 33);
-            this.btAceptar.TabIndex = 25;
-            this.btAceptar.Text = "Modificar";
-            this.btAceptar.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(119, 16);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 33);
-            this.button3.TabIndex = 29;
-            this.button3.Text = "Anterior";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button4.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button4.Location = new System.Drawing.Point(223, 16);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(81, 33);
-            this.button4.TabIndex = 30;
-            this.button4.Text = "Siguiente";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btModificar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btModificar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btModificar.Location = new System.Drawing.Point(13, 16);
+            this.btModificar.Name = "btModificar";
+            this.btModificar.Size = new System.Drawing.Size(81, 33);
+            this.btModificar.TabIndex = 25;
+            this.btModificar.Text = "Modificar";
+            this.btModificar.UseVisualStyleBackColor = false;
+            this.btModificar.Click += new System.EventHandler(this.btModificar_Click);
             // 
             // FormModify
             // 
@@ -332,9 +334,9 @@
         private ComboBox cbTipo;
         private ComboBox cbMarca;
         private Panel panel1;
-        private Button button4;
-        private Button button3;
+        private Button btSiguiente;
+        private Button btAnterior;
         private Button btCancelar;
-        private Button btAceptar;
+        private Button btModificar;
     }
 }

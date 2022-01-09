@@ -164,7 +164,6 @@ namespace PracticaProductos
             Tipo tipo = (Tipo)cbTipo.SelectedIndex;
             Marca marca = (Marca)cbMarca.SelectedIndex;
             Producto producto = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
-            MessageBox.Show(producto.ToString());
             formMain.AddProduct(producto);
         }
 
