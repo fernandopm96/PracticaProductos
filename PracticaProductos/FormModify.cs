@@ -88,12 +88,10 @@ namespace PracticaProductos
                 descripcion == producto.Descripcion && stock == producto.Stock && 
             tipo.ToString() == producto.tipo.ToString() && marca.ToString() == producto.marca.ToString())
             {
-                MessageBox.Show("No has realizado ningún cambio.");
                 productsModified.Add(producto);
             }
             else
             {
-                MessageBox.Show("Has realizado algún cambio.");
                 Producto modifiedProduct = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
                 productsModified.Add(modifiedProduct);
             }   

@@ -27,11 +27,15 @@ namespace PracticaProductos
             this.marca = marca; 
         }
 
+        
+
         public string ToString()
         {
             return "Código: " + Cod + " Nombre: " + Nombre + " Precio: " + Precio + " Descripción: " + Descripcion + 
                 " Stock: " + Stock + " Marca: " + marca + " Tipo: " + tipo;
         }
+
+        
     }
     public enum Tipo
     {

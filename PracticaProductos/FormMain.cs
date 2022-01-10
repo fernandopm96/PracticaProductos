@@ -80,13 +80,13 @@ namespace PracticaProductos
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
-            FormOrder formOrder = new FormOrder();
+            FormOrder formOrder = new FormOrder(this, productos);
             formOrder.ShowDialog();
         }
 
         private void ordenarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormOrder formOrder = new FormOrder();
+            FormOrder formOrder = new FormOrder(this, productos);
             formOrder.ShowDialog();
         }
 
@@ -157,6 +157,18 @@ namespace PracticaProductos
         {
             this.productos = productos; 
             UpdateProducts();
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            FormFilter formFilter = new FormFilter(this, productos);
+            formFilter.ShowDialog();    
+        }
+
+        private void filtrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormFilter formFilter = new FormFilter(this, productos);
+            formFilter.ShowDialog();
         }
     }
 }

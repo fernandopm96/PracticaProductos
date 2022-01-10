@@ -46,8 +46,6 @@
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.cbMarca = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btSiguiente = new System.Windows.Forms.Button();
-            this.btAnterior = new System.Windows.Forms.Button();
             this.btCancelar = new System.Windows.Forms.Button();
             this.btModificar = new System.Windows.Forms.Button();
             this.paTitulo.SuspendLayout();
@@ -221,8 +219,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel1.Controls.Add(this.btSiguiente);
-            this.panel1.Controls.Add(this.btAnterior);
             this.panel1.Controls.Add(this.btCancelar);
             this.panel1.Controls.Add(this.btModificar);
             this.panel1.Location = new System.Drawing.Point(1, 529);
@@ -230,35 +226,13 @@
             this.panel1.Size = new System.Drawing.Size(413, 60);
             this.panel1.TabIndex = 51;
             // 
-            // btSiguiente
-            // 
-            this.btSiguiente.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btSiguiente.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btSiguiente.Location = new System.Drawing.Point(223, 16);
-            this.btSiguiente.Name = "btSiguiente";
-            this.btSiguiente.Size = new System.Drawing.Size(81, 33);
-            this.btSiguiente.TabIndex = 30;
-            this.btSiguiente.Text = "Siguiente";
-            this.btSiguiente.UseVisualStyleBackColor = false;
-            // 
-            // btAnterior
-            // 
-            this.btAnterior.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btAnterior.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btAnterior.Location = new System.Drawing.Point(119, 16);
-            this.btAnterior.Name = "btAnterior";
-            this.btAnterior.Size = new System.Drawing.Size(81, 33);
-            this.btAnterior.TabIndex = 29;
-            this.btAnterior.Text = "Anterior";
-            this.btAnterior.UseVisualStyleBackColor = false;
-            // 
             // btCancelar
             // 
             this.btCancelar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btCancelar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btCancelar.Location = new System.Drawing.Point(321, 16);
+            this.btCancelar.Location = new System.Drawing.Point(305, 16);
             this.btCancelar.Name = "btCancelar";
-            this.btCancelar.Size = new System.Drawing.Size(81, 33);
+            this.btCancelar.Size = new System.Drawing.Size(97, 33);
             this.btCancelar.TabIndex = 26;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = false;
@@ -268,9 +242,9 @@
             // 
             this.btModificar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btModificar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btModificar.Location = new System.Drawing.Point(13, 16);
+            this.btModificar.Location = new System.Drawing.Point(193, 16);
             this.btModificar.Name = "btModificar";
-            this.btModificar.Size = new System.Drawing.Size(81, 33);
+            this.btModificar.Size = new System.Drawing.Size(97, 33);
             this.btModificar.TabIndex = 25;
             this.btModificar.Text = "Modificar";
             this.btModificar.UseVisualStyleBackColor = false;
@@ -334,8 +308,6 @@
         private ComboBox cbTipo;
         private ComboBox cbMarca;
         private Panel panel1;
-        private Button btSiguiente;
-        private Button btAnterior;
         private Button btCancelar;
         private Button btModificar;
     }
