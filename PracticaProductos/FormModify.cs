@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace PracticaProductos
+﻿namespace PracticaProductos
 {
     public partial class FormModify : Form
     {
@@ -33,28 +22,39 @@ namespace PracticaProductos
 
         private void btModificar_Click(object sender, EventArgs e)
         {
-            UpdateProduct();
-            if (NextProduct())
+
+            if (ValidateForm())
             {
-                SetProduct(productos[position]);
-            } else
-            {
-                formMain.SetProducts(productsModified);
-                MessageBox.Show("Has moficado todos los artículos.");
-                Close();
+                UpdateProduct();
+                if (NextProduct())
+                {
+                    SetProduct(productos[position]);
+                }
+                else
+                {
+                    formMain.SetProducts(productsModified);
+                    MessageBox.Show("Has moficado todos los artículos.");
+                    Close();
+                }
+
             }
+            else
+            {
+                MessageBox.Show("Algún campo no es válido. ");
+            }
+
         }
         private bool NextProduct()
         {
             bool nextElement = true;
-            
-            
-            if(position <= productos.Count-1)
+
+
+            if (position <= productos.Count - 1)
             {
-                if(position == productos.Count-1)
+                if (position == productos.Count - 1)
                 {
-                    nextElement = false;     
-                } 
+                    nextElement = false;
+                }
             }
             position++;
             return nextElement;
@@ -69,13 +69,13 @@ namespace PracticaProductos
                 nupPrecio.Value = Convert.ToDecimal(producto.Precio);
                 tbDescripcion.Text = producto.Descripcion;
                 nupStock.Value = Convert.ToDecimal(producto.Stock);
-                cbTipo.Text = producto.tipo.ToString();
-                cbMarca.Text = producto.marca.ToString();
+                cbTipo.Text = producto.Tipo.ToString();
+                cbMarca.Text = producto.Marca.ToString();
             }
         }
         private void UpdateProduct()
         {
-            
+
             Producto producto = productos[position];
             int cod = Convert.ToInt32(nupCodigo.Value);
             string nombre = tbNombre.Text;
@@ -85,8 +85,8 @@ namespace PracticaProductos
             Tipo tipo = (Tipo)cbTipo.SelectedIndex;
             Marca marca = (Marca)cbMarca.SelectedIndex;
             if (cod == producto.Cod && nombre == producto.Nombre && precio == producto.Precio &&
-                descripcion == producto.Descripcion && stock == producto.Stock && 
-            tipo.ToString() == producto.tipo.ToString() && marca.ToString() == producto.marca.ToString())
+                descripcion == producto.Descripcion && stock == producto.Stock &&
+            tipo.ToString() == producto.Tipo.ToString() && marca.ToString() == producto.Marca.ToString())
             {
                 productsModified.Add(producto);
             }
@@ -94,8 +94,161 @@ namespace PracticaProductos
             {
                 Producto modifiedProduct = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
                 productsModified.Add(modifiedProduct);
-            }   
-            
+            }
+
+        }
+
+        private void nupCodigo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateCod();
+        }
+
+        private void tbNombre_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateName();
+        }
+        private void nupPrecio_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatePrice();
+        }
+        private void tbDescripcion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateDescripcion();
+        }
+
+        private void cbTipo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateType();
+        }
+
+        private void cbMarca_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateMarca();
+        }
+        private bool ValidateCod()
+        {
+            bool valid = true;
+            if (nupCodigo.Value == 0)
+            {
+                errorModify.SetError(nupCodigo, "Debes introducir un código mayor que 0.");
+                valid = false;
+            }
+            else
+            {
+                errorModify.SetError(nupCodigo, "");
+                if (formMain.CodAvailable(Convert.ToInt32(nupCodigo.Value)))
+                {
+                    valid = false;
+                    MessageBox.Show("El código introducido ya pertenece a algún artículo registrado.");
+                }
+            }
+            return valid;
+        }
+
+        private bool ValidateName()
+        {
+            bool valid = true;
+            if (tbNombre.Text == "")
+            {
+                errorModify.SetError(tbNombre, "No puedes dejar el nombre vacío.");
+                valid = false;
+            }
+            else
+            {
+                errorModify.SetError(tbNombre, "");
+            }
+            return valid;
+        }
+        
+
+        private bool ValidatePrice()
+        {
+            bool valid = true;
+            if (nupPrecio.Value == 0)
+            {
+                errorModify.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
+                valid = false;
+            }
+            else
+            {
+                errorModify.SetError(nupCodigo, "");
+            }
+            return valid;
+        }
+
+        private bool ValidateDescripcion()
+        {
+            bool valid = true;
+            if (tbDescripcion.Text == "")
+            {
+                errorModify.SetError(tbDescripcion, "Debes introducir una descripción.");
+                valid = false;
+            }
+            else
+                errorModify.SetError(tbDescripcion, "");
+            return valid;
+        }
+
+        private bool ValidateType()
+        {
+            List<string> tipos = new List<string> { "Compacto", "Deportivo", "Berlina", "Suv", "Todoterreno", "Monovolumen", "Biplaza", "Furgoneta"};
+            bool valid = false;
+            foreach (string s in tipos)
+            {
+                if (cbTipo.Text == s)
+                {
+                    valid = true;
+                }
+            }
+            if (!valid)
+            {
+                errorModify.SetError(cbTipo, "Tipo no válido.");
+            }
+            else
+            {
+                errorModify.SetError(cbMarca, "");
+            }
+            return valid;
+        }
+        private bool ValidateMarca()
+        {
+            List<string> marcas = new List<string> { "Renault", "Citroen", "Peugeot", "BMW", "Audi", "Mercedes", "Porsche", "Ferrari", "Ford", "Volkswagen", "Kia", "Honda", "Dacia" };
+            bool valid = false;
+            foreach (string s in marcas)
+            {
+                if (cbMarca.Text == s)
+                {
+                    valid = true;
+                }
+            }
+            if (!valid)
+            {
+                errorModify.SetError(cbMarca, "Marca no válida.");
+            }
+            else
+            {
+                errorModify.SetError(cbMarca, "");
+            }
+            return valid;
+        }
+
+        
+
+        private bool ValidateForm()
+        {
+            bool valid = false;
+            bool validCod = ValidateCod();
+            bool validName = ValidateName();
+            bool validPrice = ValidatePrice();
+            bool validDescription = ValidateDescripcion();
+            bool validTipo = ValidateType();
+            bool validMarca = ValidateMarca();
+            if (validCod && validName && validPrice &&validDescription && validTipo && validMarca)
+            {
+                valid = true;
+            }
+            return valid;
         }
     }
 }
+    

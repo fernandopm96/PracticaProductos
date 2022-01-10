@@ -20,6 +20,7 @@ namespace PracticaProductos
         {
             this.formMain = formMain;
             this.productos = productos;
+            productosFiltrados = new List<Producto>();
             InitializeComponent();
             filterProducts.Add("Cod", null);
             filterProducts.Add("Nombre", null);
@@ -37,9 +38,15 @@ namespace PracticaProductos
 
         private void btFiltrar_Click(object sender, EventArgs e)
         {
-            Verify();
-            SearchProducts();
-            formMain.SetProducts(productosFiltrados);
+            if (Verify())
+            {
+                SearchProducts();
+                formMain.SetFilterProducts(productosFiltrados);
+                Close();
+            } else
+            {
+                MessageBox.Show("Algún campo no es válido.");
+            }
         }
 
         
@@ -123,55 +130,324 @@ namespace PracticaProductos
             }
         }
 
-        private void Verify()
+        private bool Verify()
         {
+            bool cod, name, price, description, tipo, marca, valid;
+            cod = name = price = description = tipo = marca = valid = false;
             if (nupCodigo.Enabled)
             {
-                filterProducts["Cod"] = nupCodigo.Value.ToString();
+                if(nupCodigo.Value == 0)
+                {
+                    errorFilter.SetError(nupCodigo, "Debes introducir un código mayor que 0.");
+                    cod = false;
+                } else
+                {
+                    cod = true;
+                    errorFilter.SetError(nupCodigo, "");
+                    filterProducts["Cod"] = nupCodigo.Value.ToString();
+                }
+            } 
+            else
+            {
+                errorFilter.SetError(nupCodigo, "");
+                filterProducts.Remove("Cod");
+                cod = true;
             }
             if (tbNombre.Enabled)
+            { 
+                if(tbNombre.Text == "")
+                {
+                    errorFilter.SetError(tbNombre, "El nombre no puede estar vacío.");
+                    name = false;
+                } else
+                {
+                    name = true;
+                    errorFilter.SetError(tbNombre, "");
+                    filterProducts["Nombre"] = tbNombre.Text;
+                }
+            }
+            else
             {
-                filterProducts["Nombre"] = tbDescripcion.Text;
+                errorFilter.SetError(tbNombre, "");
+                filterProducts.Remove("Nombre");
+                name = true;
             }
             if (nupPrecio.Enabled)
             {
-                filterProducts["Precio"] = nupPrecio.Value.ToString();
-
+                if (nupPrecio.Value == 0)
+                {
+                    errorFilter.SetError(nupPrecio, "Debes introducir un código mayor que 0.");
+                    price = false;
+                }
+                else
+                {
+                    price = true;
+                    errorFilter.SetError(nupPrecio, "");
+                    filterProducts["Precio"] = nupPrecio.Value.ToString();
+                }
+            }
+            else
+            {
+                errorFilter.SetError(nupPrecio, "");
+                filterProducts.Remove("Precio");
+                price = true;
             }
             if (tbDescripcion.Enabled)
             {
-                filterProducts["Descripcion"] = tbDescripcion.Text;
+                if (tbDescripcion.Text == "")
+                {
+                    errorFilter.SetError(tbDescripcion, "La descripción no puede estar vacía.");
+                    description = false;
+                }
+                else
+                {
+                    description = true;
+                    errorFilter.SetError(tbDescripcion, "");
+                    filterProducts["Descripcion"] = tbDescripcion.Text;
+                }
+            }
+            else
+            {
+                errorFilter.SetError(tbDescripcion, "");
+                filterProducts.Remove("Descripcion");
+                description = true;
             }
             if (nupStock.Enabled)
             {
-                filterProducts["Precio"] = nupStock.Value.ToString();
+                filterProducts["Stock"] = nupStock.Value.ToString();
+            }
+            else
+            {
+                filterProducts.Remove("Stock");
             }
             if (comBoxTipo.Enabled)
             {
+                List<string> tipos = new List<string> { "Compacto", "Deportivo", "Berlina", "Suv", "Todoterreno", "Monovolumen", "Biplaza", "Furgoneta" };
+                tipo = false;
+                foreach (string s in tipos)
+                {
+                    if (comBoxTipo.Text == s)
+                    {
+                        tipo = true;
+                    }
+                }
+                if (!tipo)
+                {
+                    errorFilter.SetError(comBoxTipo, "Tipo no válido.");
+                }
+                else
+                {
+                    errorFilter.SetError(comBoxTipo, "");
+                    filterProducts["Tipo"] = comBoxTipo.Text;
+                }
                 filterProducts["Tipo"] = comBoxTipo.Text;
+            }
+            else
+            {
+                errorFilter.SetError(comBoxTipo, "");
+                filterProducts.Remove("Tipo");
+                tipo = true;
             }
             if (comBoxMarca.Enabled)
             {
-                filterProducts["Marca"] = comBoxMarca.Text;
+                List<string> marcas = new List<string> { "Renault", "Citroen", "Peugeot", "BMW", "Audi", "Mercedes", "Porsche", "Ferrari", "Ford", "Volkswagen", "Kia", "Honda", "Dacia" };
+                marca = false;
+                foreach (string s in marcas)
+                {
+                    if (comBoxMarca.Text == s)
+                    {
+                        marca = true;
+                    }
+                }
+                if (!marca)
+                {
+                    errorFilter.SetError(comBoxMarca, "Marca no válida.");
+                }
+                else
+                {
+                    errorFilter.SetError(comBoxMarca, "");
+                    filterProducts["Marca"] = comBoxMarca.Text;
+                }
             }
+            else
+            {
+                errorFilter.SetError(comBoxMarca, "");
+                filterProducts.Remove("Marca");
+                marca = true;
+            }
+            if(cod && name && description && price && tipo && marca)
+            {
+                valid = true;
+            }
+            return valid;
         }
+
+        private void nupCodigo_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateCod();
+        }
+
+        private void tbNombre_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateName();
+        }
+        private void nupPrecio_Validating(object sender, CancelEventArgs e)
+        {
+            ValidatePrice();
+        }
+
+        private void tbDescripcion_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateDescripcion();
+        }
+
+        private void comBoxTipo_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateType();
+        }
+
+        private void comBoxMarca_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateMarca();
+        }
+
+       
 
         private void SearchProducts()
         {
-            if (filterProducts["Cod"] != null)
-                productosFiltrados = productos.Where(p => p.Cod.Equals(Convert.ToInt32(filterProducts["Cod"]))).ToList();
-            if (filterProducts["Nombre"] != null)
-                productosFiltrados = productos.Where(p => p.Nombre.Equals(filterProducts["Nombre"])).ToList();
-            if (filterProducts["Precio"] != null)
-                productosFiltrados = productos.Where(p => p.Precio.Equals(Convert.ToDouble(filterProducts["Precio"]))).ToList();
-            if (filterProducts["Descripcion"] != null)
-                productosFiltrados = productos.Where(p => p.Descripcion.Equals(filterProducts["Descripcion"])).ToList();
-            if (filterProducts["Stock"] != null)
-                productosFiltrados = productos.Where(p => p.Stock.Equals(Convert.ToInt32(filterProducts["Stock"]))).ToList();
-            if (filterProducts["Tipo"] != null)
-                productosFiltrados = productos.Where(p => p.tipo.ToString().Equals(filterProducts["Tipo"])).ToList();
-            if (filterProducts["Marca"] != null)
-                productosFiltrados = productos.Where(p => p.marca.ToString().Equals(filterProducts["Marca"])).ToList();
+            bool productoEncontrado = true;
+            foreach(Producto p in productos)
+            {
+                productoEncontrado = true;
+                foreach (string key in filterProducts.Keys)
+                {
+                    if(p.GetPropertyByName(key) != filterProducts[key])
+                    {
+                        productoEncontrado = false;
+                        break;
+                    }
+                }
+                if (productoEncontrado)
+                {
+                    productosFiltrados.Add(p);
+                }
+            }
+        }
+        private bool ValidateCod()
+        {
+            bool valid = true;
+            if (nupCodigo.Value == 0)
+            {
+                errorFilter.SetError(nupCodigo, "Debes introducir un código mayor que 0.");
+                valid = false;
+            }
+            else
+            {
+                errorFilter.SetError(nupCodigo, "");
+            }
+            return valid;
+        }
+
+        private bool ValidateName()
+        {
+            bool valid = true;
+            if (tbNombre.Text == "")
+            {
+                errorFilter.SetError(tbNombre, "No puedes dejar el nombre vacío.");
+                valid = false;
+            }
+            else
+            {
+                errorFilter.SetError(tbNombre, "");
+            }
+            return valid;
+        }
+
+
+        private bool ValidatePrice()
+        {
+            bool valid = true;
+            if (nupPrecio.Value == 0)
+            {
+                errorFilter.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
+                valid = false;
+            }
+            else
+            {
+                errorFilter.SetError(nupCodigo, "");
+            }
+            return valid;
+        }
+
+        private bool ValidateDescripcion()
+        {
+            bool valid = true;
+            if (tbDescripcion.Text == "")
+            {
+                errorFilter.SetError(tbDescripcion, "Debes introducir una descripción.");
+                valid = false;
+            }
+            else
+                errorFilter.SetError(tbDescripcion, "");
+            return valid;
+        }
+
+        private bool ValidateType()
+        {
+            List<string> tipos = new List<string> { "Television", "Lavadora", "Microondas", "Frigorifico", "Secadora", "Lavavajillas", "Horno", "AireAcondicionado", "Estufa" };
+            bool valid = false;
+            foreach (string s in tipos)
+            {
+                if (cbTipo.Text == s)
+                {
+                    valid = true;
+                }
+            }
+            if (!valid)
+            {
+                errorFilter.SetError(cbTipo, "Tipo no válido.");
+            }
+            else
+            {
+                errorFilter.SetError(cbMarca, "");
+            }
+            return valid;
+        }
+        private bool ValidateMarca()
+        {
+            List<string> marcas = new List<string> { "Balay", "LG", "Bosch", "Siemens", "Secadora", "Samsung", "Zanussi", "Fagor", "Mitsubishi" };
+            bool valid = false;
+            foreach (string s in marcas)
+            {
+                if (cbMarca.Text == s)
+                {
+                    valid = true;
+                }
+            }
+            if (!valid)
+            {
+                errorFilter.SetError(cbMarca, "Marca no válida.");
+            }
+            else
+            {
+                errorFilter.SetError(cbMarca, "");
+            }
+            return valid;
+        }
+        private bool ValidateForm()
+        {
+            bool valid = false;
+            bool validCod = ValidateCod();
+            bool validName = ValidateName();
+            bool validPrice = ValidatePrice();
+            bool validDescription = ValidateDescripcion();
+            bool validTipo = ValidateType();
+            bool validMarca = ValidateMarca();
+            if (validCod && validName && validPrice && validDescription && validTipo && validMarca)
+            {
+                valid = true;
+            }
+            return valid;
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cbCodigo = new System.Windows.Forms.CheckBox();
             this.cbNombre = new System.Windows.Forms.CheckBox();
             this.cbPrecio = new System.Windows.Forms.CheckBox();
@@ -48,11 +49,13 @@
             this.paBotones = new System.Windows.Forms.Panel();
             this.btCancelar = new System.Windows.Forms.Button();
             this.btFiltrar = new System.Windows.Forms.Button();
+            this.errorFilter = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).BeginInit();
             this.paTitulo.SuspendLayout();
             this.paBotones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorFilter)).BeginInit();
             this.SuspendLayout();
             // 
             // cbCodigo
@@ -138,7 +141,8 @@
             this.tbNombre.Location = new System.Drawing.Point(159, 138);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(163, 23);
-            this.tbNombre.TabIndex = 7;
+            this.tbNombre.TabIndex = 8;
+            this.tbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.tbNombre_Validating);
             // 
             // tbDescripcion
             // 
@@ -146,23 +150,32 @@
             this.tbDescripcion.Location = new System.Drawing.Point(159, 222);
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.Size = new System.Drawing.Size(163, 23);
-            this.tbDescripcion.TabIndex = 9;
+            this.tbDescripcion.TabIndex = 10;
+            this.tbDescripcion.Validating += new System.ComponentModel.CancelEventHandler(this.tbDescripcion_Validating);
             // 
             // nupCodigo
             // 
             this.nupCodigo.Enabled = false;
             this.nupCodigo.Location = new System.Drawing.Point(159, 94);
+            this.nupCodigo.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
             this.nupCodigo.Name = "nupCodigo";
             this.nupCodigo.Size = new System.Drawing.Size(82, 23);
-            this.nupCodigo.TabIndex = 10;
+            this.nupCodigo.TabIndex = 7;
+            this.nupCodigo.Validating += new System.ComponentModel.CancelEventHandler(this.nupCodigo_Validating);
             // 
             // nupPrecio
             // 
+            this.nupPrecio.DecimalPlaces = 4;
             this.nupPrecio.Enabled = false;
             this.nupPrecio.Location = new System.Drawing.Point(159, 178);
             this.nupPrecio.Name = "nupPrecio";
             this.nupPrecio.Size = new System.Drawing.Size(82, 23);
-            this.nupPrecio.TabIndex = 11;
+            this.nupPrecio.TabIndex = 9;
+            this.nupPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.nupPrecio_Validating);
             // 
             // nupStock
             // 
@@ -170,25 +183,50 @@
             this.nupStock.Location = new System.Drawing.Point(159, 262);
             this.nupStock.Name = "nupStock";
             this.nupStock.Size = new System.Drawing.Size(82, 23);
-            this.nupStock.TabIndex = 12;
+            this.nupStock.TabIndex = 11;
             // 
             // comBoxTipo
             // 
             this.comBoxTipo.Enabled = false;
             this.comBoxTipo.FormattingEnabled = true;
+            this.comBoxTipo.Items.AddRange(new object[] {
+            "Compacto",
+            "Deportivo",
+            "Berlina",
+            "Suv",
+            "Todoterreno",
+            "Monovolumen",
+            "Biplaza",
+            "Furgoneta"});
             this.comBoxTipo.Location = new System.Drawing.Point(159, 302);
             this.comBoxTipo.Name = "comBoxTipo";
             this.comBoxTipo.Size = new System.Drawing.Size(121, 23);
-            this.comBoxTipo.TabIndex = 13;
+            this.comBoxTipo.TabIndex = 12;
+            this.comBoxTipo.Validating += new System.ComponentModel.CancelEventHandler(this.comBoxTipo_Validating);
             // 
             // comBoxMarca
             // 
             this.comBoxMarca.Enabled = false;
             this.comBoxMarca.FormattingEnabled = true;
+            this.comBoxMarca.Items.AddRange(new object[] {
+            "Renault",
+            "Citroen",
+            "Peugeot",
+            "BMW",
+            "Audi",
+            "Mercedes",
+            "Porsche",
+            "Ferrari ",
+            "Ford",
+            "Volkswagen",
+            "Kia",
+            "Honda",
+            "Dacia"});
             this.comBoxMarca.Location = new System.Drawing.Point(159, 342);
             this.comBoxMarca.Name = "comBoxMarca";
             this.comBoxMarca.Size = new System.Drawing.Size(121, 23);
-            this.comBoxMarca.TabIndex = 14;
+            this.comBoxMarca.TabIndex = 13;
+            this.comBoxMarca.Validating += new System.ComponentModel.CancelEventHandler(this.comBoxMarca_Validating);
             // 
             // paTitulo
             // 
@@ -207,7 +245,7 @@
             this.lbInfo2.Name = "lbInfo2";
             this.lbInfo2.Size = new System.Drawing.Size(292, 16);
             this.lbInfo2.TabIndex = 34;
-            this.lbInfo2.Text = "A continuación, introduce los valores.";
+            this.lbInfo2.Text = "Una vez seleccionados, introduce los valores.";
             // 
             // lbInfo
             // 
@@ -236,7 +274,7 @@
             this.btCancelar.Location = new System.Drawing.Point(252, 13);
             this.btCancelar.Name = "btCancelar";
             this.btCancelar.Size = new System.Drawing.Size(99, 33);
-            this.btCancelar.TabIndex = 27;
+            this.btCancelar.TabIndex = 15;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = false;
             this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
@@ -248,10 +286,14 @@
             this.btFiltrar.Location = new System.Drawing.Point(141, 13);
             this.btFiltrar.Name = "btFiltrar";
             this.btFiltrar.Size = new System.Drawing.Size(99, 33);
-            this.btFiltrar.TabIndex = 26;
+            this.btFiltrar.TabIndex = 14;
             this.btFiltrar.Text = "Filtrar";
             this.btFiltrar.UseVisualStyleBackColor = false;
             this.btFiltrar.Click += new System.EventHandler(this.btFiltrar_Click);
+            // 
+            // errorFilter
+            // 
+            this.errorFilter.ContainerControl = this;
             // 
             // FormFilter
             // 
@@ -285,6 +327,7 @@
             this.paTitulo.ResumeLayout(false);
             this.paTitulo.PerformLayout();
             this.paBotones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorFilter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,5 +355,6 @@
         private Panel paBotones;
         private Button btFiltrar;
         private Button btCancelar;
+        private ErrorProvider errorFilter;
     }
 }

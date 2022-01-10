@@ -13,8 +13,8 @@ namespace PracticaProductos
         public double Precio { get; set; }
         public string Descripcion { get; set; }
         public int Stock { get; set; }
-        public Tipo tipo { get; set; }
-        public Marca marca { get; set; }
+        public Tipo Tipo { get; set; }
+        public Marca Marca { get; set; }
         public String foto { get; set; }
         public Producto(int cod, string nombre, double precio, string descripcion, int stock, Tipo tipo, Marca marca)
         {
@@ -23,42 +23,60 @@ namespace PracticaProductos
             this.Precio = precio;
             this.Descripcion = descripcion;
             this.Stock = stock;
-            this.tipo = tipo;
-            this.marca = marca; 
+            this.Tipo = tipo;
+            this.Marca = marca; 
         }
 
-        
+        public string GetPropertyByName(string property)
+        {
+            string prop = null;
+            switch (property)
+            {
+                case "Cod": prop = Cod.ToString(); break;
+                case "Nombre": prop = Nombre; break;
+                case "Precio": prop = Precio.ToString(); break;
+                case "Descripcion": prop = Descripcion; break;
+                case "Stock": prop = Stock.ToString(); break;
+                case "Tipo": prop = Tipo.ToString(); break;
+                case "Marca": prop = Marca.ToString(); break;
+            }
+            return prop;
+        }
 
         public string ToString()
         {
             return "Código: " + Cod + " Nombre: " + Nombre + " Precio: " + Precio + " Descripción: " + Descripcion + 
-                " Stock: " + Stock + " Marca: " + marca + " Tipo: " + tipo;
+                " Stock: " + Stock + " Marca: " + Marca + " Tipo: " + Tipo;
         }
 
         
     }
     public enum Tipo
     {
-        Television,
-        Lavadora,
-        Microondas,
-        Frigorifico,
-        Secadora,
-        Lavavajillas,
-        Horno,
-        AireAcondicionado,
-        Estufa
+        Compacto,
+        Deportivo,
+        Berlina,
+        Suv,
+        Todoterreno,
+        Monovolumen,
+        Biplaza,
+        Furgoneta
     }
     public enum Marca
     {
-        Balay,
-        LG,
-        Bosch,
-        Siemens,
-        Samsung,
-        Zanussi,
-        Fagor,
-        Mitsubishi
+        Renault,
+        Citroen,
+        Peugeot,
+        BMW,
+        Audi,
+        Mercedes,
+        Porsche,
+        Ferrari, 
+        Ford,
+        Volkswagen,
+        Kia,
+        Honda,
+        Dacia
     }
     
 }

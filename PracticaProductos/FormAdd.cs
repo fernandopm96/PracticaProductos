@@ -21,8 +21,11 @@ namespace PracticaProductos
             if (ValidateForm())
             {
                 AddProduct();
-                MessageBox.Show("Producto registrado correctamente.");
-                Close();
+                var confirmResult = MessageBox.Show("Producto registrado correctamente.\n¿Quieres introducir más artículos?", "Añadir producto", MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.No)
+                {
+                    Close();
+                }
             } else
             {
                 MessageBox.Show("Algún campo no es válido. ");
@@ -45,10 +48,7 @@ namespace PracticaProductos
         {
             ValidateDescripcion();
         }
-        private void nupStock_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateStock();
-        }
+        
         private void cbTipo_Validating(object sender, CancelEventArgs e)
         {
             ValidateTipo();
@@ -69,6 +69,12 @@ namespace PracticaProductos
             else
             {
                 errorAdd.SetError(nupCodigo, "");
+                if (!formMain.CodAvailable(Convert.ToInt32(nupCodigo.Value)))
+                {
+                    valid = false;  
+                    MessageBox.Show("El código introducido ya pertenece a algún artículo registrado.");
+                }
+                
             }
             return valid;            
         }
@@ -87,12 +93,13 @@ namespace PracticaProductos
             }
             return valid;
         }
+
         private bool ValidatePrice()
         {
             bool valid = true;
-            if (nupPrecio.Value <= 0)
+            if (nupPrecio.Value == 0)
             {
-                errorAdd.SetError(nupPrecio, "El precio debe ser mayor a 0.");
+                errorAdd.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
                 valid = false;
             }
             else
@@ -106,34 +113,52 @@ namespace PracticaProductos
             bool valid = true;
             if (tbDescripcion.Text == "")
             {
+                errorAdd.SetError(tbDescripcion, "Debes introducir una descripción.");
                 valid = false;
             }
+            else
+                errorAdd.SetError(tbDescripcion, "");
             return valid;
         }
-        private bool ValidateStock()
-        {
-            bool valid = true;
-            if(nupStock.Value < 0)
-            {
-                valid = false;   
-            }
-            return valid;
-        }
+        
         private bool ValidateTipo()
         {
-            bool valid = true;
-            if (cbTipo.Text == "")
+            List<string> tipos = new List<string> { "Compacto", "Deportivo", "Berlina", "Suv", "Todoterreno", "Monovolumen", "Biplaza", "Furgoneta" };
+            bool valid = false;
+            foreach(string s in tipos)
             {
-                valid =false;
+                if (cbTipo.Text == s)
+                {
+                    valid = true;
+                }
+            }
+            if (!valid)
+            {
+                errorAdd.SetError(cbTipo, "Tipo no válido.");
+            }
+            else
+            {
+                errorAdd.SetError(cbTipo, "");
             }
             return valid;
         }
         private bool ValidateMarca()
         {
-            bool valid = true;
-            if (cbMarca.Text == "")
+            List<string> marcas = new List<string> { "Renault", "Citroen", "Peugeot", "BMW", "Audi", "Mercedes", "Porsche", "Ferrari", "Ford", "Volkswagen", "Kia", "Honda", "Dacia" };
+            bool valid = false;
+            foreach (string s in marcas)
             {
-                valid = false;
+                if (cbMarca.Text == s)
+                {
+                    valid = true;
+                }
+            }
+            if (!valid)
+            {
+                errorAdd.SetError(cbMarca, "Marca no válida.");
+            } else
+            {
+                errorAdd.SetError(cbMarca, "");
             }
             return valid;
         }
@@ -144,10 +169,9 @@ namespace PracticaProductos
             bool validName = ValidateName();
             bool validPrice = ValidatePrice();
             bool validDescription = ValidateDescripcion();
-            bool validStock = ValidateStock();
             bool validTipo = ValidateTipo();
             bool validMarca = ValidateMarca();  
-            if(validCod && validName && validPrice && validDescription && validStock && validTipo && validMarca)
+            if(validCod && validName && validPrice &&validDescription && validTipo && validMarca)
             {
                valid = true;    
             }
@@ -167,6 +191,6 @@ namespace PracticaProductos
             formMain.AddProduct(producto);
         }
 
-        
+       
     }
 }

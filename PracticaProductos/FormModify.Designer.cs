@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbCodigo = new System.Windows.Forms.Label();
             this.lbNombre = new System.Windows.Forms.Label();
             this.lbPrecio = new System.Windows.Forms.Label();
@@ -48,11 +49,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btCancelar = new System.Windows.Forms.Button();
             this.btModificar = new System.Windows.Forms.Button();
+            this.errorModify = new System.Windows.Forms.ErrorProvider(this.components);
             this.paTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorModify)).BeginInit();
             this.SuspendLayout();
             // 
             // lbCodigo
@@ -149,72 +152,88 @@
             // nupCodigo
             // 
             this.nupCodigo.Location = new System.Drawing.Point(160, 100);
+            this.nupCodigo.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
             this.nupCodigo.Name = "nupCodigo";
             this.nupCodigo.Size = new System.Drawing.Size(88, 23);
-            this.nupCodigo.TabIndex = 44;
+            this.nupCodigo.TabIndex = 0;
+            this.nupCodigo.Validating += new System.ComponentModel.CancelEventHandler(this.nupCodigo_Validating);
             // 
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(160, 140);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(223, 23);
-            this.tbNombre.TabIndex = 45;
+            this.tbNombre.TabIndex = 1;
+            this.tbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.tbNombre_Validating);
             // 
             // nupPrecio
             // 
+            this.nupPrecio.DecimalPlaces = 4;
             this.nupPrecio.Location = new System.Drawing.Point(160, 180);
             this.nupPrecio.Name = "nupPrecio";
             this.nupPrecio.Size = new System.Drawing.Size(88, 23);
-            this.nupPrecio.TabIndex = 46;
+            this.nupPrecio.TabIndex = 2;
+            this.nupPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.nupPrecio_Validating);
             // 
             // tbDescripcion
             // 
             this.tbDescripcion.Location = new System.Drawing.Point(160, 220);
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.Size = new System.Drawing.Size(223, 23);
-            this.tbDescripcion.TabIndex = 47;
+            this.tbDescripcion.TabIndex = 3;
+            this.tbDescripcion.Validating += new System.ComponentModel.CancelEventHandler(this.tbDescripcion_Validating);
             // 
             // nupStock
             // 
             this.nupStock.Location = new System.Drawing.Point(160, 260);
             this.nupStock.Name = "nupStock";
             this.nupStock.Size = new System.Drawing.Size(88, 23);
-            this.nupStock.TabIndex = 48;
+            this.nupStock.TabIndex = 4;
             // 
             // cbTipo
             // 
             this.cbTipo.FormattingEnabled = true;
             this.cbTipo.Items.AddRange(new object[] {
-            "Television",
-            "Lavadora",
-            "Microondas",
-            "Frigorifico",
-            "Secadora",
-            "Lavavajillas",
-            "Horno",
-            "AireAcondicionado",
-            "Estufa"});
+            "Compacto",
+            "Deportivo",
+            "Berlina",
+            "Suv",
+            "Todoterreno",
+            "Monovolumen",
+            "Biplaza",
+            "Furgoneta"});
             this.cbTipo.Location = new System.Drawing.Point(160, 300);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(121, 23);
-            this.cbTipo.TabIndex = 49;
+            this.cbTipo.TabIndex = 5;
+            this.cbTipo.Validating += new System.ComponentModel.CancelEventHandler(this.cbTipo_Validating);
             // 
             // cbMarca
             // 
             this.cbMarca.FormattingEnabled = true;
             this.cbMarca.Items.AddRange(new object[] {
-            "Balay",
-            "LG",
-            "Bosch",
-            "Siemens",
-            "Samsung",
-            "Zanussi",
-            "Fagor",
-            "Mitsubishi"});
+            "Renault",
+            "Citroen",
+            "Peugeot",
+            "BMW",
+            "Audi",
+            "Mercedes",
+            "Porsche",
+            "Ferrari ",
+            "Ford",
+            "Volkswagen",
+            "Kia",
+            "Honda",
+            "Dacia"});
             this.cbMarca.Location = new System.Drawing.Point(160, 340);
             this.cbMarca.Name = "cbMarca";
             this.cbMarca.Size = new System.Drawing.Size(121, 23);
-            this.cbMarca.TabIndex = 50;
+            this.cbMarca.TabIndex = 6;
+            this.cbMarca.Validating += new System.ComponentModel.CancelEventHandler(this.cbMarca_Validating);
             // 
             // panel1
             // 
@@ -233,7 +252,7 @@
             this.btCancelar.Location = new System.Drawing.Point(305, 16);
             this.btCancelar.Name = "btCancelar";
             this.btCancelar.Size = new System.Drawing.Size(97, 33);
-            this.btCancelar.TabIndex = 26;
+            this.btCancelar.TabIndex = 8;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = false;
             this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
@@ -245,10 +264,14 @@
             this.btModificar.Location = new System.Drawing.Point(193, 16);
             this.btModificar.Name = "btModificar";
             this.btModificar.Size = new System.Drawing.Size(97, 33);
-            this.btModificar.TabIndex = 25;
+            this.btModificar.TabIndex = 8;
             this.btModificar.Text = "Modificar";
             this.btModificar.UseVisualStyleBackColor = false;
             this.btModificar.Click += new System.EventHandler(this.btModificar_Click);
+            // 
+            // errorModify
+            // 
+            this.errorModify.ContainerControl = this;
             // 
             // FormModify
             // 
@@ -283,6 +306,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorModify)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -310,5 +334,6 @@
         private Panel panel1;
         private Button btCancelar;
         private Button btModificar;
+        private ErrorProvider errorModify;
     }
 }

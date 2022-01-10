@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,15 +54,16 @@
             this.exportarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ordenarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filtrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.paProductos = new System.Windows.Forms.Panel();
+            this.restaurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOrdenar = new System.Windows.Forms.Button();
             this.btnFiltrar = new System.Windows.Forms.Button();
-            this.lbPanel = new System.Windows.Forms.Label();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnImportar = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnQuitarFiltro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.paProductos.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvProductos
@@ -83,19 +84,19 @@
             this.cbTipo,
             this.cMarca,
             this.checkColumn});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Sitka Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Sitka Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductos.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvProductos.Location = new System.Drawing.Point(115, 27);
+            this.dgvProductos.Location = new System.Drawing.Point(0, 27);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.RowTemplate.Height = 25;
-            this.dgvProductos.Size = new System.Drawing.Size(799, 426);
+            this.dgvProductos.Size = new System.Drawing.Size(1023, 643);
             this.dgvProductos.TabIndex = 0;
             // 
             // Codigo
@@ -162,7 +163,8 @@
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAdd.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.Location = new System.Drawing.Point(-1, 69);
+            this.btnAdd.Location = new System.Drawing.Point(10, 17);
+            this.btnAdd.MaximumSize = new System.Drawing.Size(240, 40);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(120, 40);
             this.btnAdd.TabIndex = 1;
@@ -175,7 +177,8 @@
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnModify.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnModify.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnModify.Location = new System.Drawing.Point(-1, 105);
+            this.btnModify.Location = new System.Drawing.Point(137, 17);
+            this.btnModify.MaximumSize = new System.Drawing.Size(240, 40);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(120, 40);
             this.btnModify.TabIndex = 2;
@@ -188,7 +191,8 @@
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnRemove.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRemove.Location = new System.Drawing.Point(-1, 142);
+            this.btnRemove.Location = new System.Drawing.Point(263, 17);
+            this.btnRemove.MaximumSize = new System.Drawing.Size(240, 40);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(120, 40);
             this.btnRemove.TabIndex = 3;
@@ -204,7 +208,7 @@
             this.accionesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(914, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1023, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -266,7 +270,8 @@
             this.importarToolStripMenuItem1,
             this.exportarToolStripMenuItem1,
             this.ordenarToolStripMenuItem,
-            this.filtrarToolStripMenuItem});
+            this.filtrarToolStripMenuItem,
+            this.restaurarToolStripMenuItem});
             this.accionesToolStripMenuItem.Name = "accionesToolStripMenuItem";
             this.accionesToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.accionesToolStripMenuItem.Text = "Acciones";
@@ -295,35 +300,25 @@
             this.filtrarToolStripMenuItem.Name = "filtrarToolStripMenuItem";
             this.filtrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.filtrarToolStripMenuItem.Text = "Filtrar";
-            this.filtrarToolStripMenuItem.Click += new System.EventHandler(this.filtrarToolStripMenuItem_Click);
+            this.filtrarToolStripMenuItem.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
-            // paProductos
+            // restaurarToolStripMenuItem
             // 
-            this.paProductos.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.paProductos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.paProductos.Controls.Add(this.btnOrdenar);
-            this.paProductos.Controls.Add(this.btnFiltrar);
-            this.paProductos.Controls.Add(this.lbPanel);
-            this.paProductos.Controls.Add(this.btnExportar);
-            this.paProductos.Controls.Add(this.btnImportar);
-            this.paProductos.Controls.Add(this.btnAdd);
-            this.paProductos.Controls.Add(this.btnRemove);
-            this.paProductos.Controls.Add(this.btnModify);
-            this.paProductos.Location = new System.Drawing.Point(0, 27);
-            this.paProductos.MinimumSize = new System.Drawing.Size(120, 426);
-            this.paProductos.Name = "paProductos";
-            this.paProductos.Size = new System.Drawing.Size(120, 426);
-            this.paProductos.TabIndex = 5;
+            this.restaurarToolStripMenuItem.Name = "restaurarToolStripMenuItem";
+            this.restaurarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.restaurarToolStripMenuItem.Text = "Restaurar";
+            this.restaurarToolStripMenuItem.Click += new System.EventHandler(this.btnQuitarFiltro_Click);
             // 
             // btnOrdenar
             // 
             this.btnOrdenar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOrdenar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnOrdenar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnOrdenar.Location = new System.Drawing.Point(-1, 251);
+            this.btnOrdenar.Location = new System.Drawing.Point(893, 17);
+            this.btnOrdenar.MaximumSize = new System.Drawing.Size(240, 40);
             this.btnOrdenar.Name = "btnOrdenar";
             this.btnOrdenar.Size = new System.Drawing.Size(120, 40);
-            this.btnOrdenar.TabIndex = 8;
+            this.btnOrdenar.TabIndex = 9;
             this.btnOrdenar.Text = "Ordenar";
             this.btnOrdenar.UseVisualStyleBackColor = false;
             this.btnOrdenar.Click += new System.EventHandler(this.btnOrdenar_Click);
@@ -333,7 +328,8 @@
             this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFiltrar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnFiltrar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnFiltrar.Location = new System.Drawing.Point(-1, 287);
+            this.btnFiltrar.Location = new System.Drawing.Point(641, 17);
+            this.btnFiltrar.MaximumSize = new System.Drawing.Size(240, 40);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(120, 40);
             this.btnFiltrar.TabIndex = 7;
@@ -341,23 +337,13 @@
             this.btnFiltrar.UseVisualStyleBackColor = false;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
-            // lbPanel
-            // 
-            this.lbPanel.AutoSize = true;
-            this.lbPanel.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbPanel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbPanel.Location = new System.Drawing.Point(21, 25);
-            this.lbPanel.Name = "lbPanel";
-            this.lbPanel.Size = new System.Drawing.Size(74, 19);
-            this.lbPanel.TabIndex = 6;
-            this.lbPanel.Text = "Acciones";
-            // 
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnExportar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnExportar.Location = new System.Drawing.Point(-1, 215);
+            this.btnExportar.Location = new System.Drawing.Point(515, 17);
+            this.btnExportar.MaximumSize = new System.Drawing.Size(240, 40);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(120, 40);
             this.btnExportar.TabIndex = 6;
@@ -369,31 +355,64 @@
             this.btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImportar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnImportar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnImportar.Location = new System.Drawing.Point(-1, 179);
+            this.btnImportar.Location = new System.Drawing.Point(389, 17);
+            this.btnImportar.MaximumSize = new System.Drawing.Size(240, 40);
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Size = new System.Drawing.Size(120, 40);
             this.btnImportar.TabIndex = 5;
             this.btnImportar.Text = "Importar";
             this.btnImportar.UseVisualStyleBackColor = false;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.Controls.Add(this.btnQuitarFiltro);
+            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Controls.Add(this.btnOrdenar);
+            this.panel1.Controls.Add(this.btnFiltrar);
+            this.panel1.Controls.Add(this.btnModify);
+            this.panel1.Controls.Add(this.btnRemove);
+            this.panel1.Controls.Add(this.btnImportar);
+            this.panel1.Controls.Add(this.btnExportar);
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panel1.Location = new System.Drawing.Point(0, 670);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1024, 69);
+            this.panel1.TabIndex = 9;
+            // 
+            // btnQuitarFiltro
+            // 
+            this.btnQuitarFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitarFiltro.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnQuitarFiltro.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnQuitarFiltro.Location = new System.Drawing.Point(767, 17);
+            this.btnQuitarFiltro.MaximumSize = new System.Drawing.Size(240, 40);
+            this.btnQuitarFiltro.Name = "btnQuitarFiltro";
+            this.btnQuitarFiltro.Size = new System.Drawing.Size(120, 40);
+            this.btnQuitarFiltro.TabIndex = 8;
+            this.btnQuitarFiltro.Text = "Restaurar";
+            this.btnQuitarFiltro.UseVisualStyleBackColor = false;
+            this.btnQuitarFiltro.Click += new System.EventHandler(this.btnQuitarFiltro_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 453);
-            this.Controls.Add(this.paProductos);
+            this.ClientSize = new System.Drawing.Size(1023, 739);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(500, 400);
+            this.MinimumSize = new System.Drawing.Size(1039, 778);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.paProductos.ResumeLayout(false);
-            this.paProductos.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -432,5 +451,8 @@
         private DataGridViewTextBoxColumn cbTipo;
         private DataGridViewTextBoxColumn cMarca;
         private DataGridViewCheckBoxColumn checkColumn;
+        private Panel panel1;
+        private Button btnQuitarFiltro;
+        private ToolStripMenuItem restaurarToolStripMenuItem;
     }
 }

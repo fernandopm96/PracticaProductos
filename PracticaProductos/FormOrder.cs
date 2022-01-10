@@ -102,22 +102,22 @@ namespace PracticaProductos
         {
             if (rbAsc.Checked)
             {
-                orderedProducts = productos.OrderBy(producto => producto.tipo.ToString()).ToList<Producto>();
+                orderedProducts = productos.OrderBy(producto => producto.Tipo.ToString()).ToList<Producto>();
             }
             else
             {
-                orderedProducts = productos.OrderByDescending(producto => producto.tipo.ToString()).ToList<Producto>();
+                orderedProducts = productos.OrderByDescending(producto => producto.Tipo.ToString()).ToList<Producto>();
             }
         }
         private void OrderByMarca()
         {
             if (rbAsc.Checked)
             {
-                orderedProducts = productos.OrderBy(producto => producto.marca.ToString()).ToList<Producto>();
+                orderedProducts = productos.OrderBy(producto => producto.Marca.ToString()).ToList<Producto>();
             }
             else
             {
-                orderedProducts = productos.OrderByDescending(producto => producto.marca.ToString()).ToList<Producto>();
+                orderedProducts = productos.OrderByDescending(producto => producto.Marca.ToString()).ToList<Producto>();
             }
         }
     }

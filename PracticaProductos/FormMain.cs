@@ -4,8 +4,8 @@ namespace PracticaProductos
 {
     public partial class FormMain : Form
     {
-        //private static Controller controller = Controller.GetInstance();
-        private List<Producto> productos;
+        private List<Producto> productos, productosFiltrados;
+        static bool showingFilterProducts = false;
         List<int> codigos = new List<int>();
         public FormMain()
         {
@@ -80,14 +80,28 @@ namespace PracticaProductos
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
-            FormOrder formOrder = new FormOrder(this, productos);
-            formOrder.ShowDialog();
+            if(productos.Count == 0)
+            {
+                MessageBox.Show("No hay artículos registrados.");
+            }
+            else
+            {
+                FormOrder formOrder = new FormOrder(this, productos);
+                formOrder.ShowDialog();
+            }
         }
 
         private void ordenarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormOrder formOrder = new FormOrder(this, productos);
-            formOrder.ShowDialog();
+            if (productos.Count == 0)
+            {
+                MessageBox.Show("No hay artículos registrados.");
+            }
+            else
+            {
+                FormOrder formOrder = new FormOrder(this, productos);
+                formOrder.ShowDialog();
+            }        
         }
 
         private void añadirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -99,9 +113,9 @@ namespace PracticaProductos
         {
             productos.Add(producto);
             Console.WriteLine(producto.ToString());
-            UpdateProducts();
+            ShowProducts(productos);
         }
-        public void UpdateProducts()
+        public void ShowProducts(List<Producto> productos)
         {
             dgvProductos.Rows.Clear();
             foreach(Producto product in productos)
@@ -112,8 +126,8 @@ namespace PracticaProductos
                 fila[2] = product.Precio.ToString();
                 fila[3] = product.Descripcion.ToString();
                 fila[4] = product.Stock.ToString();
-                fila[5] = product.tipo.ToString();
-                fila[6] = product.marca.ToString();
+                fila[5] = product.Tipo.ToString();
+                fila[6] = product.Marca.ToString();
                 dgvProductos.Rows.Add(fila);    
             }
         }
@@ -156,19 +170,74 @@ namespace PracticaProductos
         public void SetProducts(List<Producto> productos)
         {
             this.productos = productos; 
-            UpdateProducts();
+            ShowProducts(productos);
         }
-
+        public void SetFilterProducts(List<Producto> filterProducts)
+        {
+            this.productosFiltrados = filterProducts;
+            if (showingFilterProducts)
+            {
+                showingFilterProducts = false;
+                ShowProducts(productos);
+            }
+            else
+            {
+                showingFilterProducts = true;
+                ShowProducts(filterProducts);
+            }
+        }
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            FormFilter formFilter = new FormFilter(this, productos);
-            formFilter.ShowDialog();    
+            if (productos.Count == 0)
+            {
+                MessageBox.Show("No hay artículos registrados.");
+            }
+            else
+            {
+                if (showingFilterProducts)
+                {
+                    MessageBox.Show("Hay un filtro de búsqueda aplicado. Restaura los datos antes de aplicar un nuevo filtro.", "Establecer filtro");
+                }
+                else
+                {
+                    FormFilter formFilter = new FormFilter(this, productos);
+                    formFilter.ShowDialog();
+                }
+            }
         }
 
-        private void filtrarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnQuitarFiltro_Click(object sender, EventArgs e)
         {
-            FormFilter formFilter = new FormFilter(this, productos);
-            formFilter.ShowDialog();
+            if (productos.Count == 0)
+            {
+                MessageBox.Show("No hay artículos registrados.");
+            }
+            else
+            {
+                if (!showingFilterProducts)
+                {
+                    MessageBox.Show("No hay ningún filtro aplicado.", "Eliminar filtro");
+                }
+                else
+                {
+                    ShowProducts(productos);
+                    showingFilterProducts = false;
+                    MessageBox.Show("Filtro eliminado.");
+                }
+            }
+        }
+
+        public bool CodAvailable(int cod)
+        {
+            bool codAvailable = true;
+            productos.ForEach(p =>
+            {
+                if (cod == p.Cod)
+                {
+                    codAvailable = false;
+                }
+            });
+            return codAvailable;
         }
     }
 }
