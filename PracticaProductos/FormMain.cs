@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Text;
 
 namespace PracticaProductos
 {
@@ -225,6 +226,177 @@ namespace PracticaProductos
                     MessageBox.Show("Filtro eliminado.");
                 }
             }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            if(productos.Count == 0)
+            {
+                MessageBox.Show("No hay artículos introducidos.");
+            } else
+            {
+
+                ExportToCsv();
+            }
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            ImportToCsv();
+        }
+
+        private void ExportToCsv()
+        {
+            SaveFileDialog exportDialog = new SaveFileDialog();
+            exportDialog.Filter = "Fichero CSV (*.csv)|*.csv";
+            exportDialog.FileName = "Datos_DataGridView";
+            exportDialog.Title = "Exportar a CSV";
+            if (exportDialog.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder csvMemoria = new StringBuilder();
+
+                for (int i = 0; i < dgvProductos.Columns.Count; i++)
+                {
+                    if (i == dgvProductos.Columns.Count - 1)
+                    {
+                        csvMemoria.Append(String.Format("\"{0}\"",
+                            dgvProductos.Columns[i].HeaderText));
+                    }
+                    else
+                    {
+                        csvMemoria.Append(String.Format("\"{0}\";",
+                            dgvProductos.Columns[i].HeaderText));
+                    }
+                }
+                csvMemoria.AppendLine();
+
+                for (int m = 0; m < dgvProductos.Rows.Count; m++)
+                {
+                    for (int n = 0; n < dgvProductos.Columns.Count; n++)
+                    {
+                        if (n == dgvProductos.Columns.Count - 1)
+                        {
+                            csvMemoria.Append(String.Format("\"{0}\"",
+                                 dgvProductos.Rows[m].Cells[n].Value));
+                        }
+                        else
+                        {
+                            csvMemoria.Append(String.Format("\"{0}\";",
+                                dgvProductos.Rows[m].Cells[n].Value));
+                        }
+                    }
+                    csvMemoria.AppendLine();
+                }
+                System.IO.StreamWriter writer =
+                    new System.IO.StreamWriter(exportDialog.FileName, false,
+                       System.Text.Encoding.Default);
+                writer.Write(csvMemoria.ToString());
+                writer.Close();
+            }
+        }
+
+        private void ImportToCsv()
+        {
+            importDialog.Filter = "Fichero CSV (*.csv)|*.csv";
+            if (importDialog.ShowDialog() == DialogResult.OK)
+            {
+                Stream stream = importDialog.OpenFile();
+                List<Producto> importProducts = new();
+                List<string> tipos = new List<string> { "Compacto", "Deportivo", "Berlina", "Suv", "Todoterreno", "Monovolumen", "Biplaza", "Furgoneta" };
+                List<string> marcas = new List<string> { "Renault", "Citroen", "Peugeot", "BMW", "Audi", "Mercedes", "Porsche", "Ferrari", "Ford", "Volkswagen", "Kia", "Honda", "Dacia" };
+
+                int cod = -1, stock = -1;
+                String producto = "", nombre = "", descripcion = "";
+                double precio = -1;
+                Tipo tipo = Tipo.Berlina;
+                Marca marca = Marca.BMW;
+                
+                StreamReader reader = new StreamReader(stream);
+                reader.ReadLine();
+                while (reader.Peek() >= 0)
+                {
+                    // Reemplazamos las comillas por cadenas vacías y dividimos la línea separándola por los ';'
+                    producto = reader.ReadLine().Replace("\"", String.Empty);
+                    string[] campos = producto.Split(";");
+
+                    //Cada una de las partes se corresponde con uno de los argumentes de un producto
+                    bool valid = true;
+                    if(campos[0] != "")
+                    {
+                        cod = Convert.ToInt32(campos[0]);
+                    } else
+                    {
+                        valid = false;  
+                    }
+                        
+                    if(campos[1] != "")
+                    {
+                        nombre = campos[1];
+                    } else
+                    {
+                        valid = false;
+                    }
+                    if(campos[2] != "")
+                    {
+                        precio = Convert.ToDouble(campos[2]);
+                    } else
+                    {
+                        valid = false;
+                    }
+                    if(campos[3] != "")
+                    {
+                        descripcion = campos[3];
+                    } else
+                    {
+                        valid = false;
+                    }
+                    if(campos[4] != "")
+                    {
+                        stock = Convert.ToInt32(campos[4]);
+                    } else
+                    {
+                        valid = false;
+                    }
+                        
+                    if(campos[5] != "")
+                    {
+                        tipo = (Tipo)Enum.Parse(typeof(Tipo), campos[5], true);
+                    } else
+                    {
+                        valid = false;
+                    }
+                        
+                    if(campos[6] != "")
+                    {
+                        marca = (Marca)Enum.Parse(typeof(Marca), campos[6], true);
+                    } else
+                    {
+                        valid = false;
+                    }
+                         
+                    if(valid)
+                    {
+                        importProducts.Add(new Producto(cod, nombre, precio, descripcion, stock, tipo, marca));
+                    } 
+                }
+                reader.Close();
+                stream.Close();
+                SetProducts(importProducts);
+                ShowProducts(importProducts);
+
+                /*       imagen =
+                           (partes[6].Equals(String.Empty)) ?
+                           new Bitmap(Properties.Resources.placeholderProduct) { Tag = "placeholder" } : //Si no hay imagen guardada, asignamos el placeholder
+                           new Bitmap(new MemoryStream(Convert.FromBase64String(partes[6]))); //Si la hay, convertimos el base 64 a un bitmap
+                */
+
+
+            }
+        }
+
+        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         public bool CodAvailable(int cod)

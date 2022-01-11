@@ -281,7 +281,7 @@
             "Audi",
             "Mercedes",
             "Porsche",
-            "Ferrari ",
+            "Ferrari",
             "Ford",
             "Volkswagen",
             "Kia",
