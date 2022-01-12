@@ -5,6 +5,7 @@
         FormMain formMain;
         static int position = 0;
         private List<Producto> productos, productsModified;
+        Bitmap image;
 
         public FormModify(FormMain formMain, List<Producto> productos)
         {
@@ -12,7 +13,7 @@
             this.productos = productos;
             productsModified = new List<Producto>();
             InitializeComponent();
-            SetProduct(productos[position]);
+            ShowProduct(productos[position]);
         }
 
         private void btCancelar_Click(object sender, EventArgs e)
@@ -28,12 +29,19 @@
                 UpdateProduct();
                 if (NextProduct())
                 {
-                    SetProduct(productos[position]);
+                    ShowProduct(productos[position]);
                 }
                 else
                 {
-                    formMain.SetProducts(productsModified);
+                    formMain.SetModifyProducts(productsModified);
                     MessageBox.Show("Has moficado todos los artículos.");
+                    productsModified.ForEach(p =>
+                    {
+                        if(p.Imagen == null)
+                        {
+                            
+                        }
+                    });
                     Close();
                 }
 
@@ -60,7 +68,7 @@
             return nextElement;
         }
 
-        private void SetProduct(Producto producto)
+        private void ShowProduct(Producto producto)
         {
             if (producto != null)
             {
@@ -85,31 +93,31 @@
             int stock = Convert.ToInt32(nupStock.Value);
             Tipo tipo = (Tipo)cbTipo.SelectedIndex;
             Marca marca = (Marca)cbMarca.SelectedIndex;
-            Bitmap imagen = null;
-            if(pictureBox.Image != null)
+            Bitmap image = null;
+            if (pictureBox.Image != null)
             {
-                imagen = (Bitmap)pictureBox.Image;
+                image = (Bitmap)pictureBox.Image;
             }
+
             if (cod == producto.Cod && nombre == producto.Nombre && precio == producto.Precio
                 && descripcion == producto.Descripcion && stock == producto.Stock 
                 && tipo.ToString() == producto.Tipo.ToString() 
                 && marca.ToString() == producto.Marca.ToString()
-                && pictureBox.Image == producto.Imagen)
+                && producto.Imagen == image)
             {
                 productsModified.Add(producto);
             }
             else
             {
                 Producto modifiedProduct = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
-                modifiedProduct.Imagen = imagen;
+                if(image != null)
+                {
+                    modifiedProduct.Imagen = image;
+                }
+                    
                 productsModified.Add(modifiedProduct);
             }
 
-        }
-
-        private void nupCodigo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            ValidateCod();
         }
 
         private void tbNombre_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -134,25 +142,7 @@
         {
             ValidateMarca();
         }
-        private bool ValidateCod()
-        {
-            bool valid = true;
-            if (nupCodigo.Value == 0)
-            {
-                errorModify.SetError(nupCodigo, "Debes introducir un código mayor que 0.");
-                valid = false;
-            }
-            else
-            {
-                errorModify.SetError(nupCodigo, "");
-                if (formMain.CodAvailable(Convert.ToInt32(nupCodigo.Value)))
-                {
-                    valid = false;
-                    MessageBox.Show("El código introducido ya pertenece a algún artículo registrado.");
-                }
-            }
-            return valid;
-        }
+       
 
         private bool ValidateName()
         {
@@ -256,13 +246,12 @@
         private bool ValidateForm()
         {
             bool valid = false;
-            bool validCod = ValidateCod();
             bool validName = ValidateName();
             bool validPrice = ValidatePrice();
             bool validDescription = ValidateDescripcion();
             bool validTipo = ValidateType();
             bool validMarca = ValidateMarca();
-            if (validCod && validName && validPrice &&validDescription && validTipo && validMarca)
+            if (validName && validPrice &&validDescription && validTipo && validMarca)
             {
                 valid = true;
             }

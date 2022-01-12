@@ -16,6 +16,8 @@ namespace PracticaProductos
         public Tipo Tipo { get; set; }
         public Marca Marca { get; set; }
         public Bitmap Imagen { get; set; }
+
+        public String RutaImagen { get; set; }
         public Producto(int cod, string nombre, double precio, string descripcion, int stock, Tipo tipo, Marca marca)
         {
             this.Cod = cod;

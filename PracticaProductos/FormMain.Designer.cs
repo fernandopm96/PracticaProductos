@@ -54,15 +54,15 @@
             this.btnQuitarFiltro = new System.Windows.Forms.Button();
             this.importDialog = new System.Windows.Forms.OpenFileDialog();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
-            this.checkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Foto = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Foto = new System.Windows.Forms.DataGridViewImageColumn();
+            this.checkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
@@ -345,30 +345,45 @@
             this.dgvProductos.GridColor = System.Drawing.SystemColors.Control;
             this.dgvProductos.Location = new System.Drawing.Point(0, 27);
             this.dgvProductos.Name = "dgvProductos";
-            this.dgvProductos.RowTemplate.Height = 25;
+            this.dgvProductos.RowTemplate.Height = 100;
             this.dgvProductos.Size = new System.Drawing.Size(906, 592);
             this.dgvProductos.TabIndex = 0;
             this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
             // 
-            // checkColumn
+            // Codigo
             // 
-            this.checkColumn.FillWeight = 40.60914F;
-            this.checkColumn.HeaderText = "";
-            this.checkColumn.Name = "checkColumn";
-            this.checkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Codigo.FillWeight = 108.4844F;
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
             // 
-            // Foto
+            // Nombre
             // 
-            this.Foto.HeaderText = "Foto";
-            this.Foto.Name = "Foto";
+            this.Nombre.FillWeight = 108.4844F;
+            this.Nombre.HeaderText = "Nombre ";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
             // 
-            // cMarca
+            // Precio
             // 
-            this.cMarca.FillWeight = 108.4844F;
-            this.cMarca.HeaderText = "Marca";
-            this.cMarca.Name = "cMarca";
-            this.cMarca.ReadOnly = true;
-            this.cMarca.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Precio.FillWeight = 108.4844F;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.FillWeight = 108.4844F;
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // Stock
+            // 
+            this.Stock.FillWeight = 108.4844F;
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
             // 
             // cbTipo
             // 
@@ -379,40 +394,26 @@
             this.cbTipo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.cbTipo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Stock
+            // cMarca
             // 
-            this.Stock.FillWeight = 108.4844F;
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
+            this.cMarca.FillWeight = 108.4844F;
+            this.cMarca.HeaderText = "Marca";
+            this.cMarca.Name = "cMarca";
+            this.cMarca.ReadOnly = true;
+            this.cMarca.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // Descripcion
+            // Foto
             // 
-            this.Descripcion.FillWeight = 108.4844F;
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
+            this.Foto.HeaderText = "Foto";
+            this.Foto.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Foto.Name = "Foto";
             // 
-            // Precio
+            // checkColumn
             // 
-            this.Precio.FillWeight = 108.4844F;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.FillWeight = 108.4844F;
-            this.Nombre.HeaderText = "Nombre ";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Codigo
-            // 
-            this.Codigo.FillWeight = 108.4844F;
-            this.Codigo.HeaderText = "Código";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
+            this.checkColumn.FillWeight = 40.60914F;
+            this.checkColumn.HeaderText = "";
+            this.checkColumn.Name = "checkColumn";
+            this.checkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // FormMain
             // 

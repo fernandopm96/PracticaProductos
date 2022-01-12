@@ -160,9 +160,9 @@
             0,
             0});
             this.nupCodigo.Name = "nupCodigo";
+            this.nupCodigo.ReadOnly = true;
             this.nupCodigo.Size = new System.Drawing.Size(88, 23);
             this.nupCodigo.TabIndex = 0;
-            this.nupCodigo.Validating += new System.ComponentModel.CancelEventHandler(this.nupCodigo_Validating);
             // 
             // tbNombre
             // 

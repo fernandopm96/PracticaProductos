@@ -5,6 +5,7 @@ namespace PracticaProductos
     public partial class FormAdd : Form
     {
         FormMain formMain;
+        string ruta;
         public FormAdd(FormMain formMain)
         {
             this.formMain = formMain;
@@ -196,6 +197,7 @@ namespace PracticaProductos
             if(image != null)
             {
                 producto.Imagen = image;
+                producto.RutaImagen = ruta;
             }
             formMain.AddProduct(producto);
         }
@@ -209,6 +211,8 @@ namespace PracticaProductos
             if(imageDialog.ShowDialog() == DialogResult.OK)
             {
                 pictureBox.Image = new Bitmap(imageDialog.FileName);
+                ruta = @imageDialog.FileName;
+                
             }
         }
     }

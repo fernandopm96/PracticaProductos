@@ -24,8 +24,11 @@ namespace PracticaProductos
         {
             if (ProductsSelected())
             {
-                FormModify formModify = new FormModify(this, ProductsToModify());
+                List<Producto> productsToModify = ProductsToModify();
+                productos.RemoveAll(p => productsToModify.Contains(p));
+                FormModify formModify = new FormModify(this, productsToModify);
                 formModify.ShowDialog();
+                
             }
             else
             {
@@ -172,6 +175,11 @@ namespace PracticaProductos
             });
             return productsToModify;
         }
+        public void SetModifyProducts(List<Producto> modifiedProducts)
+        {
+            modifiedProducts.ForEach(p => productos.Add(p));
+            ShowProducts(productos);
+        }
         public void SetProducts(List<Producto> productos)
         {
             this.productos = productos; 
@@ -276,8 +284,10 @@ namespace PracticaProductos
 
                 for (int m = 0; m < dgvProductos.Rows.Count; m++)
                 {
+                    string path = GetPathByCod(Convert.ToInt32(dgvProductos.Rows[m].Cells[0].Value));
                     for (int n = 0; n < dgvProductos.Columns.Count; n++)
                     {
+                        
                         if (n == dgvProductos.Columns.Count - 1)
                         {
                             csvMemoria.Append(String.Format("\"{0}\"",
@@ -285,8 +295,15 @@ namespace PracticaProductos
                         }
                         else
                         {
-                            csvMemoria.Append(String.Format("\"{0}\";",
-                                dgvProductos.Rows[m].Cells[n].Value));
+                            if (n == 7)
+                            {
+                                csvMemoria.Append(String.Format("\"{0}\";", path));
+
+                            } else
+                            {
+                                csvMemoria.Append(String.Format("\"{0}\";",
+                                    dgvProductos.Rows[m].Cells[n].Value));
+                            }
                         }
                     }
                     csvMemoria.AppendLine();
@@ -310,18 +327,19 @@ namespace PracticaProductos
                 List<string> marcas = new List<string> { "Renault", "Citroen", "Peugeot", "BMW", "Audi", "Mercedes", "Porsche", "Ferrari", "Ford", "Volkswagen", "Kia", "Honda", "Dacia" };
 
                 int cod = -1, stock = -1;
-                String producto = "", nombre = "", descripcion = "";
+                String linea = "", nombre = "", descripcion = "", ruta = "";
                 double precio = -1;
                 Tipo tipo = Tipo.Berlina;
                 Marca marca = Marca.BMW;
+                Bitmap image = null;
                 
                 StreamReader reader = new StreamReader(stream);
                 reader.ReadLine();
                 while (reader.Peek() >= 0)
                 {
                     // Reemplazamos las comillas por cadenas vacías y dividimos la línea separándola por los ';'
-                    producto = reader.ReadLine().Replace("\"", String.Empty);
-                    string[] campos = producto.Split(";");
+                    linea = reader.ReadLine().Replace("\"", String.Empty);
+                    string[] campos = linea.Split(";");
 
                     //Cada una de las partes se corresponde con uno de los argumentes de un producto
                     bool valid = true;
@@ -377,10 +395,23 @@ namespace PracticaProductos
                     {
                         valid = false;
                     }
+                    if(campos[7] != "")
+                    {
+                        ruta = campos[7];
+                        
+                        image = (Bitmap)Image.FromFile(ruta);
+                    }
                          
                     if(valid)
                     {
-                        importProducts.Add(new Producto(cod, nombre, precio, descripcion, stock, tipo, marca));
+                        Producto producto = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
+                        
+                        if (image != null)
+                        {
+                            producto.RutaImagen = ruta;
+                            producto.Imagen = image;
+                        }
+                        importProducts.Add(producto);
                     } 
                 }
                 reader.Close();
@@ -401,6 +432,18 @@ namespace PracticaProductos
         private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        public string GetPathByCod(int cod)
+        {
+            string path = "";
+            productos.ForEach(p =>
+            {
+                if(p.Cod == cod)
+                {
+                    path = p.RutaImagen;
+                }
+            });
+            return path;
         }
 
         public bool CodAvailable(int cod)
