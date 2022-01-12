@@ -5,10 +5,13 @@ namespace PracticaProductos
     public partial class FormAdd : Form
     {
         FormMain formMain;
+        Controller controller;
         string ruta;
+
         public FormAdd(FormMain formMain)
         {
             this.formMain = formMain;
+            controller = Controller.GetInstance();
             InitializeComponent();
         }
 
@@ -199,7 +202,8 @@ namespace PracticaProductos
                 producto.Imagen = image;
                 producto.RutaImagen = ruta;
             }
-            formMain.AddProduct(producto);
+            controller.AddProduct(producto);
+            //formMain.AddProduct(producto);
         }
 
         private void pictureBox_Click(object sender, EventArgs e)

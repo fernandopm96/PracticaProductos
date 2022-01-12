@@ -172,6 +172,11 @@
             this.nupPrecio.DecimalPlaces = 4;
             this.nupPrecio.Enabled = false;
             this.nupPrecio.Location = new System.Drawing.Point(159, 178);
+            this.nupPrecio.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
             this.nupPrecio.Name = "nupPrecio";
             this.nupPrecio.Size = new System.Drawing.Size(82, 23);
             this.nupPrecio.TabIndex = 9;

@@ -13,13 +13,14 @@ namespace PracticaProductos
 {
     public partial class FormFilter : Form
     {
-        FormMain formMain;
+
+        Controller controller;
         List<Producto> productos, productosFiltrados;
         Dictionary<string, string?> filterProducts = new Dictionary<string, string?>();
-        public FormFilter(FormMain formMain, List<Producto> productos)
+        public FormFilter()
         {
-            this.formMain = formMain;
-            this.productos = productos;
+            controller = Controller.GetInstance();
+            this.productos = controller.products;
             productosFiltrados = new List<Producto>();
             InitializeComponent();
             filterProducts.Add("Cod", null);
@@ -41,7 +42,7 @@ namespace PracticaProductos
             if (Verify())
             {
                 SearchProducts();
-                formMain.SetFilterProducts(productosFiltrados);
+                controller.SetFilterProducts(productosFiltrados);
                 Close();
             } else
             {

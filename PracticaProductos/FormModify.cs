@@ -2,18 +2,21 @@
 {
     public partial class FormModify : Form
     {
-        FormMain formMain;
+        Controller controller;
         static int position = 0;
-        private List<Producto> productos, productsModified;
+        private List<Producto> productosToModify, productsModified;
+        string ruta;
+
         Bitmap image;
 
-        public FormModify(FormMain formMain, List<Producto> productos)
+        public FormModify(List<Producto> productsToModify)
         {
-            this.formMain = formMain;
-            this.productos = productos;
+            this.productosToModify = productsToModify;
+            controller = Controller.GetInstance();
+            controller.RemoveProducts(productsToModify);
             productsModified = new List<Producto>();
             InitializeComponent();
-            ShowProduct(productos[position]);
+            ShowProduct(productosToModify[position]);
         }
 
         private void btCancelar_Click(object sender, EventArgs e)
@@ -29,19 +32,12 @@
                 UpdateProduct();
                 if (NextProduct())
                 {
-                    ShowProduct(productos[position]);
+                    ShowProduct(productosToModify[position]);
                 }
                 else
                 {
-                    formMain.SetModifyProducts(productsModified);
-                    MessageBox.Show("Has moficado todos los artículos.");
-                    productsModified.ForEach(p =>
-                    {
-                        if(p.Imagen == null)
-                        {
-                            
-                        }
-                    });
+                    controller.AddModifiedProducts(productsModified);
+                     MessageBox.Show("Has moficado todos los artículos.");
                     Close();
                 }
 
@@ -55,11 +51,9 @@
         private bool NextProduct()
         {
             bool nextElement = true;
-
-
-            if (position <= productos.Count - 1)
+            if (position <= productosToModify.Count - 1)
             {
-                if (position == productos.Count - 1)
+                if (position == productosToModify.Count - 1)
                 {
                     nextElement = false;
                 }
@@ -82,43 +76,7 @@
                 pictureBox.Image = producto.Imagen;
             }
         }
-        private void UpdateProduct()
-        {
-
-            Producto producto = productos[position];
-            int cod = Convert.ToInt32(nupCodigo.Value);
-            string nombre = tbNombre.Text;
-            double precio = Convert.ToDouble(nupPrecio.Value);
-            string descripcion = tbDescripcion.Text;
-            int stock = Convert.ToInt32(nupStock.Value);
-            Tipo tipo = (Tipo)cbTipo.SelectedIndex;
-            Marca marca = (Marca)cbMarca.SelectedIndex;
-            Bitmap image = null;
-            if (pictureBox.Image != null)
-            {
-                image = (Bitmap)pictureBox.Image;
-            }
-
-            if (cod == producto.Cod && nombre == producto.Nombre && precio == producto.Precio
-                && descripcion == producto.Descripcion && stock == producto.Stock 
-                && tipo.ToString() == producto.Tipo.ToString() 
-                && marca.ToString() == producto.Marca.ToString()
-                && producto.Imagen == image)
-            {
-                productsModified.Add(producto);
-            }
-            else
-            {
-                Producto modifiedProduct = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
-                if(image != null)
-                {
-                    modifiedProduct.Imagen = image;
-                }
-                    
-                productsModified.Add(modifiedProduct);
-            }
-
-        }
+        
 
         private void tbNombre_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -231,6 +189,21 @@
             return valid;
         }
 
+        private bool ValidateForm()
+        {
+            bool valid = false;
+            bool validName = ValidateName();
+            bool validPrice = ValidatePrice();
+            bool validDescription = ValidateDescripcion();
+            bool validTipo = ValidateType();
+            bool validMarca = ValidateMarca();
+            if (validName && validPrice && validDescription && validTipo && validMarca)
+            {
+                valid = true;
+            }
+            return valid;
+        }
+
         private void pictureBox_Click(object sender, EventArgs e)
         {
             OpenFileDialog imageDialog = new OpenFileDialog();
@@ -240,22 +213,50 @@
             if (imageDialog.ShowDialog() == DialogResult.OK)
             {
                 pictureBox.Image = new Bitmap(imageDialog.FileName);
+                ruta = @imageDialog.FileName;
             }
         }
 
-        private bool ValidateForm()
+        
+        private void UpdateProduct()
         {
-            bool valid = false;
-            bool validName = ValidateName();
-            bool validPrice = ValidatePrice();
-            bool validDescription = ValidateDescripcion();
-            bool validTipo = ValidateType();
-            bool validMarca = ValidateMarca();
-            if (validName && validPrice &&validDescription && validTipo && validMarca)
+
+            Producto producto = productosToModify[position];
+            int cod = Convert.ToInt32(nupCodigo.Value);
+            string nombre = tbNombre.Text;
+            double precio = Convert.ToDouble(nupPrecio.Value);
+            string descripcion = tbDescripcion.Text;
+            int stock = Convert.ToInt32(nupStock.Value);
+            Tipo tipo = (Tipo)cbTipo.SelectedIndex;
+            Marca marca = (Marca)cbMarca.SelectedIndex;
+            Bitmap image = null;
+
+            if (pictureBox.Image != null)
             {
-                valid = true;
+                image = (Bitmap)pictureBox.Image;
             }
-            return valid;
+            Producto modifiedProduct = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
+            if (image != null)
+            {
+                modifiedProduct.Imagen = image;
+                modifiedProduct.RutaImagen = ruta;
+            }
+
+            productsModified.Add(modifiedProduct);
+
+/*            if (cod == producto.Cod && nombre == producto.Nombre && precio == producto.Precio
+                && descripcion == producto.Descripcion && stock == producto.Stock
+                && tipo.ToString() == producto.Tipo.ToString()
+                && marca.ToString() == producto.Marca.ToString()
+                && producto.Imagen == image)
+            {
+                productsModified.Add(producto);
+            }
+            else
+            {
+                
+            }*/
+
         }
     }
 }

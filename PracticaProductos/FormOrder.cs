@@ -12,12 +12,12 @@ namespace PracticaProductos
 {
     public partial class FormOrder : Form
     {
-        FormMain formMain;
+        Controller controller;
         List<Producto> productos, orderedProducts;
-        public FormOrder(FormMain formMain, List<Producto> productos)
+        public FormOrder()
         {
-            this.formMain = formMain;
-            this.productos = productos;
+            controller = Controller.GetInstance();
+            productos = controller.products;
             orderedProducts = new List<Producto>();
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace PracticaProductos
             if (cbCampos.Text != "Elige un campo")
             {
                 OrderProducts();
-                formMain.SetProducts(orderedProducts);
+                controller.SetOrderedProducts(orderedProducts);
             }
             else
             {

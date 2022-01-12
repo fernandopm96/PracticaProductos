@@ -53,7 +53,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnQuitarFiltro = new System.Windows.Forms.Button();
             this.importDialog = new System.Windows.Forms.OpenFileDialog();
-            this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.DgvProductos = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,7 +65,7 @@
             this.checkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -158,21 +158,21 @@
             // añadirToolStripMenuItem
             // 
             this.añadirToolStripMenuItem.Name = "añadirToolStripMenuItem";
-            this.añadirToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.añadirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.añadirToolStripMenuItem.Text = "Añadir ";
-            this.añadirToolStripMenuItem.Click += new System.EventHandler(this.añadirToolStripMenuItem_Click);
+            this.añadirToolStripMenuItem.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modificarToolStripMenuItem.Text = "Modificar";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.btnRemove_Click);
             // 
@@ -206,7 +206,7 @@
             this.ordenarToolStripMenuItem.Name = "ordenarToolStripMenuItem";
             this.ordenarToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.ordenarToolStripMenuItem.Text = "Ordenar";
-            this.ordenarToolStripMenuItem.Click += new System.EventHandler(this.ordenarToolStripMenuItem_Click);
+            this.ordenarToolStripMenuItem.Click += new System.EventHandler(this.btnOrdenar_Click);
             // 
             // filtrarToolStripMenuItem
             // 
@@ -317,14 +317,14 @@
             // 
             // dgvProductos
             // 
-            this.dgvProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DgvProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvProductos.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvProductos.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.DgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
             this.Nombre,
             this.Precio,
@@ -341,14 +341,14 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvProductos.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvProductos.Location = new System.Drawing.Point(0, 27);
-            this.dgvProductos.Name = "dgvProductos";
-            this.dgvProductos.RowTemplate.Height = 100;
-            this.dgvProductos.Size = new System.Drawing.Size(906, 592);
-            this.dgvProductos.TabIndex = 0;
-            this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
+            this.DgvProductos.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DgvProductos.GridColor = System.Drawing.SystemColors.Control;
+            this.DgvProductos.Location = new System.Drawing.Point(0, 27);
+            this.DgvProductos.Name = "dgvProductos";
+            this.DgvProductos.RowTemplate.Height = 100;
+            this.DgvProductos.Size = new System.Drawing.Size(906, 592);
+            this.DgvProductos.TabIndex = 0;
+            this.DgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
             // 
             // Codigo
             // 
@@ -421,7 +421,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 687);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dgvProductos);
+            this.Controls.Add(this.DgvProductos);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(500, 400);
@@ -431,7 +431,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,5 +474,7 @@
         private DataGridViewTextBoxColumn cMarca;
         private DataGridViewImageColumn Foto;
         private DataGridViewCheckBoxColumn checkColumn;
+
+        public DataGridView DgvProductos { get => dgvProductos; set => dgvProductos = value; }
     }
 }
