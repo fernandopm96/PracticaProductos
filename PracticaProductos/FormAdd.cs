@@ -187,10 +187,29 @@ namespace PracticaProductos
             int stock = (int)nupStock.Value;    
             Tipo tipo = (Tipo)cbTipo.SelectedIndex;
             Marca marca = (Marca)cbMarca.SelectedIndex;
+            Bitmap image = null;
+            if(pictureBox.Image != null)
+            {
+                image = (Bitmap)pictureBox.Image;
+            }
             Producto producto = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
+            if(image != null)
+            {
+                producto.Imagen = image;
+            }
             formMain.AddProduct(producto);
         }
 
-       
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog imageDialog = new OpenFileDialog();
+            imageDialog.InitialDirectory = @"C:\";
+            imageDialog.Title = "Selecciona una imagen.";
+            imageDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            if(imageDialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox.Image = new Bitmap(imageDialog.FileName);
+            }
+        }
     }
 }

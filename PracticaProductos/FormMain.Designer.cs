@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvProductos = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -62,103 +53,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnQuitarFiltro = new System.Windows.Forms.Button();
             this.importDialog = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
+            this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.checkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Foto = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvProductos
-            // 
-            this.dgvProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvProductos.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo,
-            this.Nombre,
-            this.Precio,
-            this.Descripcion,
-            this.Stock,
-            this.cbTipo,
-            this.cMarca,
-            this.checkColumn});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Sitka Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvProductos.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvProductos.Location = new System.Drawing.Point(0, 27);
-            this.dgvProductos.Name = "dgvProductos";
-            this.dgvProductos.RowTemplate.Height = 25;
-            this.dgvProductos.Size = new System.Drawing.Size(906, 592);
-            this.dgvProductos.TabIndex = 0;
-            this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
-            // 
-            // Codigo
-            // 
-            this.Codigo.FillWeight = 108.4844F;
-            this.Codigo.HeaderText = "Código";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.FillWeight = 108.4844F;
-            this.Nombre.HeaderText = "Nombre ";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            this.Precio.FillWeight = 108.4844F;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.FillWeight = 108.4844F;
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
-            // Stock
-            // 
-            this.Stock.FillWeight = 108.4844F;
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            // 
-            // cbTipo
-            // 
-            this.cbTipo.FillWeight = 108.4844F;
-            this.cbTipo.HeaderText = "Tipo";
-            this.cbTipo.Name = "cbTipo";
-            this.cbTipo.ReadOnly = true;
-            this.cbTipo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cbTipo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // cMarca
-            // 
-            this.cMarca.FillWeight = 108.4844F;
-            this.cMarca.HeaderText = "Marca";
-            this.cMarca.Name = "cMarca";
-            this.cMarca.ReadOnly = true;
-            this.cMarca.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // checkColumn
-            // 
-            this.checkColumn.FillWeight = 40.60914F;
-            this.checkColumn.HeaderText = "";
-            this.checkColumn.Name = "checkColumn";
-            this.checkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // btnAdd
             // 
@@ -228,12 +136,14 @@
             this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
             this.exportarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.exportarToolStripMenuItem.Text = "Exportar";
+            this.exportarToolStripMenuItem.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // importarToolStripMenuItem
             // 
             this.importarToolStripMenuItem.Name = "importarToolStripMenuItem";
             this.importarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.importarToolStripMenuItem.Text = "Importar";
+            this.importarToolStripMenuItem.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // productosMenuTool
             // 
@@ -405,6 +315,105 @@
             // 
             this.importDialog.Title = "Importar CSV";
             // 
+            // dgvProductos
+            // 
+            this.dgvProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvProductos.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Nombre,
+            this.Precio,
+            this.Descripcion,
+            this.Stock,
+            this.cbTipo,
+            this.cMarca,
+            this.Foto,
+            this.checkColumn});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Sitka Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvProductos.GridColor = System.Drawing.SystemColors.Control;
+            this.dgvProductos.Location = new System.Drawing.Point(0, 27);
+            this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.RowTemplate.Height = 25;
+            this.dgvProductos.Size = new System.Drawing.Size(906, 592);
+            this.dgvProductos.TabIndex = 0;
+            this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
+            // 
+            // checkColumn
+            // 
+            this.checkColumn.FillWeight = 40.60914F;
+            this.checkColumn.HeaderText = "";
+            this.checkColumn.Name = "checkColumn";
+            this.checkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Foto
+            // 
+            this.Foto.HeaderText = "Foto";
+            this.Foto.Name = "Foto";
+            // 
+            // cMarca
+            // 
+            this.cMarca.FillWeight = 108.4844F;
+            this.cMarca.HeaderText = "Marca";
+            this.cMarca.Name = "cMarca";
+            this.cMarca.ReadOnly = true;
+            this.cMarca.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cbTipo
+            // 
+            this.cbTipo.FillWeight = 108.4844F;
+            this.cbTipo.HeaderText = "Tipo";
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.ReadOnly = true;
+            this.cbTipo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cbTipo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Stock
+            // 
+            this.Stock.FillWeight = 108.4844F;
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.FillWeight = 108.4844F;
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.FillWeight = 108.4844F;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.FillWeight = 108.4844F;
+            this.Nombre.HeaderText = "Nombre ";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Codigo
+            // 
+            this.Codigo.FillWeight = 108.4844F;
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -418,18 +427,16 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DataGridView dgvProductos;
         private Button btnAdd;
         private Button btnModify;
         private Button btnRemove;
@@ -452,6 +459,11 @@
         private Label lbPanel;
         private Button btnExportar;
         private Button btnImportar;
+        private Panel panel1;
+        private Button btnQuitarFiltro;
+        private ToolStripMenuItem restaurarToolStripMenuItem;
+        private OpenFileDialog importDialog;
+        private DataGridView dgvProductos;
         private DataGridViewTextBoxColumn Codigo;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Precio;
@@ -459,10 +471,7 @@
         private DataGridViewTextBoxColumn Stock;
         private DataGridViewTextBoxColumn cbTipo;
         private DataGridViewTextBoxColumn cMarca;
+        private DataGridViewImageColumn Foto;
         private DataGridViewCheckBoxColumn checkColumn;
-        private Panel panel1;
-        private Button btnQuitarFiltro;
-        private ToolStripMenuItem restaurarToolStripMenuItem;
-        private OpenFileDialog importDialog;
     }
 }

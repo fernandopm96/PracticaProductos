@@ -71,6 +71,7 @@
                 nupStock.Value = Convert.ToDecimal(producto.Stock);
                 cbTipo.Text = producto.Tipo.ToString();
                 cbMarca.Text = producto.Marca.ToString();
+                pictureBox.Image = producto.Imagen;
             }
         }
         private void UpdateProduct()
@@ -84,15 +85,23 @@
             int stock = Convert.ToInt32(nupStock.Value);
             Tipo tipo = (Tipo)cbTipo.SelectedIndex;
             Marca marca = (Marca)cbMarca.SelectedIndex;
-            if (cod == producto.Cod && nombre == producto.Nombre && precio == producto.Precio &&
-                descripcion == producto.Descripcion && stock == producto.Stock &&
-            tipo.ToString() == producto.Tipo.ToString() && marca.ToString() == producto.Marca.ToString())
+            Bitmap imagen = null;
+            if(pictureBox.Image != null)
+            {
+                imagen = (Bitmap)pictureBox.Image;
+            }
+            if (cod == producto.Cod && nombre == producto.Nombre && precio == producto.Precio
+                && descripcion == producto.Descripcion && stock == producto.Stock 
+                && tipo.ToString() == producto.Tipo.ToString() 
+                && marca.ToString() == producto.Marca.ToString()
+                && pictureBox.Image == producto.Imagen)
             {
                 productsModified.Add(producto);
             }
             else
             {
                 Producto modifiedProduct = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
+                modifiedProduct.Imagen = imagen;
                 productsModified.Add(modifiedProduct);
             }
 
@@ -232,7 +241,17 @@
             return valid;
         }
 
-        
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog imageDialog = new OpenFileDialog();
+            imageDialog.InitialDirectory = @"C:\";
+            imageDialog.Title = "Selecciona una imagen.";
+            imageDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            if (imageDialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox.Image = new Bitmap(imageDialog.FileName);
+            }
+        }
 
         private bool ValidateForm()
         {

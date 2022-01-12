@@ -50,12 +50,14 @@
             this.btCancelar = new System.Windows.Forms.Button();
             this.btModificar = new System.Windows.Forms.Button();
             this.errorModify = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.paTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorModify)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // lbCodigo
@@ -273,12 +275,24 @@
             // 
             this.errorModify.ContainerControl = this;
             // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pictureBox.Location = new System.Drawing.Point(162, 380);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(221, 127);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 52;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
             // FormModify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(415, 588);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cbMarca);
             this.Controls.Add(this.cbTipo);
@@ -307,6 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorModify)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,5 +350,6 @@
         private Button btCancelar;
         private Button btModificar;
         private ErrorProvider errorModify;
+        private PictureBox pictureBox;
     }
 }

@@ -53,6 +53,7 @@
             this.lbMarca = new System.Windows.Forms.Label();
             this.cbMarca = new System.Windows.Forms.ComboBox();
             this.errorAdd = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
             this.paTitulo.SuspendLayout();
@@ -60,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorAdd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // lbTipo
@@ -297,12 +299,25 @@
             // 
             this.errorAdd.ContainerControl = this;
             // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox.Location = new System.Drawing.Point(160, 380);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(223, 124);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 45;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
             // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(415, 588);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.cbMarca);
             this.Controls.Add(this.lbMarca);
             this.Controls.Add(this.nupCodigo);
@@ -334,6 +349,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorAdd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,5 +383,6 @@
         private NumericUpDown nupCodigo;
         private NumericUpDown nupStock;
         private ErrorProvider errorAdd;
+        private PictureBox pictureBox;
     }
 }

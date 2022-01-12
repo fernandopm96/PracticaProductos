@@ -129,7 +129,11 @@ namespace PracticaProductos
                 fila[4] = product.Stock.ToString();
                 fila[5] = product.Tipo.ToString();
                 fila[6] = product.Marca.ToString();
-                dgvProductos.Rows.Add(fila);    
+                dgvProductos.Rows.Add(fila);
+                if (product.Imagen != null)
+                {
+                    dgvProductos.Rows[dgvProductos.Rows.Count - 2].Cells[7].Value = product.Imagen;
+                }   
             }
         }
 
@@ -143,7 +147,7 @@ namespace PracticaProductos
             {
                 foreach (DataGridViewRow row in dgvProductos.Rows)
                 {
-                    if (Convert.ToBoolean(row.Cells[7].Value))
+                    if (Convert.ToBoolean(row.Cells[8].Value))
                     {
                         selected = true;
                         codigos.Add(Convert.ToInt32(row.Cells[0].Value));
