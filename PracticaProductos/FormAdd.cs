@@ -196,17 +196,14 @@ namespace PracticaProductos
             int stock = (int)nupStock.Value;    
             Tipo tipo = (Tipo)cbTipo.SelectedIndex;
             Marca marca = (Marca)cbMarca.SelectedIndex;
-            Bitmap image = null;
-            if(pictureBox.Image != null)
+            Bitmap image = new Bitmap(new Bitmap(pictureBox.Image), new Size(75,75));
+            Producto producto = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
+            if(ruta != null)
             {
                 image = (Bitmap)pictureBox.Image;
-            }
-            Producto producto = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
-            if(image != null)
-            {
                 producto.Imagen = image;
                 producto.RutaImagen = ruta;
-            }
+            } 
             controller.AddProduct(producto);
         }
 
@@ -218,7 +215,7 @@ namespace PracticaProductos
             imageDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
             if(imageDialog.ShowDialog() == DialogResult.OK)
             {
-                pictureBox.Image = new Bitmap(imageDialog.FileName);
+                pictureBox.Image = new Bitmap(new Bitmap(imageDialog.FileName), new Size(75,75));
                 ruta = @imageDialog.FileName;
                 
             }

@@ -13,7 +13,6 @@
         {
             this.productosToModify = productsToModify;
             controller = Controller.GetInstance();
-            controller.RemoveProducts(productsToModify);
             productsModified = new List<Producto>();
             InitializeComponent();
             ShowProduct(productosToModify[position]);
@@ -37,8 +36,10 @@
                     }
                     else
                     {
-                        controller.AddModifiedProducts(productsModified);
+                        controller.UpdateProducts();
                         MessageBox.Show("Has moficado todos los artículos.");
+                        controller.ModifyProducts(productsModified);
+                        controller.UpdateProducts();
                         Close();
                     }
 
@@ -236,32 +237,13 @@
             Marca marca = (Marca)cbMarca.SelectedIndex;
             Bitmap image = null;
 
-            if (pictureBox.Image != null)
-            {
-                image = (Bitmap)pictureBox.Image;
-            }
             Producto modifiedProduct = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
-            if (image != null)
-            {
-                modifiedProduct.Imagen = image;
-                modifiedProduct.RutaImagen = ruta;
-            }
+          
+            image = (Bitmap)pictureBox.Image;
+            modifiedProduct.Imagen = image;
+            modifiedProduct.RutaImagen = ruta;
 
             productsModified.Add(modifiedProduct);
-
-/*            if (cod == producto.Cod && nombre == producto.Nombre && precio == producto.Precio
-                && descripcion == producto.Descripcion && stock == producto.Stock
-                && tipo.ToString() == producto.Tipo.ToString()
-                && marca.ToString() == producto.Marca.ToString()
-                && producto.Imagen == image)
-            {
-                productsModified.Add(producto);
-            }
-            else
-            {
-                
-            }*/
-
         }
     }
 }

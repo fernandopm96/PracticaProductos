@@ -33,11 +33,7 @@ namespace PracticaProductos
             products.RemoveAll(p => productsToRemove.Contains(p));
             UpdateProducts();
         }
-        public void AddModifiedProducts(List<Producto> productsToModify)
-        {
-            productsToModify.ForEach(p => products.Add(p));
-            UpdateProducts();
-        }
+        
 
         public void SetOrderedProducts(List<Producto> orderedProducts)
         {
@@ -45,7 +41,23 @@ namespace PracticaProductos
             UpdateProducts();
         }
 
-        private void UpdateProducts()
+        public void ModifyProducts(List<Producto> productsModified)
+        {
+            foreach(Producto productModified in productsModified)
+            {
+                foreach (Producto producto in products)
+                {
+                    if(productModified.Cod == producto.Cod)
+                    {
+                        products.Remove(producto);
+                        products.Add(productModified);
+                    }
+                }
+            }   
+
+        }
+
+        public void UpdateProducts()
         {
             formMain.productos = products;
             formMain.UpdateProductsInView();
@@ -217,7 +229,7 @@ namespace PracticaProductos
 
         }
 
-        private string GetPathByCod(int cod)
+        public string GetPathByCod(int cod)
         {
             string path = "";
             products.ForEach(p =>

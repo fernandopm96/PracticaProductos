@@ -70,9 +70,9 @@ namespace PracticaProductos
                 fila[5] = product.Tipo.ToString();
                 fila[6] = product.Marca.ToString();
                 DgvProductos.Rows.Add(fila);
-                if (product.Imagen != null)
+                if (product.RutaImagen != null)
                 {
-                    DgvProductos.Rows[DgvProductos.Rows.Count - 2].Cells[7].Value = product.Imagen;
+                    DgvProductos.Rows[DgvProductos.Rows.Count - 1].Cells[7].Value = product.Imagen;
                 }
             }
         }
@@ -282,10 +282,6 @@ namespace PracticaProductos
             }
         }
       
-        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         public bool CodAvailable(int cod)
         {
@@ -300,9 +296,23 @@ namespace PracticaProductos
             return codAvailable;
         }
 
-        private void dgvProductos_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        public void show_image(object sender, DataGridViewCellEventArgs e)
         {
-
+            FormImage image = new FormImage();
+            int cod = Convert.ToInt32(dgvProductos.Rows[e.RowIndex].Cells[0].Value);
+            string path = controller.GetPathByCod(cod);
+            Bitmap bitmap = null;
+            if(path != null)
+            {
+                bitmap = new Bitmap(new Bitmap(path), new Size(781, 559));
+                image.PictureBox.Image = bitmap;
+                image.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("El artículo no tiene imagen.", "Imagen no disponible");
+            }
+            
         }
     }
 }

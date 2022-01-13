@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,6 +38,7 @@
             this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Imagen = new System.Windows.Forms.DataGridViewImageColumn();
             this.checkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
@@ -89,24 +91,25 @@
             this.Stock,
             this.cbTipo,
             this.cMarca,
+            this.Imagen,
             this.checkColumn});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProductos.Location = new System.Drawing.Point(0, 27);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvProductos.RowHeadersVisible = false;
-            this.dgvProductos.RowTemplate.Height = 50;
+            this.dgvProductos.RowTemplate.Height = 100;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductos.Size = new System.Drawing.Size(975, 586);
             this.dgvProductos.TabIndex = 0;
-            this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick_1);
+            this.dgvProductos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.show_image);
             // 
             // Codigo
             // 
@@ -159,6 +162,15 @@
             this.cMarca.Name = "cMarca";
             this.cMarca.ReadOnly = true;
             this.cMarca.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Imagen
+            // 
+            this.Imagen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Imagen.HeaderText = "Imagen";
+            this.Imagen.Image = ((System.Drawing.Image)(resources.GetObject("Imagen.Image")));
+            this.Imagen.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Imagen.Name = "Imagen";
+            this.Imagen.ReadOnly = true;
             // 
             // checkColumn
             // 
@@ -470,6 +482,7 @@
         private ToolStripMenuItem restaurarToolStripMenuItem;
         private OpenFileDialog importDialog;
         private DataGridView dgvProductos;
+        private DataGridViewImageColumn Foto;
         private DataGridViewTextBoxColumn Codigo;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Precio;
@@ -477,7 +490,7 @@
         private DataGridViewTextBoxColumn Stock;
         private DataGridViewTextBoxColumn cbTipo;
         private DataGridViewTextBoxColumn cMarca;
-        private DataGridViewImageColumn Foto;
+        private DataGridViewImageColumn Imagen;
         private DataGridViewCheckBoxColumn checkColumn;
 
         public DataGridView DgvProductos { get => dgvProductos; set => dgvProductos = value; }
