@@ -22,19 +22,22 @@ namespace PracticaProductos
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (ValidateForm())
+            try
             {
-                AddProduct();
-                var confirmResult = MessageBox.Show("Producto registrado correctamente.\n¿Quieres introducir más artículos?", "Añadir producto", MessageBoxButtons.YesNo);
-                if (confirmResult == DialogResult.No)
+                if (ValidateForm())
                 {
-                    Close();
+                    AddProduct();
+                    var confirmResult = MessageBox.Show("Producto registrado correctamente.\n¿Quieres introducir más artículos?", "Añadir producto", MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.No)
+                    {
+                        Close();
+                    }
                 }
-            } else
-            {
-                MessageBox.Show("Algún campo no es válido. ");
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Formulario inválido.");
+            }    
         }
         private void nupCodigo_Validating(object sender, CancelEventArgs e)
         {
@@ -68,17 +71,17 @@ namespace PracticaProductos
             if (nupCodigo.Value <= 0)
             {
                 errorAdd.SetError(nupCodigo, "Debes introducir un código mayor que 0.");
-                valid = false;
-            }
+                throw new InvalidFormException("Debes introducir un código mayor que 0.");
+            }   
             else
             {
                 errorAdd.SetError(nupCodigo, "");
                 if (!formMain.CodAvailable(Convert.ToInt32(nupCodigo.Value)))
                 {
-                    valid = false;  
-                    MessageBox.Show("El código introducido ya pertenece a algún artículo registrado.");
+                    errorAdd.SetError(nupCodigo, "El código introducido ya pertenece a algún artículo registrado.");
+                    throw new InvalidFormException("El código introducido ya pertenece a algún artículo registrado.");
+                    
                 }
-                
             }
             return valid;            
         }
@@ -89,7 +92,7 @@ namespace PracticaProductos
             if (tbNombre.Text == "")
             {
                 errorAdd.SetError(tbNombre, "No puedes dejar el nombre vacío.");
-                valid = false;
+                throw new ArgumentException("No puedes dejar el nombre vacío.");
             }
             else
             {
@@ -104,7 +107,7 @@ namespace PracticaProductos
             if (nupPrecio.Value == 0)
             {
                 errorAdd.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
-                valid = false;
+                throw new ArgumentException("El precio no puede ser 0..");
             }
             else
             {
@@ -118,7 +121,7 @@ namespace PracticaProductos
             if (tbDescripcion.Text == "")
             {
                 errorAdd.SetError(tbDescripcion, "Debes introducir una descripción.");
-                valid = false;
+                throw new ArgumentException("No puedes dejar la descripcion vacía.");
             }
             else
                 errorAdd.SetError(tbDescripcion, "");
@@ -139,6 +142,7 @@ namespace PracticaProductos
             if (!valid)
             {
                 errorAdd.SetError(cbTipo, "Tipo no válido.");
+                throw new ArgumentException("Selecciona un tipo de vehículo válido.");         
             }
             else
             {
@@ -160,6 +164,7 @@ namespace PracticaProductos
             if (!valid)
             {
                 errorAdd.SetError(cbMarca, "Marca no válida.");
+                throw new ArgumentException("Selecciona una marca de vehículo válido.");
             } else
             {
                 errorAdd.SetError(cbMarca, "");
@@ -203,7 +208,6 @@ namespace PracticaProductos
                 producto.RutaImagen = ruta;
             }
             controller.AddProduct(producto);
-            //formMain.AddProduct(producto);
         }
 
         private void pictureBox_Click(object sender, EventArgs e)

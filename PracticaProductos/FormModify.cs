@@ -26,27 +26,29 @@
 
         private void btModificar_Click(object sender, EventArgs e)
         {
-
-            if (ValidateForm())
+            try
             {
-                UpdateProduct();
-                if (NextProduct())
+                if (ValidateForm())
                 {
-                    ShowProduct(productosToModify[position]);
-                }
-                else
-                {
-                    controller.AddModifiedProducts(productsModified);
-                     MessageBox.Show("Has moficado todos los artículos.");
-                    Close();
-                }
+                    UpdateProduct();
+                    if (NextProduct())
+                    {
+                        ShowProduct(productosToModify[position]);
+                    }
+                    else
+                    {
+                        controller.AddModifiedProducts(productsModified);
+                        MessageBox.Show("Has moficado todos los artículos.");
+                        Close();
+                    }
 
+                }
             }
-            else
+            catch(InvalidFormException ex)
             {
-                MessageBox.Show("Algún campo no es válido. ");
+                MessageBox.Show(ex.Message);
             }
-
+           
         }
         private bool NextProduct()
         {
@@ -108,6 +110,7 @@
             if (tbNombre.Text == "")
             {
                 errorModify.SetError(tbNombre, "No puedes dejar el nombre vacío.");
+                throw new InvalidFormException("No puedes dejar el nombre vacío.");
                 valid = false;
             }
             else
@@ -124,11 +127,11 @@
             if (nupPrecio.Value == 0)
             {
                 errorModify.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
-                valid = false;
+                throw new InvalidFormException("Debes introducir un precio mayor que 0.");
             }
             else
             {
-                errorModify.SetError(nupCodigo, "");
+                errorModify.SetError(nupPrecio, "");
             }
             return valid;
         }
@@ -139,7 +142,7 @@
             if (tbDescripcion.Text == "")
             {
                 errorModify.SetError(tbDescripcion, "Debes introducir una descripción.");
-                valid = false;
+                throw new InvalidFormException("Debes introducir una descripción.");
             }
             else
                 errorModify.SetError(tbDescripcion, "");
@@ -160,6 +163,7 @@
             if (!valid)
             {
                 errorModify.SetError(cbTipo, "Tipo no válido.");
+                throw new InvalidFormException("El tipo no es válido.");
             }
             else
             {
@@ -181,6 +185,7 @@
             if (!valid)
             {
                 errorModify.SetError(cbMarca, "Marca no válida.");
+                throw new InvalidFormException("El tipo no es válido.");
             }
             else
             {
