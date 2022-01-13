@@ -299,5 +299,10 @@ namespace PracticaProductos
             });
             return codAvailable;
         }
+
+        private void dgvProductos_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
