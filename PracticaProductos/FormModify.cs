@@ -11,6 +11,7 @@
 
         public FormModify(List<Producto> productsToModify)
         {
+            position = 0;   
             this.productsToModify = productsToModify;
             controller = Controller.GetInstance();
             productsModified = new List<Producto>();
@@ -20,6 +21,10 @@
 
         private void btCancelar_Click(object sender, EventArgs e)
         {
+            if (productsModified.Count > 0)
+            {
+                controller.ModifyProducts(productsModified, productsModified);
+            }
             Close();
         }
 
@@ -75,7 +80,11 @@
                 nupStock.Value = Convert.ToDecimal(producto.Stock);
                 cbTipo.Text = producto.Tipo.ToString();
                 cbMarca.Text = producto.Marca.ToString();
-                pictureBox.Image = producto.Imagen;
+                if(producto.Imagen != null)
+                {
+                    pictureBox.Image = producto.Imagen;
+
+                }
             }
         }
         

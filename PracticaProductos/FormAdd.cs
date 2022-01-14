@@ -92,7 +92,7 @@ namespace PracticaProductos
             if (tbNombre.Text == "")
             {
                 errorAdd.SetError(tbNombre, "No puedes dejar el nombre vacío.");
-                throw new ArgumentException("No puedes dejar el nombre vacío.");
+                throw new InvalidFormException("No puedes dejar el nombre vacío.");
             }
             else
             {
@@ -107,7 +107,7 @@ namespace PracticaProductos
             if (nupPrecio.Value == 0)
             {
                 errorAdd.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
-                throw new ArgumentException("El precio no puede ser 0..");
+                throw new InvalidFormException("El precio no puede ser 0..");
             }
             else
             {
@@ -121,7 +121,7 @@ namespace PracticaProductos
             if (tbDescripcion.Text == "")
             {
                 errorAdd.SetError(tbDescripcion, "Debes introducir una descripción.");
-                throw new ArgumentException("No puedes dejar la descripcion vacía.");
+                throw new InvalidFormException("No puedes dejar la descripcion vacía.");
             }
             else
                 errorAdd.SetError(tbDescripcion, "");
@@ -142,7 +142,7 @@ namespace PracticaProductos
             if (!valid)
             {
                 errorAdd.SetError(cbTipo, "Tipo no válido.");
-                throw new ArgumentException("Selecciona un tipo de vehículo válido.");         
+                throw new InvalidFormException("Selecciona un tipo de vehículo válido.");         
             }
             else
             {
@@ -164,7 +164,7 @@ namespace PracticaProductos
             if (!valid)
             {
                 errorAdd.SetError(cbMarca, "Marca no válida.");
-                throw new ArgumentException("Selecciona una marca de vehículo válido.");
+                throw new InvalidFormException("Selecciona una marca de vehículo válido.");
             } else
             {
                 errorAdd.SetError(cbMarca, "");

@@ -30,6 +30,11 @@ namespace PracticaProductos
             products.Add(producto);
             UpdateProducts();
         }
+        public void AddProducts(List<Producto> productos)
+        {
+            productos.ForEach(p => products.Add(p));
+            UpdateProducts();
+        }
         public void RemoveProducts(List<Producto> productsToRemove)
         {
             products.RemoveAll(p => productsToRemove.Contains(p));
@@ -49,12 +54,7 @@ namespace PracticaProductos
             productsModified.ForEach(p => products.Add(p));
             UpdateProducts();
         }
-  /*      public void UpdateModifiedProducts()
-        {
-            products = products2;
-            UpdateProducts();
-        }*/
-
+  
         public void UpdateProducts()
         {
             formMain.productos = products;
@@ -134,6 +134,7 @@ namespace PracticaProductos
             Tipo tipo = Tipo.Compacto;
             Marca marca = Marca.Ford;
             Bitmap image = null;
+            List<int> codigos = new List<int>();    
 
             reader.ReadLine();
             while (reader.Peek() >= 0)
@@ -141,12 +142,22 @@ namespace PracticaProductos
                 // Reemplazamos las comillas por cadenas vacías y dividimos la línea separándola por los ';'
                 linea = reader.ReadLine().Replace("\"", String.Empty);
                 string[] campos = linea.Split(";");
+                if (campos.Length < 7 || campos.Length > 9)
+                {
+                    throw new ImportCsvException("Error al importar el archivo csv.");
+                }
 
-                //Cada una de las partes se corresponde con uno de los argumentes de un producto
                 bool valid = true;
                 if (campos[0] != "")
                 {
-                    cod = Convert.ToInt32(campos[0]);
+                    try
+                    { 
+                        cod = Convert.ToInt32(campos[0]);
+                    }
+                    catch (FormatException)
+                    {
+                        throw new ImportCsvException("Error en el campo Código. Debes introducir un campo numérico entero.");
+                    }
                 }
                 else
                 {
@@ -163,7 +174,14 @@ namespace PracticaProductos
                 }
                 if (campos[2] != "")
                 {
-                    precio = Convert.ToDouble(campos[2]);
+                    try
+                    {
+                        precio = Convert.ToDouble(campos[2]);
+                    }
+                    catch (FormatException)
+                    {
+                        throw new ImportCsvException("Error en el campo Precio. Debes introducir un campo numérico.");
+                    }
                 }
                 else
                 {
@@ -179,7 +197,15 @@ namespace PracticaProductos
                 }
                 if (campos[4] != "")
                 {
-                    stock = Convert.ToInt32(campos[4]);
+                    try
+                    {
+                        stock = Convert.ToInt32(campos[4]);
+                    }
+                    catch (FormatException)
+                    {
+                        throw new ImportCsvException("Error en el campo Stock. Debes introducir un campo numérico entero.");
+                    }
+                    
                 }
                 else
                 {
@@ -188,7 +214,20 @@ namespace PracticaProductos
 
                 if (campos[5] != "")
                 {
-                    tipo = (Tipo)Enum.Parse(typeof(Tipo), campos[5], true);
+                    tipo = Tipo.Compacto;
+                    try
+                    {
+                        tipo = (Tipo)Enum.Parse(typeof(Tipo), campos[5], true);
+                    }
+                    catch (ArgumentException)
+                    {
+                        DialogResult respuesta = MessageBox.Show("El tipo introducido no es válido. Se sustituirá por Compacto.\n¿Estás de acuerdo?", "Tipo no válido", MessageBoxButtons.YesNo);
+                        if(respuesta != DialogResult.Yes)
+                        {
+                            MessageBox.Show("Importación cancelada.", "Importación cancelada.");
+                            return;
+                        }
+                    }
                 }
                 else
                 {
@@ -197,7 +236,20 @@ namespace PracticaProductos
 
                 if (campos[6] != "")
                 {
-                    marca = (Marca)Enum.Parse(typeof(Marca), campos[6], true);
+                    marca = Marca.Renault;
+                    try
+                    {
+                        marca = (Marca)Enum.Parse(typeof(Marca), campos[5], true);
+                    }
+                    catch (ArgumentException)
+                    {
+                        DialogResult respuesta = MessageBox.Show("La marca introducida no es válida. Se sustituirá por Renault.\n¿Estás de acuerdo?", "Tipo no válido", MessageBoxButtons.YesNo);
+                        if (respuesta != DialogResult.Yes)
+                        {
+                            MessageBox.Show("Importación cancelada.", "Importación cancelada.");
+                            return;
+                        }
+                    }
                 }
                 else
                 {
@@ -206,7 +258,18 @@ namespace PracticaProductos
                 if (campos[7] != "")
                 {
                     ruta = campos[7];
-                    image = (Bitmap)Image.FromFile(ruta);
+                    try
+                    {
+                        image = (Bitmap)Image.FromFile(ruta);
+                    } catch(FileNotFoundException)
+                    {
+                        DialogResult respuesta = MessageBox.Show("La ruta introducida no corresponde a ninguna imagen. Se omitirá este campo.\n¿Estás de acuerdo?", "Tipo no válido", MessageBoxButtons.YesNo);
+                        if (respuesta != DialogResult.Yes)
+                        {
+                            MessageBox.Show("Importación cancelada.", "Importación cancelada.");
+                            return;
+                        }
+                    }
                 }
 
                 if (valid)
@@ -218,7 +281,20 @@ namespace PracticaProductos
                         producto.RutaImagen = ruta;
                         producto.Imagen = image;
                     }
-                    importProducts.Add(producto);
+                    if(importProducts.Count > 0)
+                    {
+                        if (codigos.Contains(cod))
+                        {
+                            MessageBox.Show("El código introducido ya existe.");
+                        } else
+                        {
+                            importProducts.Add(producto);
+                            codigos.Add(cod);
+                        }
+                    }
+                } else
+                {
+                    throw new ImportCsvException("Error al importar el archivo csv.\nAlguno de los campos obligatorios no tienen valor.");
                 }
             }
             reader.Close();

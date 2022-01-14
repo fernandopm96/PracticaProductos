@@ -58,19 +58,23 @@ namespace PracticaProductos
 
         public void UpdateProductsInView()
         {
-            int i = 0;
+            DgvProductos.Rows.Clear();
             foreach (Producto product in productos)
             {
-                DgvProductos.Rows.Add();
-                DgvProductos.Rows[i].Cells[0].Value = product.Cod.ToString();
-                DgvProductos.Rows[i].Cells[1].Value = product.Nombre.ToString();
-                DgvProductos.Rows[i].Cells[2].Value = product.Precio.ToString();
-                DgvProductos.Rows[i].Cells[3].Value = product.Descripcion.ToString();
-                DgvProductos.Rows[i].Cells[4].Value = product.Stock.ToString();
-                DgvProductos.Rows[i].Cells[5].Value = product.Tipo.ToString();
-                DgvProductos.Rows[i].Cells[6].Value = product.Marca.ToString();
-                DgvProductos.Rows[i].Cells[7].Value = product.Imagen;
-                i++;    
+                string[] fila = new string[7];
+                fila[0] = product.Cod.ToString();
+                fila[1] = product.Nombre.ToString();
+                fila[2] = product.Precio.ToString();
+                fila[3] = product.Descripcion.ToString();
+                fila[4] = product.Stock.ToString();
+                fila[5] = product.Tipo.ToString();
+                fila[6] = product.Marca.ToString();
+                DgvProductos.Rows.Add(fila);
+                if (product.Imagen != null)
+                {
+                    DgvProductos.Rows[DgvProductos.Rows.Count - 1].Cells[7].Value = product.Imagen;
+                }
+
             }
         }
 
@@ -140,7 +144,7 @@ namespace PracticaProductos
                 DgvProductos.Rows.Add(fila);
                 if (product.Imagen != null)
                 {
-                    DgvProductos.Rows[DgvProductos.Rows.Count - 2].Cells[7].Value = product.Imagen;
+                    DgvProductos.Rows[DgvProductos.Rows.Count - 1].Cells[7].Value = product.Imagen;
                 }   
             }
         }
@@ -158,6 +162,7 @@ namespace PracticaProductos
                 {
                     if (Convert.ToBoolean(row.Cells[8].Value))
                     {
+                        MessageBox.Show(row.Cells[0].Value.ToString());
                         selected = true;
                         codigos.Add(Convert.ToInt32(row.Cells[0].Value));
                     }
@@ -181,12 +186,7 @@ namespace PracticaProductos
             });
             return productsToModify;
         }
-      
-        public void SetProducts(List<Producto> productos)
-        {
-            this.productos = productos; 
-            ShowProducts(productos);
-        }
+ 
         public void SetFilterProducts(List<Producto> filterProducts)
         {
             this.productosFiltrados = filterProducts;
@@ -277,7 +277,13 @@ namespace PracticaProductos
                 Bitmap image = null;
                 
                 StreamReader reader = new StreamReader(stream);
-                controller.ImportToCsv(reader);
+                try
+                {
+                    controller.ImportToCsv(reader);
+                } catch(ImportCsvException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error al importar.");    
+                }
             }
         }
       
