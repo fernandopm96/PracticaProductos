@@ -10,7 +10,7 @@ namespace PracticaProductos
 
         Controller controller;
         static bool showingFilterProducts = false;
-        List<int> codigos = new List<int>();
+        List<int> codigos;
         public FormMain()
         {
             InitializeComponent();
@@ -58,22 +58,19 @@ namespace PracticaProductos
 
         public void UpdateProductsInView()
         {
-            DgvProductos.Rows.Clear();
+            int i = 0;
             foreach (Producto product in productos)
             {
-                string[] fila = new string[7];
-                fila[0] = product.Cod.ToString();
-                fila[1] = product.Nombre.ToString();
-                fila[2] = product.Precio.ToString();
-                fila[3] = product.Descripcion.ToString();
-                fila[4] = product.Stock.ToString();
-                fila[5] = product.Tipo.ToString();
-                fila[6] = product.Marca.ToString();
-                DgvProductos.Rows.Add(fila);
-                if (product.RutaImagen != null)
-                {
-                    DgvProductos.Rows[DgvProductos.Rows.Count - 1].Cells[7].Value = product.Imagen;
-                }
+                DgvProductos.Rows.Add();
+                DgvProductos.Rows[i].Cells[0].Value = product.Cod.ToString();
+                DgvProductos.Rows[i].Cells[1].Value = product.Nombre.ToString();
+                DgvProductos.Rows[i].Cells[2].Value = product.Precio.ToString();
+                DgvProductos.Rows[i].Cells[3].Value = product.Descripcion.ToString();
+                DgvProductos.Rows[i].Cells[4].Value = product.Stock.ToString();
+                DgvProductos.Rows[i].Cells[5].Value = product.Tipo.ToString();
+                DgvProductos.Rows[i].Cells[6].Value = product.Marca.ToString();
+                DgvProductos.Rows[i].Cells[7].Value = product.Imagen;
+                i++;    
             }
         }
 
@@ -139,6 +136,7 @@ namespace PracticaProductos
                 fila[4] = product.Stock.ToString();
                 fila[5] = product.Tipo.ToString();
                 fila[6] = product.Marca.ToString();
+                
                 DgvProductos.Rows.Add(fila);
                 if (product.Imagen != null)
                 {
@@ -150,6 +148,7 @@ namespace PracticaProductos
         private bool ProductsSelected()
         {
             bool selected = false;
+            codigos = new List<int>();
             if (productos.Count == 0)
             {
                 MessageBox.Show("No hay ningún artículo.");

@@ -14,6 +14,8 @@ namespace PracticaProductos
         public FormMain formMain { set; get; }
         public List<Producto> products { get; set; }
 
+        public List<Producto> products2;
+
         public static Controller GetInstance()
         {
             return controller;
@@ -41,21 +43,17 @@ namespace PracticaProductos
             UpdateProducts();
         }
 
-        public void ModifyProducts(List<Producto> productsModified)
+        public void ModifyProducts(List<Producto> productsToModify, List<Producto> productsModified)
         {
-            foreach(Producto productModified in productsModified)
-            {
-                foreach (Producto producto in products)
-                {
-                    if(productModified.Cod == producto.Cod)
-                    {
-                        products.Remove(producto);
-                        products.Add(productModified);
-                    }
-                }
-            }   
-
+            products.RemoveAll(p => productsToModify.Contains(p));
+            productsModified.ForEach(p => products.Add(p));
+            UpdateProducts();
         }
+  /*      public void UpdateModifiedProducts()
+        {
+            products = products2;
+            UpdateProducts();
+        }*/
 
         public void UpdateProducts()
         {

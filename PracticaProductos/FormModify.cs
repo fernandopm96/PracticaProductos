@@ -4,18 +4,18 @@
     {
         Controller controller;
         static int position = 0;
-        private List<Producto> productosToModify, productsModified;
+        private List<Producto> productsToModify, productsModified;
         string ruta;
 
         Bitmap image;
 
         public FormModify(List<Producto> productsToModify)
         {
-            this.productosToModify = productsToModify;
+            this.productsToModify = productsToModify;
             controller = Controller.GetInstance();
             productsModified = new List<Producto>();
             InitializeComponent();
-            ShowProduct(productosToModify[position]);
+            ShowProduct(productsToModify[position]);
         }
 
         private void btCancelar_Click(object sender, EventArgs e)
@@ -32,15 +32,14 @@
                     UpdateProduct();
                     if (NextProduct())
                     {
-                        ShowProduct(productosToModify[position]);
+                        ShowProduct(productsToModify[position]);
                     }
                     else
                     {
-                        controller.UpdateProducts();
                         MessageBox.Show("Has moficado todos los artículos.");
-                        controller.ModifyProducts(productsModified);
-                        controller.UpdateProducts();
                         Close();
+                        controller.ModifyProducts(productsToModify, productsModified);
+                        
                     }
 
                 }
@@ -54,9 +53,9 @@
         private bool NextProduct()
         {
             bool nextElement = true;
-            if (position <= productosToModify.Count - 1)
+            if (position <= productsToModify.Count - 1)
             {
-                if (position == productosToModify.Count - 1)
+                if (position == productsToModify.Count - 1)
                 {
                     nextElement = false;
                 }
@@ -227,7 +226,7 @@
         private void UpdateProduct()
         {
 
-            Producto producto = productosToModify[position];
+            Producto producto = productsToModify[position];
             int cod = Convert.ToInt32(nupCodigo.Value);
             string nombre = tbNombre.Text;
             double precio = Convert.ToDouble(nupPrecio.Value);
