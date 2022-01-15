@@ -34,43 +34,101 @@ namespace PracticaProductos
                     }
                 }
             }
-            catch (Exception ex)
+            catch (InvalidFormException ex)
             {
                 MessageBox.Show(ex.Message, "Formulario inválido.");
             }    
         }
         private void nupCodigo_Validating(object sender, CancelEventArgs e)
         {
-            ValidateCod();
+            try
+            {
+                if (controller.ValidateCod(Convert.ToInt32(nupCodigo.Value)))
+                    errorAdd.SetError(nupCodigo, "");
+            } catch(InvalidFormException ex)
+            {
+                errorAdd.SetError(nupCodigo, ex.Message);
+                MessageBox.Show(ex.Message, "Código no válido.");
+                e.Cancel = true;
+            }
         }
         private void tbNombre_Validating(object sender, CancelEventArgs e)
         {
-            ValidateName();
+            try
+            {
+                if (controller.ValidateName(tbNombre.Text))
+                    errorAdd.SetError(tbNombre, "");
+            }
+            catch (InvalidFormException ex)
+            {
+                errorAdd.SetError(tbNombre, ex.Message);
+                MessageBox.Show(ex.Message, "Nombre no válido.");
+                e.Cancel = true;
+            }
         }
         private void nupPrecio_Validating(object sender, CancelEventArgs e)
         {
-            ValidatePrice();
+            try
+            {
+                if (controller.ValidatePrice(Convert.ToDouble(nupPrecio.Value)))
+                    errorAdd.SetError(nupPrecio, "");
+            }
+            catch (InvalidFormException ex)
+            {
+                errorAdd.SetError(nupPrecio, ex.Message);
+                MessageBox.Show(ex.Message, "Precio no válido.");
+                e.Cancel = true;
+            }
         }
-        private void tbDescripcion_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateDescripcion();
-        }
-        
         private void cbTipo_Validating(object sender, CancelEventArgs e)
         {
-            ValidateTipo();
+            try
+            {
+                if (controller.ValidateTipo(cbTipo.Text))
+                    errorAdd.SetError(cbTipo, "");
+            }
+            catch (InvalidFormException ex)
+            {
+                errorAdd.SetError(cbTipo, ex.Message);
+                MessageBox.Show(ex.Message, "Tipo no válido.");
+                e.Cancel = true;
+            }
         }
         private void cbMarca_Validating(object sender, CancelEventArgs e)
         {
-            ValidateMarca();
+            try
+            {
+                if (controller.ValidateMarca(cbMarca.Text))
+                    errorAdd.SetError(cbMarca, "");
+            }
+            catch (InvalidFormException ex)
+            {
+                errorAdd.SetError(cbMarca, ex.Message);
+                MessageBox.Show(ex.Message, "Marca no válida.");
+                e.Cancel = true;
+            }
         }
-
+        private bool ValidateForm()
+        {
+            bool valid = false;
+            bool validCod = controller.ValidateCod(Convert.ToInt32(nupCodigo.Value));
+            bool validName = controller.ValidateName(tbNombre.Text);
+            bool validPrice = controller.ValidatePrice(Convert.ToDouble(nupPrecio.Value));
+            bool validTipo = controller.ValidateTipo(cbTipo.Text);
+            bool validMarca = controller.ValidateMarca(cbMarca.Text);
+            if (validCod && validName && validPrice && validTipo && validMarca)
+            {
+                valid = true;
+            }
+            return valid;
+        }
+        /*
         private bool ValidateCod()
         {
             bool valid = true;
             if (nupCodigo.Value <= 0)
             {
-                errorAdd.SetError(nupCodigo, "Debes introducir un código mayor que 0.");
+                
                 throw new InvalidFormException("Debes introducir un código mayor que 0.");
             }   
             else
@@ -115,19 +173,7 @@ namespace PracticaProductos
             }
             return valid;
         }
-        private bool ValidateDescripcion()
-        {
-            bool valid = true;
-            if (tbDescripcion.Text == "")
-            {
-                errorAdd.SetError(tbDescripcion, "Debes introducir una descripción.");
-                throw new InvalidFormException("No puedes dejar la descripcion vacía.");
-            }
-            else
-                errorAdd.SetError(tbDescripcion, "");
-            return valid;
-        }
-        
+       
         private bool ValidateTipo()
         {
             List<string> tipos = new List<string> { "Compacto", "Deportivo", "Berlina", "Suv", "Todoterreno", "Monovolumen", "Biplaza", "Furgoneta" };
@@ -170,22 +216,8 @@ namespace PracticaProductos
                 errorAdd.SetError(cbMarca, "");
             }
             return valid;
-        }
-        private bool ValidateForm()
-        {
-            bool valid = false;
-            bool validCod = ValidateCod();
-            bool validName = ValidateName();
-            bool validPrice = ValidatePrice();
-            bool validDescription = ValidateDescripcion();
-            bool validTipo = ValidateTipo();
-            bool validMarca = ValidateMarca();  
-            if(validCod && validName && validPrice &&validDescription && validTipo && validMarca)
-            {
-               valid = true;    
-            }
-            return valid;
-        }
+        }*/
+
 
         private void AddProduct()
         {

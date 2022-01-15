@@ -97,11 +97,7 @@
         {
             ValidatePrice();
         }
-        private void tbDescripcion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            ValidateDescripcion();
-        }
-
+    
         private void cbTipo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ValidateType();
@@ -142,19 +138,6 @@
             {
                 errorModify.SetError(nupPrecio, "");
             }
-            return valid;
-        }
-
-        private bool ValidateDescripcion()
-        {
-            bool valid = true;
-            if (tbDescripcion.Text == "")
-            {
-                errorModify.SetError(tbDescripcion, "Debes introducir una descripción.");
-                throw new InvalidFormException("Debes introducir una descripción.");
-            }
-            else
-                errorModify.SetError(tbDescripcion, "");
             return valid;
         }
 
@@ -208,10 +191,9 @@
             bool valid = false;
             bool validName = ValidateName();
             bool validPrice = ValidatePrice();
-            bool validDescription = ValidateDescripcion();
             bool validTipo = ValidateType();
             bool validMarca = ValidateMarca();
-            if (validName && validPrice && validDescription && validTipo && validMarca)
+            if (validName && validPrice && validTipo && validMarca)
             {
                 valid = true;
             }

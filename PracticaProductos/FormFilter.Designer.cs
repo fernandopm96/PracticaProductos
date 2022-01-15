@@ -151,7 +151,6 @@
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.Size = new System.Drawing.Size(163, 23);
             this.tbDescripcion.TabIndex = 10;
-            this.tbDescripcion.Validating += new System.ComponentModel.CancelEventHandler(this.tbDescripcion_Validating);
             // 
             // nupCodigo
             // 

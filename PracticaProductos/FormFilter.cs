@@ -134,7 +134,7 @@ namespace PracticaProductos
         private bool Verify()
         {
             bool cod, name, price, description, tipo, marca, valid;
-            cod = name = price = description = tipo = marca = valid = false;
+            valid = false;
             if (nupCodigo.Enabled)
             {
                 if(nupCodigo.Value == 0)
@@ -194,24 +194,12 @@ namespace PracticaProductos
                 price = true;
             }
             if (tbDescripcion.Enabled)
-            {
-                if (tbDescripcion.Text == "")
-                {
-                    errorFilter.SetError(tbDescripcion, "La descripción no puede estar vacía.");
-                    description = false;
-                }
-                else
-                {
-                    description = true;
-                    errorFilter.SetError(tbDescripcion, "");
-                    filterProducts["Descripcion"] = tbDescripcion.Text;
-                }
+            {    
+                filterProducts["Descripcion"] = tbDescripcion.Text;   
             }
             else
             {
-                errorFilter.SetError(tbDescripcion, "");
                 filterProducts.Remove("Descripcion");
-                description = true;
             }
             if (nupStock.Enabled)
             {
@@ -276,7 +264,7 @@ namespace PracticaProductos
                 filterProducts.Remove("Marca");
                 marca = true;
             }
-            if(cod && name && description && price && tipo && marca)
+            if(cod && name && price && tipo && marca)
             {
                 valid = true;
             }
@@ -295,11 +283,6 @@ namespace PracticaProductos
         private void nupPrecio_Validating(object sender, CancelEventArgs e)
         {
             ValidatePrice();
-        }
-
-        private void tbDescripcion_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateDescripcion();
         }
 
         private void comBoxTipo_Validating(object sender, CancelEventArgs e)
@@ -380,19 +363,6 @@ namespace PracticaProductos
             return valid;
         }
 
-        private bool ValidateDescripcion()
-        {
-            bool valid = true;
-            if (tbDescripcion.Text == "")
-            {
-                errorFilter.SetError(tbDescripcion, "Debes introducir una descripción.");
-                valid = false;
-            }
-            else
-                errorFilter.SetError(tbDescripcion, "");
-            return valid;
-        }
-
         private bool ValidateType()
         {
             List<string> tipos = new List<string> { "Television", "Lavadora", "Microondas", "Frigorifico", "Secadora", "Lavavajillas", "Horno", "AireAcondicionado", "Estufa" };
@@ -441,10 +411,9 @@ namespace PracticaProductos
             bool validCod = ValidateCod();
             bool validName = ValidateName();
             bool validPrice = ValidatePrice();
-            bool validDescription = ValidateDescripcion();
             bool validTipo = ValidateType();
             bool validMarca = ValidateMarca();
-            if (validCod && validName && validPrice && validDescription && validTipo && validMarca)
+            if (validCod && validName && validPrice && validTipo && validMarca)
             {
                 valid = true;
             }

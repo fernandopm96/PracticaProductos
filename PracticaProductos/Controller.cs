@@ -66,6 +66,8 @@ namespace PracticaProductos
             formMain.SetFilterProducts(productosFiltrados);
         }
 
+       
+
         public void ExportToCsv()
         {
             SaveFileDialog exportDialog = new SaveFileDialog();
@@ -125,6 +127,8 @@ namespace PracticaProductos
                 writer.Close();
             }
         }
+
+
         public void ImportToCsv(StreamReader reader)
         {
             List<Producto> importProducts = new List<Producto>();
@@ -281,17 +285,35 @@ namespace PracticaProductos
                         producto.RutaImagen = ruta;
                         producto.Imagen = image;
                     }
-                    if(importProducts.Count > 0)
+                    if (importProducts.Count > 0)
                     {
                         if (codigos.Contains(cod))
                         {
-                            MessageBox.Show("El código introducido ya existe.");
-                        } else
-                        {
-                            importProducts.Add(producto);
-                            codigos.Add(cod);
+                            string msg = $"El artículo con código {cod.ToString()} tiene un código que pertenece a otro artículo ya importado.\n" +
+                                "Se sustituirá este campo por otro valor. ¿Estás de acuerdo?";
+                            DialogResult result = MessageBox.Show(msg, "Código repetido", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.Yes)
+                            {
+                                bool codValid = false;
+                                for (int i = 1; !codValid; i++)
+                                {
+                                    if (!codigos.Contains(i))
+                                    {
+                                        producto.Cod = i;
+                                        codValid = true;
+                                    }
+                                }
+                                
+                                MessageBox.Show($"El producto con código repetido se ha modificado.\nAhora su código es {producto.Cod}.", "Código modificado");
+                            }
+                            else
+                            {
+                                return;
+                            }
                         }
                     }
+                    importProducts.Add(producto);
+                    codigos.Add(producto.Cod);
                 } else
                 {
                     throw new ImportCsvException("Error al importar el archivo csv.\nAlguno de los campos obligatorios no tienen valor.");
@@ -314,6 +336,73 @@ namespace PracticaProductos
                 }
             });
             return path;
+        }
+
+        public bool ValidateCod(int cod)
+        {
+            if (cod <= 0 || !CodAvailable(cod))
+            {
+                if(cod <= 0)
+                {
+                    throw new InvalidFormException("Debes introducir un código mayor que 0.");
+                } 
+                throw new InvalidFormException("El código introducido ya pertenece a algún artículo registrado.");
+            }
+            
+            return true;
+        }
+        public bool ValidateName(string text)
+        {
+            if(text == "")
+            {
+                throw new InvalidFormException("Debes rellenar el campo Nombre");
+            }
+            return true;
+        }
+        public bool ValidatePrice(double price)
+        {
+            if(price <= 0)
+            {
+                throw new InvalidFormException("El precio debe ser mayor a 0.");
+            }
+            return true;
+        }
+        public bool ValidateTipo(string valor)
+        {
+            try
+            {
+                Tipo tipo = (Tipo)Enum.Parse(typeof(Tipo), valor, true);
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidFormException("Tipo no válido.");
+            }
+            return true;
+        }
+        public bool ValidateMarca(string valor)
+        {
+            try
+            {
+                Marca marca = (Marca)Enum.Parse(typeof(Marca), valor, true);
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidFormException("Marca no válida");
+            }
+            return true;
+           
+        }
+        public bool CodAvailable(int cod)
+        {
+            bool codAvailable = true;
+            products.ForEach(p =>
+            {
+                if (cod == p.Cod)
+                {
+                    codAvailable = false;
+                }
+            });
+            return codAvailable;
         }
     }
 }
