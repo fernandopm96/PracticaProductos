@@ -46,8 +46,6 @@
             this.lbCodigo = new System.Windows.Forms.Label();
             this.errorProviderAdd = new System.Windows.Forms.ErrorProvider(this.components);
             this.nupPrecio = new System.Windows.Forms.NumericUpDown();
-            this.paTitulo = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.lbFoto = new System.Windows.Forms.Label();
             this.nupStock = new System.Windows.Forms.NumericUpDown();
             this.nupCodigo = new System.Windows.Forms.NumericUpDown();
@@ -57,8 +55,6 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
-            this.paTitulo.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorAdd)).BeginInit();
@@ -68,9 +64,10 @@
             // lbTipo
             // 
             this.lbTipo.AutoSize = true;
+            this.lbTipo.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbTipo.Location = new System.Drawing.Point(44, 300);
             this.lbTipo.Name = "lbTipo";
-            this.lbTipo.Size = new System.Drawing.Size(30, 15);
+            this.lbTipo.Size = new System.Drawing.Size(35, 18);
             this.lbTipo.TabIndex = 36;
             this.lbTipo.Text = "Tipo";
             // 
@@ -95,10 +92,10 @@
             // lbInfo
             // 
             this.lbInfo.AutoSize = true;
-            this.lbInfo.Font = new System.Drawing.Font("Bahnschrift SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbInfo.Location = new System.Drawing.Point(75, 28);
+            this.lbInfo.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbInfo.Location = new System.Drawing.Point(62, 34);
             this.lbInfo.Name = "lbInfo";
-            this.lbInfo.Size = new System.Drawing.Size(265, 18);
+            this.lbInfo.Size = new System.Drawing.Size(292, 19);
             this.lbInfo.TabIndex = 33;
             this.lbInfo.Text = "Introduce los datos del nuevo producto";
             // 
@@ -127,11 +124,11 @@
             // 
             // btCancelar
             // 
-            this.btCancelar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btCancelar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btCancelar.Location = new System.Drawing.Point(302, 19);
+            this.btCancelar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btCancelar.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btCancelar.Location = new System.Drawing.Point(293, 570);
             this.btCancelar.Name = "btCancelar";
-            this.btCancelar.Size = new System.Drawing.Size(99, 33);
+            this.btCancelar.Size = new System.Drawing.Size(112, 33);
             this.btCancelar.TabIndex = 9;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = false;
@@ -139,11 +136,11 @@
             // 
             // btAceptar
             // 
-            this.btAceptar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btAceptar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btAceptar.Location = new System.Drawing.Point(182, 19);
+            this.btAceptar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btAceptar.Font = new System.Drawing.Font("Bahnschrift SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btAceptar.Location = new System.Drawing.Point(169, 570);
             this.btAceptar.Name = "btAceptar";
-            this.btAceptar.Size = new System.Drawing.Size(99, 33);
+            this.btAceptar.Size = new System.Drawing.Size(112, 33);
             this.btAceptar.TabIndex = 8;
             this.btAceptar.Text = "Guardar";
             this.btAceptar.UseVisualStyleBackColor = false;
@@ -152,18 +149,20 @@
             // lbStock
             // 
             this.lbStock.AutoSize = true;
+            this.lbStock.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbStock.Location = new System.Drawing.Point(44, 260);
             this.lbStock.Name = "lbStock";
-            this.lbStock.Size = new System.Drawing.Size(36, 15);
+            this.lbStock.Size = new System.Drawing.Size(45, 18);
             this.lbStock.TabIndex = 24;
             this.lbStock.Text = "Stock";
             // 
             // lbDescripcion
             // 
             this.lbDescripcion.AutoSize = true;
+            this.lbDescripcion.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbDescripcion.Location = new System.Drawing.Point(44, 220);
             this.lbDescripcion.Name = "lbDescripcion";
-            this.lbDescripcion.Size = new System.Drawing.Size(69, 15);
+            this.lbDescripcion.Size = new System.Drawing.Size(86, 18);
             this.lbDescripcion.TabIndex = 23;
             this.lbDescripcion.Text = "Descripción";
             // 
@@ -178,27 +177,30 @@
             // lbPrecio
             // 
             this.lbPrecio.AutoSize = true;
+            this.lbPrecio.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbPrecio.Location = new System.Drawing.Point(44, 180);
             this.lbPrecio.Name = "lbPrecio";
-            this.lbPrecio.Size = new System.Drawing.Size(40, 15);
+            this.lbPrecio.Size = new System.Drawing.Size(50, 18);
             this.lbPrecio.TabIndex = 21;
             this.lbPrecio.Text = "Precio";
             // 
             // lbNombre
             // 
             this.lbNombre.AutoSize = true;
+            this.lbNombre.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbNombre.Location = new System.Drawing.Point(44, 140);
             this.lbNombre.Name = "lbNombre";
-            this.lbNombre.Size = new System.Drawing.Size(51, 15);
+            this.lbNombre.Size = new System.Drawing.Size(62, 18);
             this.lbNombre.TabIndex = 20;
             this.lbNombre.Text = "Nombre";
             // 
             // lbCodigo
             // 
             this.lbCodigo.AutoSize = true;
+            this.lbCodigo.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbCodigo.Location = new System.Drawing.Point(44, 100);
             this.lbCodigo.Name = "lbCodigo";
-            this.lbCodigo.Size = new System.Drawing.Size(46, 15);
+            this.lbCodigo.Size = new System.Drawing.Size(53, 18);
             this.lbCodigo.TabIndex = 19;
             this.lbCodigo.Text = "Código";
             // 
@@ -220,31 +222,13 @@
             this.nupPrecio.TabIndex = 2;
             this.nupPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.nupPrecio_Validating);
             // 
-            // paTitulo
-            // 
-            this.paTitulo.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.paTitulo.Controls.Add(this.lbInfo);
-            this.paTitulo.Location = new System.Drawing.Point(1, 1);
-            this.paTitulo.Name = "paTitulo";
-            this.paTitulo.Size = new System.Drawing.Size(413, 74);
-            this.paTitulo.TabIndex = 39;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel1.Controls.Add(this.btCancelar);
-            this.panel1.Controls.Add(this.btAceptar);
-            this.panel1.Location = new System.Drawing.Point(1, 526);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(413, 66);
-            this.panel1.TabIndex = 40;
-            // 
             // lbFoto
             // 
             this.lbFoto.AutoSize = true;
+            this.lbFoto.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbFoto.Location = new System.Drawing.Point(44, 380);
             this.lbFoto.Name = "lbFoto";
-            this.lbFoto.Size = new System.Drawing.Size(31, 15);
+            this.lbFoto.Size = new System.Drawing.Size(37, 18);
             this.lbFoto.TabIndex = 41;
             this.lbFoto.Text = "Foto";
             // 
@@ -271,9 +255,10 @@
             // lbMarca
             // 
             this.lbMarca.AutoSize = true;
+            this.lbMarca.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbMarca.Location = new System.Drawing.Point(44, 340);
             this.lbMarca.Name = "lbMarca";
-            this.lbMarca.Size = new System.Drawing.Size(40, 15);
+            this.lbMarca.Size = new System.Drawing.Size(49, 18);
             this.lbMarca.TabIndex = 44;
             this.lbMarca.Text = "Marca";
             // 
@@ -307,12 +292,12 @@
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.White;
-            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.Image = global::PracticaProductos.Properties.Resources.camara;
             this.pictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.InitialImage")));
             this.pictureBox.Location = new System.Drawing.Point(160, 380);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Padding = new System.Windows.Forms.Padding(10);
-            this.pictureBox.Size = new System.Drawing.Size(154, 126);
+            this.pictureBox.Size = new System.Drawing.Size(184, 150);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 53;
             this.pictureBox.TabStop = false;
@@ -323,15 +308,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(415, 588);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(415, 614);
+            this.Controls.Add(this.btCancelar);
+            this.Controls.Add(this.lbInfo);
+            this.Controls.Add(this.btAceptar);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.cbMarca);
             this.Controls.Add(this.lbMarca);
             this.Controls.Add(this.nupCodigo);
             this.Controls.Add(this.nupStock);
             this.Controls.Add(this.lbFoto);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.paTitulo);
             this.Controls.Add(this.nupPrecio);
             this.Controls.Add(this.lbTipo);
             this.Controls.Add(this.cbTipo);
@@ -350,9 +337,6 @@
             this.Text = "Añadir producto";
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).EndInit();
-            this.paTitulo.ResumeLayout(false);
-            this.paTitulo.PerformLayout();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorAdd)).EndInit();
@@ -383,8 +367,6 @@
         private ErrorProvider errorProviderAdd;
         private NumericUpDown nupPrecio;
         private Label lbFoto;
-        private Panel panel1;
-        private Panel paTitulo;
         private ComboBox cbMarca;
         private Label lbMarca;
         private NumericUpDown nupCodigo;

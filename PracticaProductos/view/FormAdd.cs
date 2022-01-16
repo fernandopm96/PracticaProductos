@@ -2,15 +2,14 @@
 
 namespace PracticaProductos
 {
+    // Formulario para añadir un nuevo producto.
     public partial class FormAdd : Form
     {
-        FormMain formMain;
         Controller controller;
         string ruta;
 
-        public FormAdd(FormMain formMain)
+        public FormAdd()
         {
-            this.formMain = formMain;
             controller = Controller.GetInstance();
             InitializeComponent();
         }
@@ -19,7 +18,8 @@ namespace PracticaProductos
         {
             Close();
         }
-
+        // Si el formulario es válido, se llama a AddProduct que crea un nuevo objeto y se llama al controlador para que lo registre. 
+        // En caso contrario, se muestra una ventana indicando que campo o campos no son válidos.
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
@@ -39,7 +39,9 @@ namespace PracticaProductos
                 MessageBox.Show(ex.Message, "Formulario inválido.");
             }    
         }
-
+        // Validaciones
+        // En todos los campos requeridos obligatoriamente(cod, nombre, precio, marca y tipo) se llama al controlador para verificar los datos.
+        // Si no son correctos, se establece un error en el campo correspondiente a través de ErrorProvider y se muestra el mensaje de error.
         private void nupCodigo_Validating(object sender, CancelEventArgs e)
         {
             if (controller.ValidateCod(Convert.ToInt32(nupCodigo.Value)))
@@ -108,6 +110,8 @@ namespace PracticaProductos
                 MessageBox.Show("Marca no válida. Debes seleccionar una de las opciones del desplegable.", "Marca no válido.");
             }
         }
+        // Validación de formulario. Cuando el usuario pulsa Aceptar, se verifican todos los campos y si alguno no es válido, se lanza la excepción con el 
+        // mensaje correspondiente.
         private bool ValidateForm()
         {
             if (!controller.ValidateCod(Convert.ToInt32(nupCodigo.Value)))
@@ -144,7 +148,7 @@ namespace PracticaProductos
              
             return true;
         }
-
+        // Si todo es correcto, se crea un nuevo objeto y a través del controlador se registra.
         private void AddProduct()
         {
             int cod = (int)nupCodigo.Value;
@@ -158,13 +162,13 @@ namespace PracticaProductos
             Producto producto = new Producto(cod, nombre, precio, descripcion, stock, tipo, marca);
             if(ruta != null)
             {
-                image = (Bitmap)pictureBox.Image;
-                producto.Imagen = image;
                 producto.RutaImagen = ruta;
-            } 
+            }
+            producto.Imagen = image;
+             
             controller.AddProduct(producto);
         }
-
+        // Muestra un diálogo de archivo para que el usuario seleccione una foto
         private void pictureBox_Click(object sender, EventArgs e)
         {
             OpenFileDialog imageDialog = new OpenFileDialog();

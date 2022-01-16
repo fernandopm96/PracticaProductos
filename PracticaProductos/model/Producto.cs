@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PracticaProductos
 {
+    // Clase Producto que representa en este caso vehículos. 
     public class Producto
     {
         public int Cod { get; set; }
@@ -29,7 +30,7 @@ namespace PracticaProductos
             this.Tipo = tipo;
             this.Marca = marca; 
         }
-
+        // Devuelve el valor de una propiedad en base al nombre de la variable
         public string GetPropertyByName(string property)
         {
             string prop = null;
@@ -51,21 +52,10 @@ namespace PracticaProductos
             return "Código: " + Cod + " Nombre: " + Nombre + " Precio: " + Precio + " Descripción: " + Descripcion + 
                 " Stock: " + Stock + " Marca: " + Marca + " Tipo: " + Tipo;
         }
-        public override bool Equals(Object other)
-        {
-            Producto p = (Producto)other;
-            if ((p == null) || p.Cod != this.Cod)
-            {
-                return false;
-            }
-            else
-            {   
-                return true;
-            }
-        }
 
 
     }
+    // Tipo de vehículo
     public enum Tipo
     {
         Compacto,
@@ -77,6 +67,7 @@ namespace PracticaProductos
         Biplaza,
         Furgoneta
     }
+    // Marcas de vehículo
     public enum Marca
     {
         Renault,

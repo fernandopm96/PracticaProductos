@@ -11,12 +11,15 @@ using System.Windows.Forms;
 
 namespace PracticaProductos
 {
+    // Formulario para filtrar productos por uno o varios campos.
     public partial class FormFilter : Form
     {
 
         Controller controller;
-        List<Producto> productos, productosFiltrados;
-        Dictionary<string, string?> filterProducts = new Dictionary<string, string?>();
+        List<Producto> productos, productosFiltrados; 
+        Dictionary<string, string?> filterProducts = new Dictionary<string, string?>(); 
+        // El diccionario contendrá como clave el nombre de todos los campos por los que el usuario puede filtrar y, dependiendo de su elección, se introducirán
+        // los valores correspondientes asociados a cada campo.
         public FormFilter()
         {
             controller = Controller.GetInstance();
@@ -39,18 +42,15 @@ namespace PracticaProductos
 
         private void btFiltrar_Click(object sender, EventArgs e)
         {
-            if (Verify())
+            if (ValidateForm())
             {
                 SearchProducts();
                 controller.SetFilterProducts(productosFiltrados);
                 Close();
-            } else
-            {
-                MessageBox.Show("Algún campo no es válido.");
-            }
+            } 
         }
 
-        
+        // Cuando el usuario selecciona un checkbox, se habilitará el elemento correspondiente para que el usuario ingrese los datos.
         private void cbCodigo_Changed(object sender, EventArgs e)
         {
             if (cbCodigo.Checked)
@@ -130,17 +130,25 @@ namespace PracticaProductos
                 comBoxMarca.Enabled = false;
             }
         }
-
-        private bool Verify()
+        // Verificación de formulario. Se comprueba que los campos cuyo checkbox esté habilitado contengan datos válidos para la búsqueda.
+        // En caso afirmativo, se guarda en el diccionario como clave el nombre del campo seleccionado y como valor el introducido por el usuario.
+        // Si algún dato no fuera correcto se muestra una ventana informando al usuario.
+        private bool ValidateForm()
         {
-            bool cod, name, price, description, tipo, marca, valid;
+            bool cod, name, price, tipo, marca, valid;
             valid = false;
+            if(!nupCodigo.Enabled && !tbNombre.Enabled && !nupPrecio.Enabled && !tbDescripcion.Enabled && !nupStock.Enabled && !comBoxTipo.Enabled && !comBoxMarca.Enabled)
+            { 
+                MessageBox.Show("Debes seleccionar algún campo para filtrar.", "Selecciona campo");
+                return valid;
+            }
             if (nupCodigo.Enabled)
             {
                 if(nupCodigo.Value == 0)
                 {
                     errorFilter.SetError(nupCodigo, "Debes introducir un código mayor que 0.");
                     cod = false;
+                    MessageBox.Show("Debes introducir un código mayor que 0.", "Código no válido.");
                 } else
                 {
                     cod = true;
@@ -160,6 +168,7 @@ namespace PracticaProductos
                 {
                     errorFilter.SetError(tbNombre, "El nombre no puede estar vacío.");
                     name = false;
+                    MessageBox.Show("El campo Nombre no puede estar vacío.", "Nombre no válido.");
                 } else
                 {
                     name = true;
@@ -177,8 +186,9 @@ namespace PracticaProductos
             {
                 if (nupPrecio.Value == 0)
                 {
-                    errorFilter.SetError(nupPrecio, "Debes introducir un código mayor que 0.");
+                    errorFilter.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
                     price = false;
+                    MessageBox.Show("El campo Precio debe ser mayor a 0.", "Precio no válido.");
                 }
                 else
                 {
@@ -211,27 +221,19 @@ namespace PracticaProductos
             }
             if (comBoxTipo.Enabled)
             {
-                List<string> tipos = new List<string> { "Compacto", "Deportivo", "Berlina", "Suv", "Todoterreno", "Monovolumen", "Biplaza", "Furgoneta" };
-                tipo = false;
-                foreach (string s in tipos)
+                if (controller.ValidateTipo(comBoxTipo.Text))
                 {
-                    if (comBoxTipo.Text == s)
-                    {
-                        tipo = true;
-                    }
-                }
-                if (!tipo)
-                {
-                    errorFilter.SetError(comBoxTipo, "Tipo no válido.");
-                }
-                else
-                {
+                    tipo = true;
                     errorFilter.SetError(comBoxTipo, "");
                     filterProducts["Tipo"] = comBoxTipo.Text;
+                } else
+                {
+                    tipo = false;
+                    errorFilter.SetError(comBoxTipo, "Tipo no válido. Debes seleccionar una de las opciones del desplegable.");
+                    MessageBox.Show("Tipo no válido. Debes seleccionar una de las opciones del desplegable.", "Tipo no válido.");
                 }
-                filterProducts["Tipo"] = comBoxTipo.Text;
-            }
-            else
+              
+            } else
             {
                 errorFilter.SetError(comBoxTipo, "");
                 filterProducts.Remove("Tipo");
@@ -239,24 +241,19 @@ namespace PracticaProductos
             }
             if (comBoxMarca.Enabled)
             {
-                List<string> marcas = new List<string> { "Renault", "Citroen", "Peugeot", "BMW", "Audi", "Mercedes", "Porsche", "Ferrari", "Ford", "Volkswagen", "Kia", "Honda", "Dacia" };
-                marca = false;
-                foreach (string s in marcas)
+                if (controller.ValidateMarca(comBoxMarca.Text))
                 {
-                    if (comBoxMarca.Text == s)
-                    {
-                        marca = true;
-                    }
-                }
-                if (!marca)
-                {
-                    errorFilter.SetError(comBoxMarca, "Marca no válida.");
-                }
-                else
-                {
+                    marca = true;
                     errorFilter.SetError(comBoxMarca, "");
                     filterProducts["Marca"] = comBoxMarca.Text;
                 }
+                else
+                {
+                    marca = false;  
+                    errorFilter.SetError(comBoxMarca, "Marca no válida. Debes seleccionar una de las opciones del desplegable.");
+                    MessageBox.Show("Marca no válida. Debes seleccionar una de las opciones del desplegable.", "Marca no válida.");
+                }
+
             }
             else
             {
@@ -264,6 +261,7 @@ namespace PracticaProductos
                 filterProducts.Remove("Marca");
                 marca = true;
             }
+
             if(cod && name && price && tipo && marca)
             {
                 valid = true;
@@ -271,32 +269,12 @@ namespace PracticaProductos
             return valid;
         }
 
-        private void nupCodigo_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateCod();
-        }
 
-        private void tbNombre_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateName();
-        }
-        private void nupPrecio_Validating(object sender, CancelEventArgs e)
-        {
-            ValidatePrice();
-        }
 
-        private void comBoxTipo_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateType();
-        }
-
-        private void comBoxMarca_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateMarca();
-        }
-
-       
-
+        // Método encargado de buscar en la lista de productos los valores que el usuario ha introducido.
+        // Se utiliza un objeto diccionario en el cual se guarda como clave el nombre de la propiedad(por ejemplo, "Cod") y como valor el ingresado por el 
+        // usuario. Mediante un método de la clase Producto, el cuál devuelve el valor de una propiedad por su nombre, se verifican los datos y en caso de 
+        // coincidencia, se añade a la lista de productos filtrados.
         private void SearchProducts()
         {
             bool productoEncontrado = true;
@@ -317,107 +295,6 @@ namespace PracticaProductos
                 }
             }
         }
-        private bool ValidateCod()
-        {
-            bool valid = true;
-            if (nupCodigo.Value == 0)
-            {
-                errorFilter.SetError(nupCodigo, "Debes introducir un código mayor que 0.");
-                valid = false;
-            }
-            else
-            {
-                errorFilter.SetError(nupCodigo, "");
-            }
-            return valid;
-        }
-
-        private bool ValidateName()
-        {
-            bool valid = true;
-            if (tbNombre.Text == "")
-            {
-                errorFilter.SetError(tbNombre, "No puedes dejar el nombre vacío.");
-                valid = false;
-            }
-            else
-            {
-                errorFilter.SetError(tbNombre, "");
-            }
-            return valid;
-        }
-
-
-        private bool ValidatePrice()
-        {
-            bool valid = true;
-            if (nupPrecio.Value == 0)
-            {
-                errorFilter.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
-                valid = false;
-            }
-            else
-            {
-                errorFilter.SetError(nupCodigo, "");
-            }
-            return valid;
-        }
-
-        private bool ValidateType()
-        {
-            List<string> tipos = new List<string> { "Television", "Lavadora", "Microondas", "Frigorifico", "Secadora", "Lavavajillas", "Horno", "AireAcondicionado", "Estufa" };
-            bool valid = false;
-            foreach (string s in tipos)
-            {
-                if (cbTipo.Text == s)
-                {
-                    valid = true;
-                }
-            }
-            if (!valid)
-            {
-                errorFilter.SetError(cbTipo, "Tipo no válido.");
-            }
-            else
-            {
-                errorFilter.SetError(cbMarca, "");
-            }
-            return valid;
-        }
-        private bool ValidateMarca()
-        {
-            List<string> marcas = new List<string> { "Balay", "LG", "Bosch", "Siemens", "Secadora", "Samsung", "Zanussi", "Fagor", "Mitsubishi" };
-            bool valid = false;
-            foreach (string s in marcas)
-            {
-                if (cbMarca.Text == s)
-                {
-                    valid = true;
-                }
-            }
-            if (!valid)
-            {
-                errorFilter.SetError(cbMarca, "Marca no válida.");
-            }
-            else
-            {
-                errorFilter.SetError(cbMarca, "");
-            }
-            return valid;
-        }
-        private bool ValidateForm()
-        {
-            bool valid = false;
-            bool validCod = ValidateCod();
-            bool validName = ValidateName();
-            bool validPrice = ValidatePrice();
-            bool validTipo = ValidateType();
-            bool validMarca = ValidateMarca();
-            if (validCod && validName && validPrice && validTipo && validMarca)
-            {
-                valid = true;
-            }
-            return valid;
-        }
+     
     }
 }

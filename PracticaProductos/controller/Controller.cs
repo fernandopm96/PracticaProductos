@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace PracticaProductos
 {
+    /* 
+    El controlador se encarga de gestionar la lógica relacionada con el modelo. Al cargarse la vista principal 'FormMain', el controlador recibe una 
+    instancia de esta vista, para poder actualizar los datos que ésta muestra. Todas las vistas tienen una instancia de esta clase, para poder comunicarse 
+    y actualizar la lista de productos después de realizar las acciones correspondientes.
+    Esta clase se encarga también de las comprobaciones relacionadas con los datos requeridos para el modelo, así como de la importación y exportación a formato csv.
+    */
     public class Controller
     {
 
@@ -14,8 +15,7 @@ namespace PracticaProductos
         public FormMain formMain { set; get; }
         public List<Producto> products { get; set; }
 
-        public List<Producto> products2;
-
+        // Se devolverá la misma instancia siempre que una vista lo requiera.
         public static Controller GetInstance()
         {
             return controller;
@@ -24,50 +24,46 @@ namespace PracticaProductos
         {
             products = new List<Producto>();
         }
-
+        // Añadir producto
         public void AddProduct(Producto producto)
         {
             products.Add(producto);
             UpdateProducts();
         }
-        public void AddProducts(List<Producto> productos)
-        {
-            productos.ForEach(p => products.Add(p));
-            UpdateProducts();
-        }
+        // Eliminar productos
         public void RemoveProducts(List<Producto> productsToRemove)
         {
             products.RemoveAll(p => productsToRemove.Contains(p));
             UpdateProducts();
         }
         
-
+        // Actualiza la lista para mostrar los productos ordenados
         public void SetOrderedProducts(List<Producto> orderedProducts)
         {
             products = orderedProducts;
             UpdateProducts();
         }
-
+        // Actualiza la lista con los productos modificados
         public void ModifyProducts(List<Producto> productsToModify, List<Producto> productsModified)
         {
             products.RemoveAll(p => productsToModify.Contains(p));
             productsModified.ForEach(p => products.Add(p));
             UpdateProducts();
         }
-  
+        // Actualiza la lista de productos de 'FormMain', para actualizar el DataGridView
         public void UpdateProducts()
         {
             formMain.productos = products;
             formMain.UpdateProductsInView();
         }
-
+        // Manda la lista de productos filtrados a la vista principal
         public void SetFilterProducts(List<Producto> productosFiltrados)
         {
             formMain.SetFilterProducts(productosFiltrados);
         }
 
        
-
+        // Exportación
         public void ExportToCsv()
         {
             SaveFileDialog exportDialog = new SaveFileDialog();
@@ -128,7 +124,7 @@ namespace PracticaProductos
             }
         }
 
-
+        // Importación
         public void ImportToCsv(StreamReader reader)
         {
             List<Producto> importProducts = new List<Producto>();
@@ -324,7 +320,7 @@ namespace PracticaProductos
             UpdateProducts();
 
         }
-
+        // Devuelve la ruta de la foto del producto en base a su código
         public string GetPathByCod(int cod)
         {
             string path = "";
@@ -337,7 +333,7 @@ namespace PracticaProductos
             });
             return path;
         }
-
+        // Validación de código
         public bool ValidateCod(int cod)
         {
             bool valid = true; 
@@ -347,6 +343,7 @@ namespace PracticaProductos
             }
             return valid;
         }
+        // Validación de nombre
         public bool ValidateName(string text)
         {
             bool valid = true;
@@ -356,6 +353,7 @@ namespace PracticaProductos
             }
             return valid;
         }
+        // Validación de precio
         public bool ValidatePrice(double price)
         {
             bool valid = true;
@@ -365,6 +363,7 @@ namespace PracticaProductos
             }
             return valid;
         }
+        //Validación de tipo
         public bool ValidateTipo(string valor)
         {
             bool valid = true;
@@ -378,6 +377,7 @@ namespace PracticaProductos
             }
             return valid;
         }
+        // Validación de marca
         public bool ValidateMarca(string valor)
         {
             bool valid = true;
@@ -392,6 +392,7 @@ namespace PracticaProductos
             return valid;
            
         }
+        // Comprueba si el código recibido como parámetro pertenece ya a un producto
         public bool CodAvailable(int cod)
         {
             bool codAvailable = true;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PracticaProductos
 {
+    // Excepción lanzada cuando algún formulario no es válido
     public class InvalidFormException : Exception
     {
         public InvalidFormException()

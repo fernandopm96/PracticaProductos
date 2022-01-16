@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Excepción en la importación csv
 namespace PracticaProductos
 {
     public class ImportCsvException: Exception

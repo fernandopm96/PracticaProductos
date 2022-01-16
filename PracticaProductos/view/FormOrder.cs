@@ -12,6 +12,7 @@ namespace PracticaProductos
 {
     public partial class FormOrder : Form
     {
+        // Formulario que permite ordenar los productos por campo y por orden ascendente o descendente.
         Controller controller;
         List<Producto> productos, orderedProducts;
         public FormOrder()
@@ -33,12 +34,13 @@ namespace PracticaProductos
             {
                 OrderProducts();
                 controller.SetOrderedProducts(orderedProducts);
+                Close();
             }
             else
             {
                 MessageBox.Show("Elige un campo para ordenar. ");
             }
-            Close();
+            
         }
 
         private void OrderProducts()

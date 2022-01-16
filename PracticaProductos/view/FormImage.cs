@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace PracticaProductos
 {
+    // Formulario que muestra la imagen ampliada de un producto 
     public partial class FormImage : Form
     {
         public FormImage()
@@ -17,9 +18,5 @@ namespace PracticaProductos
             InitializeComponent();
         }
 
-        private void FormImage_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

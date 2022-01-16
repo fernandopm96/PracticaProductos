@@ -43,27 +43,24 @@
             this.nupStock = new System.Windows.Forms.NumericUpDown();
             this.comBoxTipo = new System.Windows.Forms.ComboBox();
             this.comBoxMarca = new System.Windows.Forms.ComboBox();
-            this.paTitulo = new System.Windows.Forms.Panel();
             this.lbInfo2 = new System.Windows.Forms.Label();
             this.lbInfo = new System.Windows.Forms.Label();
-            this.paBotones = new System.Windows.Forms.Panel();
             this.btCancelar = new System.Windows.Forms.Button();
             this.btFiltrar = new System.Windows.Forms.Button();
             this.errorFilter = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).BeginInit();
-            this.paTitulo.SuspendLayout();
-            this.paBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorFilter)).BeginInit();
             this.SuspendLayout();
             // 
             // cbCodigo
             // 
             this.cbCodigo.AutoSize = true;
-            this.cbCodigo.Location = new System.Drawing.Point(38, 98);
+            this.cbCodigo.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbCodigo.Location = new System.Drawing.Point(38, 96);
             this.cbCodigo.Name = "cbCodigo";
-            this.cbCodigo.Size = new System.Drawing.Size(65, 19);
+            this.cbCodigo.Size = new System.Drawing.Size(72, 22);
             this.cbCodigo.TabIndex = 0;
             this.cbCodigo.Text = "Código";
             this.cbCodigo.UseVisualStyleBackColor = true;
@@ -72,9 +69,10 @@
             // cbNombre
             // 
             this.cbNombre.AutoSize = true;
-            this.cbNombre.Location = new System.Drawing.Point(38, 138);
+            this.cbNombre.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbNombre.Location = new System.Drawing.Point(38, 136);
             this.cbNombre.Name = "cbNombre";
-            this.cbNombre.Size = new System.Drawing.Size(70, 19);
+            this.cbNombre.Size = new System.Drawing.Size(81, 22);
             this.cbNombre.TabIndex = 1;
             this.cbNombre.Text = "Nombre";
             this.cbNombre.UseVisualStyleBackColor = true;
@@ -83,9 +81,10 @@
             // cbPrecio
             // 
             this.cbPrecio.AutoSize = true;
-            this.cbPrecio.Location = new System.Drawing.Point(38, 178);
+            this.cbPrecio.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbPrecio.Location = new System.Drawing.Point(38, 176);
             this.cbPrecio.Name = "cbPrecio";
-            this.cbPrecio.Size = new System.Drawing.Size(59, 19);
+            this.cbPrecio.Size = new System.Drawing.Size(69, 22);
             this.cbPrecio.TabIndex = 2;
             this.cbPrecio.Text = "Precio";
             this.cbPrecio.UseVisualStyleBackColor = true;
@@ -94,9 +93,10 @@
             // cbDescripcion
             // 
             this.cbDescripcion.AutoSize = true;
-            this.cbDescripcion.Location = new System.Drawing.Point(38, 222);
+            this.cbDescripcion.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbDescripcion.Location = new System.Drawing.Point(38, 220);
             this.cbDescripcion.Name = "cbDescripcion";
-            this.cbDescripcion.Size = new System.Drawing.Size(88, 19);
+            this.cbDescripcion.Size = new System.Drawing.Size(105, 22);
             this.cbDescripcion.TabIndex = 3;
             this.cbDescripcion.Text = "Descripción";
             this.cbDescripcion.UseVisualStyleBackColor = true;
@@ -105,9 +105,10 @@
             // cbStock
             // 
             this.cbStock.AutoSize = true;
-            this.cbStock.Location = new System.Drawing.Point(38, 262);
+            this.cbStock.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbStock.Location = new System.Drawing.Point(38, 260);
             this.cbStock.Name = "cbStock";
-            this.cbStock.Size = new System.Drawing.Size(55, 19);
+            this.cbStock.Size = new System.Drawing.Size(64, 22);
             this.cbStock.TabIndex = 4;
             this.cbStock.Text = "Stock";
             this.cbStock.UseVisualStyleBackColor = true;
@@ -116,9 +117,10 @@
             // cbTipo
             // 
             this.cbTipo.AutoSize = true;
-            this.cbTipo.Location = new System.Drawing.Point(38, 302);
+            this.cbTipo.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbTipo.Location = new System.Drawing.Point(38, 300);
             this.cbTipo.Name = "cbTipo";
-            this.cbTipo.Size = new System.Drawing.Size(49, 19);
+            this.cbTipo.Size = new System.Drawing.Size(54, 22);
             this.cbTipo.TabIndex = 5;
             this.cbTipo.Text = "Tipo";
             this.cbTipo.UseVisualStyleBackColor = true;
@@ -127,9 +129,10 @@
             // cbMarca
             // 
             this.cbMarca.AutoSize = true;
-            this.cbMarca.Location = new System.Drawing.Point(38, 342);
+            this.cbMarca.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbMarca.Location = new System.Drawing.Point(38, 340);
             this.cbMarca.Name = "cbMarca";
-            this.cbMarca.Size = new System.Drawing.Size(59, 19);
+            this.cbMarca.Size = new System.Drawing.Size(68, 22);
             this.cbMarca.TabIndex = 6;
             this.cbMarca.Text = "Marca";
             this.cbMarca.UseVisualStyleBackColor = true;
@@ -138,55 +141,52 @@
             // tbNombre
             // 
             this.tbNombre.Enabled = false;
-            this.tbNombre.Location = new System.Drawing.Point(159, 138);
+            this.tbNombre.Location = new System.Drawing.Point(194, 139);
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(163, 23);
+            this.tbNombre.Size = new System.Drawing.Size(191, 23);
             this.tbNombre.TabIndex = 8;
-            this.tbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.tbNombre_Validating);
             // 
             // tbDescripcion
             // 
             this.tbDescripcion.Enabled = false;
-            this.tbDescripcion.Location = new System.Drawing.Point(159, 222);
+            this.tbDescripcion.Location = new System.Drawing.Point(194, 223);
             this.tbDescripcion.Name = "tbDescripcion";
-            this.tbDescripcion.Size = new System.Drawing.Size(163, 23);
+            this.tbDescripcion.Size = new System.Drawing.Size(191, 23);
             this.tbDescripcion.TabIndex = 10;
             // 
             // nupCodigo
             // 
             this.nupCodigo.Enabled = false;
-            this.nupCodigo.Location = new System.Drawing.Point(159, 94);
+            this.nupCodigo.Location = new System.Drawing.Point(194, 95);
             this.nupCodigo.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.nupCodigo.Name = "nupCodigo";
-            this.nupCodigo.Size = new System.Drawing.Size(82, 23);
+            this.nupCodigo.Size = new System.Drawing.Size(97, 23);
             this.nupCodigo.TabIndex = 7;
-            this.nupCodigo.Validating += new System.ComponentModel.CancelEventHandler(this.nupCodigo_Validating);
             // 
             // nupPrecio
             // 
             this.nupPrecio.DecimalPlaces = 4;
             this.nupPrecio.Enabled = false;
-            this.nupPrecio.Location = new System.Drawing.Point(159, 178);
+            this.nupPrecio.Location = new System.Drawing.Point(194, 179);
             this.nupPrecio.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
             this.nupPrecio.Name = "nupPrecio";
-            this.nupPrecio.Size = new System.Drawing.Size(82, 23);
+            this.nupPrecio.Size = new System.Drawing.Size(97, 23);
             this.nupPrecio.TabIndex = 9;
-            this.nupPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.nupPrecio_Validating);
             // 
             // nupStock
             // 
             this.nupStock.Enabled = false;
-            this.nupStock.Location = new System.Drawing.Point(159, 262);
+            this.nupStock.Location = new System.Drawing.Point(194, 263);
             this.nupStock.Name = "nupStock";
-            this.nupStock.Size = new System.Drawing.Size(82, 23);
+            this.nupStock.Size = new System.Drawing.Size(97, 23);
             this.nupStock.TabIndex = 11;
             // 
             // comBoxTipo
@@ -202,11 +202,10 @@
             "Monovolumen",
             "Biplaza",
             "Furgoneta"});
-            this.comBoxTipo.Location = new System.Drawing.Point(159, 302);
+            this.comBoxTipo.Location = new System.Drawing.Point(194, 303);
             this.comBoxTipo.Name = "comBoxTipo";
-            this.comBoxTipo.Size = new System.Drawing.Size(121, 23);
+            this.comBoxTipo.Size = new System.Drawing.Size(136, 23);
             this.comBoxTipo.TabIndex = 12;
-            this.comBoxTipo.Validating += new System.ComponentModel.CancelEventHandler(this.comBoxTipo_Validating);
             // 
             // comBoxMarca
             // 
@@ -226,26 +225,15 @@
             "Kia",
             "Honda",
             "Dacia"});
-            this.comBoxMarca.Location = new System.Drawing.Point(159, 342);
+            this.comBoxMarca.Location = new System.Drawing.Point(194, 343);
             this.comBoxMarca.Name = "comBoxMarca";
-            this.comBoxMarca.Size = new System.Drawing.Size(121, 23);
+            this.comBoxMarca.Size = new System.Drawing.Size(136, 23);
             this.comBoxMarca.TabIndex = 13;
-            this.comBoxMarca.Validating += new System.ComponentModel.CancelEventHandler(this.comBoxMarca_Validating);
-            // 
-            // paTitulo
-            // 
-            this.paTitulo.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.paTitulo.Controls.Add(this.lbInfo2);
-            this.paTitulo.Controls.Add(this.lbInfo);
-            this.paTitulo.Location = new System.Drawing.Point(1, 0);
-            this.paTitulo.Name = "paTitulo";
-            this.paTitulo.Size = new System.Drawing.Size(363, 70);
-            this.paTitulo.TabIndex = 40;
             // 
             // lbInfo2
             // 
-            this.lbInfo2.Font = new System.Drawing.Font("Bahnschrift SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbInfo2.Location = new System.Drawing.Point(38, 34);
+            this.lbInfo2.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbInfo2.Location = new System.Drawing.Point(38, 49);
             this.lbInfo2.Name = "lbInfo2";
             this.lbInfo2.Size = new System.Drawing.Size(292, 16);
             this.lbInfo2.TabIndex = 34;
@@ -254,30 +242,20 @@
             // lbInfo
             // 
             this.lbInfo.AutoSize = true;
-            this.lbInfo.Font = new System.Drawing.Font("Bahnschrift SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbInfo.Location = new System.Drawing.Point(38, 18);
+            this.lbInfo.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbInfo.Location = new System.Drawing.Point(38, 26);
             this.lbInfo.Name = "lbInfo";
-            this.lbInfo.Size = new System.Drawing.Size(292, 16);
+            this.lbInfo.Size = new System.Drawing.Size(335, 18);
             this.lbInfo.TabIndex = 33;
             this.lbInfo.Text = "Selecciona los campos por los que quieres filtrar.";
             // 
-            // paBotones
-            // 
-            this.paBotones.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.paBotones.Controls.Add(this.btCancelar);
-            this.paBotones.Controls.Add(this.btFiltrar);
-            this.paBotones.Location = new System.Drawing.Point(1, 395);
-            this.paBotones.Name = "paBotones";
-            this.paBotones.Size = new System.Drawing.Size(363, 58);
-            this.paBotones.TabIndex = 41;
-            // 
             // btCancelar
             // 
-            this.btCancelar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btCancelar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btCancelar.Location = new System.Drawing.Point(252, 13);
+            this.btCancelar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btCancelar.Font = new System.Drawing.Font("Bahnschrift SemiLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btCancelar.Location = new System.Drawing.Point(276, 408);
             this.btCancelar.Name = "btCancelar";
-            this.btCancelar.Size = new System.Drawing.Size(99, 33);
+            this.btCancelar.Size = new System.Drawing.Size(112, 33);
             this.btCancelar.TabIndex = 15;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = false;
@@ -285,11 +263,11 @@
             // 
             // btFiltrar
             // 
-            this.btFiltrar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btFiltrar.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btFiltrar.Location = new System.Drawing.Point(141, 13);
+            this.btFiltrar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btFiltrar.Font = new System.Drawing.Font("Bahnschrift SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btFiltrar.Location = new System.Drawing.Point(152, 408);
             this.btFiltrar.Name = "btFiltrar";
-            this.btFiltrar.Size = new System.Drawing.Size(99, 33);
+            this.btFiltrar.Size = new System.Drawing.Size(112, 33);
             this.btFiltrar.TabIndex = 14;
             this.btFiltrar.Text = "Filtrar";
             this.btFiltrar.UseVisualStyleBackColor = false;
@@ -303,10 +281,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(364, 453);
-            this.Controls.Add(this.paBotones);
-            this.Controls.Add(this.paTitulo);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(402, 453);
+            this.Controls.Add(this.lbInfo);
+            this.Controls.Add(this.lbInfo2);
+            this.Controls.Add(this.btCancelar);
+            this.Controls.Add(this.btFiltrar);
             this.Controls.Add(this.comBoxMarca);
             this.Controls.Add(this.comBoxTipo);
             this.Controls.Add(this.nupStock);
@@ -328,9 +309,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupCodigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupStock)).EndInit();
-            this.paTitulo.ResumeLayout(false);
-            this.paTitulo.PerformLayout();
-            this.paBotones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorFilter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -353,7 +331,6 @@
         private NumericUpDown nupStock;
         private ComboBox comBoxTipo;
         private ComboBox comBoxMarca;
-        private Panel paTitulo;
         private Label lbInfo;
         private Label lbInfo2;
         private Panel paBotones;

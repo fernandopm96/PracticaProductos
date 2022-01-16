@@ -51,7 +51,6 @@
             this.Name = "FormImage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Imagen";
-            this.Load += new System.EventHandler(this.FormImage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
