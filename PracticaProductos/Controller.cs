@@ -340,56 +340,56 @@ namespace PracticaProductos
 
         public bool ValidateCod(int cod)
         {
+            bool valid = true; 
             if (cod <= 0 || !CodAvailable(cod))
             {
-                if(cod <= 0)
-                {
-                    throw new InvalidFormException("Debes introducir un código mayor que 0.");
-                } 
-                throw new InvalidFormException("El código introducido ya pertenece a algún artículo registrado.");
+                valid = false;
             }
-            
-            return true;
+            return valid;
         }
         public bool ValidateName(string text)
         {
+            bool valid = true;
             if(text == "")
             {
-                throw new InvalidFormException("Debes rellenar el campo Nombre");
+                valid = false;
             }
-            return true;
+            return valid;
         }
         public bool ValidatePrice(double price)
         {
+            bool valid = true;
             if(price <= 0)
             {
-                throw new InvalidFormException("El precio debe ser mayor a 0.");
+                valid =false;
             }
-            return true;
+            return valid;
         }
         public bool ValidateTipo(string valor)
         {
+            bool valid = true;
             try
             {
                 Tipo tipo = (Tipo)Enum.Parse(typeof(Tipo), valor, true);
             }
             catch (ArgumentException)
             {
-                throw new InvalidFormException("Tipo no válido.");
+                valid=false;
             }
-            return true;
+            return valid;
         }
         public bool ValidateMarca(string valor)
         {
+            bool valid = true;
             try
             {
                 Marca marca = (Marca)Enum.Parse(typeof(Marca), valor, true);
             }
             catch (ArgumentException)
             {
-                throw new InvalidFormException("Marca no válida");
+                valid = false;
             }
-            return true;
+            return valid;
            
         }
         public bool CodAvailable(int cod)

@@ -39,185 +39,111 @@ namespace PracticaProductos
                 MessageBox.Show(ex.Message, "Formulario inválido.");
             }    
         }
+
         private void nupCodigo_Validating(object sender, CancelEventArgs e)
         {
-            try
+            if (controller.ValidateCod(Convert.ToInt32(nupCodigo.Value)))
             {
-                if (controller.ValidateCod(Convert.ToInt32(nupCodigo.Value)))
-                    errorAdd.SetError(nupCodigo, "");
-            } catch(InvalidFormException ex)
+                errorAdd.SetError(nupCodigo, "");
+            } else
             {
-                errorAdd.SetError(nupCodigo, ex.Message);
-                MessageBox.Show(ex.Message, "Código no válido.");
+                errorAdd.SetError(nupCodigo, "Código no válido.");
                 e.Cancel = true;
+                if(!controller.CodAvailable(Convert.ToInt32(nupCodigo.Value)))
+                    MessageBox.Show("El código introducido ya pertenece a otro artículo.", "Código no válido.");
+                else 
+                    MessageBox.Show("El código debe ser mayor a 0.","Código no válido");
             }
+            
         }
         private void tbNombre_Validating(object sender, CancelEventArgs e)
         {
-            try
+            if (controller.ValidateName(tbNombre.Text))
             {
-                if (controller.ValidateName(tbNombre.Text))
-                    errorAdd.SetError(tbNombre, "");
-            }
-            catch (InvalidFormException ex)
+                errorAdd.SetError(tbNombre, "");
+            } else
             {
-                errorAdd.SetError(tbNombre, ex.Message);
-                MessageBox.Show(ex.Message, "Nombre no válido.");
+                errorAdd.SetError(tbNombre, "Nombre no válido.");
                 e.Cancel = true;
+                MessageBox.Show("El campo Nombre no puede estar vacío.", "Nombre no válido.");
             }
+           
         }
         private void nupPrecio_Validating(object sender, CancelEventArgs e)
         {
-            try
+            if (controller.ValidatePrice(Convert.ToDouble(nupPrecio.Value)))
             {
-                if (controller.ValidatePrice(Convert.ToDouble(nupPrecio.Value)))
-                    errorAdd.SetError(nupPrecio, "");
+                errorAdd.SetError(nupPrecio, "");
             }
-            catch (InvalidFormException ex)
+            else
             {
-                errorAdd.SetError(nupPrecio, ex.Message);
-                MessageBox.Show(ex.Message, "Precio no válido.");
+                errorAdd.SetError(nupPrecio, "Precio no válido.");
                 e.Cancel = true;
+                MessageBox.Show("El campo Precio debe ser mayor a 0.", "Precio no válido.");
             }
         }
         private void cbTipo_Validating(object sender, CancelEventArgs e)
         {
-            try
+            if (controller.ValidateTipo(cbTipo.Text))
             {
-                if (controller.ValidateTipo(cbTipo.Text))
-                    errorAdd.SetError(cbTipo, "");
+                errorAdd.SetError(cbTipo, "");
             }
-            catch (InvalidFormException ex)
+            else
             {
-                errorAdd.SetError(cbTipo, ex.Message);
-                MessageBox.Show(ex.Message, "Tipo no válido.");
+                errorAdd.SetError(cbTipo, "Tipo no válido.");
                 e.Cancel = true;
+                MessageBox.Show("Tipo no válido. Debes seleccionar una de las opciones del desplegable.", "Tipo no válido.");
             }
         }
         private void cbMarca_Validating(object sender, CancelEventArgs e)
         {
-            try
+            if (controller.ValidateMarca(cbMarca.Text))
             {
-                if (controller.ValidateMarca(cbMarca.Text))
-                    errorAdd.SetError(cbMarca, "");
+                errorAdd.SetError(cbMarca, "");
             }
-            catch (InvalidFormException ex)
+            else
             {
-                errorAdd.SetError(cbMarca, ex.Message);
-                MessageBox.Show(ex.Message, "Marca no válida.");
+                errorAdd.SetError(cbMarca, "Marca no válida.");
                 e.Cancel = true;
+                MessageBox.Show("Marca no válida. Debes seleccionar una de las opciones del desplegable.", "Marca no válido.");
             }
         }
         private bool ValidateForm()
         {
-            bool valid = false;
-            bool validCod = controller.ValidateCod(Convert.ToInt32(nupCodigo.Value));
-            bool validName = controller.ValidateName(tbNombre.Text);
-            bool validPrice = controller.ValidatePrice(Convert.ToDouble(nupPrecio.Value));
-            bool validTipo = controller.ValidateTipo(cbTipo.Text);
-            bool validMarca = controller.ValidateMarca(cbMarca.Text);
-            if (validCod && validName && validPrice && validTipo && validMarca)
+            if (!controller.ValidateCod(Convert.ToInt32(nupCodigo.Value)))
             {
-                valid = true;
-            }
-            return valid;
-        }
-        /*
-        private bool ValidateCod()
-        {
-            bool valid = true;
-            if (nupCodigo.Value <= 0)
-            {
-                
+                errorAdd.SetError(nupCodigo, "Código no válido.");
+                if (!controller.CodAvailable(Convert.ToInt32(nupCodigo.Value)))
+                    throw new InvalidFormException("Ese código ya pertenece a algún artículo.");
                 throw new InvalidFormException("Debes introducir un código mayor que 0.");
-            }   
-            else
-            {
-                errorAdd.SetError(nupCodigo, "");
-                if (!formMain.CodAvailable(Convert.ToInt32(nupCodigo.Value)))
-                {
-                    errorAdd.SetError(nupCodigo, "El código introducido ya pertenece a algún artículo registrado.");
-                    throw new InvalidFormException("El código introducido ya pertenece a algún artículo registrado.");
-                    
-                }
             }
-            return valid;            
-        }
-
-        private bool ValidateName()
-        {
-            bool valid = true;
-            if (tbNombre.Text == "")
+                
+            if (!controller.ValidateName(tbNombre.Text))
             {
-                errorAdd.SetError(tbNombre, "No puedes dejar el nombre vacío.");
-                throw new InvalidFormException("No puedes dejar el nombre vacío.");
+                errorAdd.SetError(tbNombre, "Nombre no válido.");
+                throw new InvalidFormException("El campo Nombre no puede estar vacío.");
             }
-            else
+                
+            if (!controller.ValidatePrice(Convert.ToDouble(nupPrecio.Value)))
             {
-                errorAdd.SetError(tbNombre, "");
+                errorAdd.SetError(nupPrecio, "Código no válido.");
+                throw new InvalidFormException("El campo Precio debe ser mayor a 0.");
             }
-            return valid;
-        }
-
-        private bool ValidatePrice()
-        {
-            bool valid = true;
-            if (nupPrecio.Value == 0)
-            {
-                errorAdd.SetError(nupPrecio, "Debes introducir un precio mayor que 0.");
-                throw new InvalidFormException("El precio no puede ser 0..");
-            }
-            else
-            {
-                errorAdd.SetError(nupPrecio, "");
-            }
-            return valid;
-        }
-       
-        private bool ValidateTipo()
-        {
-            List<string> tipos = new List<string> { "Compacto", "Deportivo", "Berlina", "Suv", "Todoterreno", "Monovolumen", "Biplaza", "Furgoneta" };
-            bool valid = false;
-            foreach(string s in tipos)
-            {
-                if (cbTipo.Text == s)
-                {
-                    valid = true;
-                }
-            }
-            if (!valid)
+                
+            if (!controller.ValidateTipo(cbTipo.Text))
             {
                 errorAdd.SetError(cbTipo, "Tipo no válido.");
-                throw new InvalidFormException("Selecciona un tipo de vehículo válido.");         
+                throw new InvalidFormException("Tipo no válido. Debes seleccionar una de las opciones del desplegable.");
             }
-            else
-            {
-                errorAdd.SetError(cbTipo, "");
-            }
-            return valid;
-        }
-        private bool ValidateMarca()
-        {
-            List<string> marcas = new List<string> { "Renault", "Citroen", "Peugeot", "BMW", "Audi", "Mercedes", "Porsche", "Ferrari", "Ford", "Volkswagen", "Kia", "Honda", "Dacia" };
-            bool valid = false;
-            foreach (string s in marcas)
-            {
-                if (cbMarca.Text == s)
-                {
-                    valid = true;
-                }
-            }
-            if (!valid)
+                
+            if (!controller.ValidateMarca(cbMarca.Text))
             {
                 errorAdd.SetError(cbMarca, "Marca no válida.");
-                throw new InvalidFormException("Selecciona una marca de vehículo válido.");
-            } else
-            {
-                errorAdd.SetError(cbMarca, "");
+                throw new InvalidFormException("Marca no válida. Debes seleccionar una de las opciones del desplegable.");
             }
-            return valid;
-        }*/
-
+             
+            return true;
+        }
 
         private void AddProduct()
         {
